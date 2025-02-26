@@ -1,0 +1,10 @@
+# .sops.yaml
+keys:
+  - &primary "age1yf7jyfeexk7fa8cjj7fnqa53hpzpjwyhn20e0jldv5eef8t0lv2sh3aj5x"
+creation_rules:
+  # need to match file pattern to sops when regex is given
+  - path_regex: secrets/encrypted.yaml$
+    key_groups:
+      - age:
+          - *primary
+        # - pgp, kms, ...

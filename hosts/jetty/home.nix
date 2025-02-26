@@ -1,0 +1,33 @@
+{ config, pkgs, ... }:
+
+{
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  # https://nix-community.github.io/home-manager/release-notes.xhtml#sec-release-24.11
+  home.stateVersion = "24.11";
+
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = { };
+
+  home.sessionVariables = {
+    # EDITOR = "emacs";
+    # suppress direnv log
+    DIRENV_LOG_FORMAT = "";
+  };
+
+  # to use ~/.config instead of /Users/<username>/Library/...
+  xdg.enable = true;
+
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  imports = [
+    ./sops.nix
+    ../../home/mac
+  ];
+}

@@ -1,0 +1,15 @@
+# Ignore secrets file
+.env
+
+# Nix result
+result
+result-*
+
+# Direnv
+.direnv/
+
+# Editor specific files
+.vscode/
+.idea/
+*.swp
+*~
