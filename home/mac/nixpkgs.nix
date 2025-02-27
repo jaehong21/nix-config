@@ -20,8 +20,9 @@
     jq
     lsd
     minio-client
-    nvtopPackages.apple
     nixfmt-rfc-style
+    nvtopPackages.apple
+    pre-commit
     ripgrep
     sd
     sops

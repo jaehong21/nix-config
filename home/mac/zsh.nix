@@ -17,6 +17,7 @@
 
     shellAliases = {
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
+      f = "cd $(fd --type directory --hidden | fzf)";
       tf = "terraform";
       tg = "terragrunt";
     };
