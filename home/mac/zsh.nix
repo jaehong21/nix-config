@@ -16,10 +16,17 @@
     syntaxHighlighting.enable = false;
 
     shellAliases = {
-      psql = "nix shell nixpkgs#postgresql_17 --command psql";
+      ls="lsd";
       f = "cd $(fd --type directory --hidden | fzf)";
+
+      an="ansible";
+      anp="ansible-playbook";
       tf = "terraform";
       tg = "terragrunt";
+
+      psql = "nix shell nixpkgs#postgresql_17 --command psql";
+      python="python3";
+      pip="pip3";
     };
 
     sessionVariables = {
