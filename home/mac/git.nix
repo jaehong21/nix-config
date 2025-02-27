@@ -10,6 +10,7 @@
   };
 
   programs.lazygit.enable = true;
+  programs.zsh.shellAliases = { lg = "lazygit"; };
 
   # https://nixos.wiki/wiki/Git
   programs.git = {
