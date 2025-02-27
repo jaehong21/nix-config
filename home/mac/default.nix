@@ -10,6 +10,7 @@
     ./starship.nix
     ./neovim.nix
     ./lang.nix
+    ./docker.nix
     ./kubernetes.nix
   ];
 }
