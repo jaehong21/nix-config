@@ -9,6 +9,7 @@
     autojump
     awscli2
     curl
+    doggo
     fd
     fzf
     gh
