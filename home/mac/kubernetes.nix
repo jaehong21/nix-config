@@ -4,7 +4,9 @@
   home.packages = with pkgs; [
     # krew
     kubectl
-    kubernetes-helm
+    (pkgs.wrapHelm pkgs.kubernetes-helm { 
+      plugins = [ pkgs.kubernetes-helmPlugins.helm-diff ]; 
+    })
     istioctl
   ];
 
