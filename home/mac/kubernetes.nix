@@ -7,7 +7,8 @@
     (pkgs.wrapHelm pkgs.kubernetes-helm { 
       plugins = [ pkgs.kubernetes-helmPlugins.helm-diff ]; 
     })
-    istioctl
+    istioctl # istio
+    cmctl # cert-manager
   ];
 
   programs.zsh.shellAliases = {
