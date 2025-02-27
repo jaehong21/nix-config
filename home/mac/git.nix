@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # sops.secrets."github/token" = { };
+  sops.secrets."github/token" = { };
 
   programs.zsh.sessionVariables = {
     GITHUB_ACTOR = "jaehong21";
-    # GITHUB_TOKEN = "$(cat ${config.sops.secrets."github/token".path})";
-    # GITHUB_PACKAGES_INSTALL_KEY = "$(cat ${config.sops.secrets."github/token".path})";
+    GITHUB_TOKEN = "$(cat ${config.sops.secrets."github/token".path})";
+    GITHUB_PACKAGES_INSTALL_KEY = "$(cat ${config.sops.secrets."github/token".path})";
   };
 
   programs.lazygit.enable = true;
