@@ -19,13 +19,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , darwin
-    , home-manager
-    , ...
-    }@inputs:
+  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     {
       homeConfigurations = {
         # <username>@<hostname>
