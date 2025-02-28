@@ -8,6 +8,7 @@
     ansible
     autojump
     awscli2
+    cargo
     curl
     doggo
     fd
