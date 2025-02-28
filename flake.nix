@@ -22,9 +22,9 @@
   outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     {
       homeConfigurations = {
-        # <username>@<hostname>
         # Work laptop
-        "jetty@jetty.local" = home-manager.lib.homeManagerConfiguration {
+        # <username>
+        "jetty" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "aarch64-darwin";
             config.allowUnfree = true;

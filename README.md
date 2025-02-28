@@ -9,7 +9,8 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```
 
 ## nix-darwin
-https://github.com/LnL7/nix-darwin
+
+<https://github.com/LnL7/nix-darwin>
 
 ```bash
 nix run nix-darwin#darwin-rebuild -- switch --flake . # or `.#jetty`, `<path to flake.nix>#jetty`
@@ -17,10 +18,11 @@ darwin-rebuild switch --flake . # if darwin-rebuild installed
 ```
 
 ## Home Manager
-https://github.com/nix-community/home-manager
+
+<https://github.com/nix-community/home-manager>
 
 ```bash
 # current path with `flake.nix`
-nix run nixpkgs#home-manager -- switch --flake . # or `#jetty@jetty.local`, `<path to flake.nix>#jetty@jetty.local`
+nix run nixpkgs#home-manager -- switch --flake . # or `#jetty`, `<path to flake.nix>#jetty`
 home-manager switch --flake . # if home-manager installed
 ```
