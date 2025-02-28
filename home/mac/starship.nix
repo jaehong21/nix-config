@@ -21,7 +21,7 @@
         kube_blue = "#89b4fb";
       };
 
-      # 모듈 설정
+      # Modules
       directory = {
         style = "fg:primary";
         format = "[$path]($style) ";
@@ -33,7 +33,6 @@
         style = "fg:green";
         symbol = "";
       };
-
       git_status = {
         style = "fg:green";
         modified = "*";
@@ -61,7 +60,6 @@
         min_time = 200;
       };
 
-      # 사용하지 않는 모듈 비활성화
       package.disabled = true;
     };
   };
