@@ -4,24 +4,27 @@
   inputs = {
     # Nix Ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    sops-nix.url = "github:Mic92/sops-nix";
+    # Nix Darwin
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Secrets
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      darwin,
-      home-manager,
-      ...
+    { self
+    , nixpkgs
+    , darwin
+    , home-manager
+    , ...
     }@inputs:
     {
       homeConfigurations = {
