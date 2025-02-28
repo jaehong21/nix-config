@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  sops.secrets."channelio/aws/ch_prod/account_id" = { };
+
   home.packages = with pkgs; [
     # krew
     kubectl
@@ -15,6 +17,8 @@
     k = "kubectl";
     kcs = "kubectl config use-context";
     k9s = "k9s -A";
+
+    helm-login = "aws ecr get-login-password --region ap-northeast-2 --profile ch-prod | helm registry login --username AWS --password-stdin $(cat ${config.sops.secrets."channelio/aws/ch_prod/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com";
   };
 
   programs.k9s = {
