@@ -23,6 +23,12 @@
       defaultBranch = "main";
     };
 
+    extraConfig = {
+      core = {
+        pager = "less -F -X";
+      };
+    };
+
     signing = {
       format = "openpgp";
       signer = "gpg"; # path to signer binary
