@@ -4,6 +4,10 @@
   sops.secrets = {
     "api_key/openrouter" = { };
     "api_key/groq" = { };
+    "aws/jaehong21/access_key" = { };
+    "aws/jaehong21/secret_key" = { };
+    "cloudflare/r2/access_key" = { };
+    "cloudflare/r2/secret_key" = { };
   };
 
   # https://nixos.wiki/wiki/Zsh
@@ -16,23 +20,28 @@
     syntaxHighlighting.enable = false;
 
     shellAliases = {
-      ls="lsd";
+      ls = "lsd";
       f = "cd $(fd --type directory --hidden | fzf)";
 
-      an="ansible";
-      anp="ansible-playbook";
+      an = "ansible";
+      anp = "ansible-playbook";
       tf = "terraform";
       tg = "terragrunt";
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
-      python="python3";
-      pip="pip3";
+      python = "python3";
+      pip = "pip3";
     };
 
     sessionVariables = {
-      AWS_PROFILE = "default";
       OPENROUTER_API_KEY = "$(cat ${config.sops.secrets."api_key/openrouter".path})";
       GROQ_API_KEY = "$(cat ${config.sops.secrets."api_key/groq".path})";
+
+      AWS_PROFILE = "default";
+      TF_VAR_aws_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
+      TF_VAR_aws_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
+      TF_VAR_r2_access_key = "$(cat ${config.sops.secrets."cloudflare/r2/access_key".path})";
+      TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
     };
 
     initExtra = ''
