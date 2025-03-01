@@ -73,12 +73,14 @@ in
     ];
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      tree
-      gnupg
-      gh
-      htop
+      cockroachdb
       fastfetch
+      gh
+      gnupg
+      htop
       python310
+      tailscale # CLI
+      tree
     ];
   };
   security.sudo.wheelNeedsPassword = false;
@@ -96,7 +98,6 @@ in
     git
     wget
     dnsutils
-    tailscale # CLI
   ];
 
   # List services that you want to enable:
