@@ -22,7 +22,7 @@
     jq
     lsd
     minio-client
-    nixfmt-rfc-style
+    nixpkgs-fmt
     nvtopPackages.apple
     pre-commit
     ripgrep
