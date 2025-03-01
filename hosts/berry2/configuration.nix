@@ -137,7 +137,7 @@ in
     enable = true;
     role = "agent";
     tokenFile = "${config.sops.secrets."k3s/token".path}";
-    serverAddr = (builtins.readFile "${config.sops.secrets."k3s/server_addr".path}");
+    serverAddr = "https://kube.jaehong21.com:6443";
     extraFlags = [
       "--flannel-iface tailscale0"
     ];
