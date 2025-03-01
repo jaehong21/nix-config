@@ -70,8 +70,8 @@ in
     isNormalUser = true;
     # initialPassword = "xxx";
     hashedPassword = "!";
-    openssh.authorizedKeys.keyFiles = [
-      "${config.sops.secrets."ssh/berry/public_key".path}"
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDE1PeLtA6jPhqKsQbIg4Gr8QGJzCLnjdcKCJzzsh84hNfueQOfw0sv+sFxV05fPpKVglMTukv9wGG1SVSdhTLhPWH9Yf9ggZ+ULch4ElnBxa/SV7rxtKpg/Dihmw46VkrR94hbiGDU3tsZ2q+2eiEI/JvcGkPB3bsuII0z4sXhNZ2ojtyYBsJz7rjDg6kaqr3D+nTz1ULN6WsQ7P2wF/7BHv/ShWkDoYt6oBwnYySp6XHk+3h8U7Udpu7qRtn+BpBYRsi9uqrtFERA0fJS19w5dXfNXw/LaCt+/Ghh3hKiSNncnSFMUqGZH+1oqY8SPVWCyQyhncHo6l6PMMPeOq1n5SjSX7vr14kNyPtGd6eVMQXanQgs5wLw3r/LCzWcM6up6mID0aiVBZEuZpRV5U1/SkeiBGfrBZfHmVD0MTcrfoCXfMQKAkBrtHINij4gKOXRWeR/XgqbW+xeU7JugDQZP+TmPxHF7Q2gVb6nM2ryXMJI59QdJL6y0l/xKXaI75ykMFf25XNUn8AHOXSaRxmH26/MJ0QD8rWaRYNLi/XKE/yZ4cpfP3eZDlSP55I3jwkIWlyTvPyJt2D5TksGY3OBGrpqv9tCvztXu6vgh9k9318CPccQD5SaYxiNtjx5ompIN6M6pqHbGeqZfqALkVk1T1zPALfcLVHV1vJEM35GGQ=="
     ];
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
