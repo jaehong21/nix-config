@@ -57,8 +57,6 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "ssh/berry/public_key" = { };
-      "k3s/server_addr" = { };
       "k3s/token" = { };
     };
   };
