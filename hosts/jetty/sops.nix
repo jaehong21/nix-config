@@ -1,9 +1,4 @@
-{
-  self,
-  inputs,
-  config,
-  ...
-}:
+{ self, inputs, config, ... }:
 
 {
   imports = [
