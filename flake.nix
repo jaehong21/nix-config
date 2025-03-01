@@ -62,7 +62,7 @@
       jetty = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./darwin
+          ./darwin/jetty
           {
             nixpkgs.hostPlatform = "aarch64-darwin";
             users.users.jetty = {
