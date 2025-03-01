@@ -50,8 +50,7 @@
         };
         specialArgs = { inherit inputs; };
         modules = [
-          # temp: NixOS configuration.nix config path
-          /etc/nixos/configuration.nix
+          ./hosts/berry2/configuration.nix
         ];
       };
     };
