@@ -45,10 +45,10 @@
       berry2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs {
-          inherit system;
+          system = "aarch64-linux";
           config.allowUnfree = true;
         };
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit inputs; };
         modules = [
           # temp: NixOS configuration.nix config path
           /etc/nixos/configuration.nix
