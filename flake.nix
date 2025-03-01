@@ -28,7 +28,7 @@
           system = "aarch64-darwin";
           config.allowUnfree = true;
         };
-        extraSpecialArgs = { inherit inputs self; }; # pass inputs to home.nix
+        extraSpecialArgs = { inherit self inputs; }; # pass inputs to home.nix
         modules = [
           ./hosts/jetty/home.nix
           {
@@ -48,7 +48,7 @@
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit self inputs; };
         modules = [
           ./hosts/berry2/configuration.nix
         ];

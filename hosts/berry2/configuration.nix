@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ self, inputs, config, lib, pkgs, ... }:
 
 let
   k3sOverlay = final: prev: {
