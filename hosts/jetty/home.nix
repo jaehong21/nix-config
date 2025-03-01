@@ -1,6 +1,23 @@
-{ config, pkgs, ... }:
+{ self, inputs, config, pkgs, ... }:
 
 {
+  imports = [
+    # https://github.com/Mic92/sops-nix?tab=readme-ov-file#use-with-home-manager
+    inputs.sops-nix.homeManagerModules.sops
+    ../../home/jetty
+  ];
+
+  # for home-manager module,
+  # store at users $XDG_RUNTIME_DIR/secrets.d
+  # and symlinked to $HOME/.config/sops-nix/secrets (= `.path` value in sops-nix)
+  sops = {
+    # self.outPath is the flake absolute path
+    defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
+    defaultSopsFormat = "yaml";
+    # should have no passphrase
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+  };
+
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
@@ -25,9 +42,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  imports = [
-    ./sops.nix
-    ../../home/mac
-  ];
 }
