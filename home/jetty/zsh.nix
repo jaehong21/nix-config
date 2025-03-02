@@ -6,8 +6,11 @@
     "api_key/groq" = { };
     "aws/jaehong21/access_key" = { };
     "aws/jaehong21/secret_key" = { };
+    "cloudflare/api_key" = { };
     "cloudflare/r2/access_key" = { };
     "cloudflare/r2/secret_key" = { };
+    "oci/bkw377/user_ocid" = { };
+    "oci/bkw377/fingerprint" = { };
   };
 
   # https://nixos.wiki/wiki/Zsh
@@ -40,8 +43,11 @@
       AWS_PROFILE = "default";
       TF_VAR_aws_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
       TF_VAR_aws_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
+      TF_VAR_cloudflare_api_key = "$(cat ${config.sops.secrets."cloudflare/api_key".path})";
       TF_VAR_r2_access_key = "$(cat ${config.sops.secrets."cloudflare/r2/access_key".path})";
       TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
+      TF_VAR_oci_bkw377_user_ocid = "$(cat ${config.sops.secrets."oci/bkw377/user_ocid".path})";
+      TF_VAR_oci_bkw377_fingerprint = "$(cat ${config.sops.secrets."oci/bkw377/fingerprint".path})";
     };
 
     initExtra = ''
