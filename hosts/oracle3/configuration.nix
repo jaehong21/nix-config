@@ -110,6 +110,25 @@ in
     useRoutingFeatures = "both";
   };
 
+  # k3s server
+  services.k3s = {
+    enable = true;
+    role = "server";
+    tokenFile = "${config.sops.secrets."k3s/token".path}";
+    serverAddr = "https://kube.jaehong21.com:6443";
+    clusterInit = true;
+    extraFlags = [
+      "--write-kubeconfig-mode 644"
+      "--tls-san kube.jaehong21.com"
+      "--cluster-cidr 10.42.0.0/16"
+      "--service-cidr 10.43.0.0/16"
+      "--cluster-dns 10.43.0.10"
+      "--flannel-iface tailscale0"
+      "--flannel-backend vxlan" # default
+      "--disable servicelb,traefik,local-storage,metrics-server"
+    ];
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
