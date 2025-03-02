@@ -87,6 +87,7 @@ in
 
   environment.systemPackages = with pkgs; [
     curl
+    dnsutils
     git
     htop
     vim
