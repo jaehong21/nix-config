@@ -147,9 +147,9 @@ in
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
+  networking.firewall.allowedUDPPorts = [ 8472 ];
+  # networking.firewall.enable = false;
 
   # Disable documentation for minimal install.
   documentation.enable = false;
