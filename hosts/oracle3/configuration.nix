@@ -64,10 +64,13 @@ in
     mutableUsers = false;
     users.jaehong21 = {
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        (builtins.readFile ./id_rsa.pub)
+      openssh.authorizedKeys.keys = [ (builtins.readFile ./id_rsa.pub) ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "docker"
       ];
-      extraGroups = [ "networkmanager" "wheel" ];
+
       packages = with pkgs; [
         fastfetch
         gh

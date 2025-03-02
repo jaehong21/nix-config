@@ -72,10 +72,13 @@ in
     isNormalUser = true;
     # initialPassword = "xxx";
     hashedPassword = "!";
-    openssh.authorizedKeys.keys = [
-      (builtins.readFile ./id_rsa.pub)
+    openssh.authorizedKeys.keys = [ (builtins.readFile ./id_rsa.pub) ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
     ];
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+
     packages = with pkgs; [
       fastfetch
       gh
