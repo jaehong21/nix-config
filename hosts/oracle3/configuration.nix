@@ -4,7 +4,8 @@
   imports =
     [
       ./hardware-configuration.nix
-      "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz"}/module.nix"
+      # "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz"}/module.nix"
+      inputs.disko.nixosModules.disko
       ./disk-config.nix
     ];
 

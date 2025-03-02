@@ -15,6 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # disko
+    disko = {
+      # url = "github:nix-community/disko";
+      url = "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Secrets
     sops-nix.url = "github:Mic92/sops-nix";
   };
