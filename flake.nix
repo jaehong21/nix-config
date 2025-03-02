@@ -22,8 +22,8 @@
   outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
-      # <username>
-      "jetty" = home-manager.lib.homeManagerConfiguration {
+      # <username>@<hostname>
+      "jetty@jetty.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -42,6 +42,17 @@
     # Build nixos flake using:
     # $ sudo nixos-rebuild build --flake .#berry2
     nixosConfigurations = {
+      oracle3 = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = { inherit self inputs; };
+        modules = [
+          ./hosts/oracle3/configuration.nix
+        ];
+      };
       berry2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs {

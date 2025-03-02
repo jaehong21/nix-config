@@ -22,6 +22,7 @@
     jq
     lsd
     minio-client
+    nh
     nixpkgs-fmt
     nvtopPackages.apple
     pre-commit
