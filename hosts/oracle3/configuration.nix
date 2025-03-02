@@ -1,12 +1,29 @@
 { self, inputs, config, lib, pkgs, ... }:
 
+let
+  k3sOverlay = final: prev: {
+    k3s = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "ef56e777fedaa4da8c66a150081523c5de1e0171";
+        hash = "sha256-a3MMEY7i/wdF0gb7WFNTn6onzaiMOvwj7OerRVenA8o=";
+      })
+      { inherit (pkgs) system; }).k3s;
+  };
+in
 {
+  nixpkgs.overlays = [
+    k3sOverlay
+  ];
+
   imports =
     [
       ./hardware-configuration.nix
       # "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz"}/module.nix"
       inputs.disko.nixosModules.disko
       ./disk-config.nix
+      inputs.sops-nix.nixosModules.sops
     ];
 
   boot = {
@@ -27,6 +44,20 @@
 
   time.timeZone = "Asia/Seoul";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # sops-nix for secrets
+  # for NixOS, it used to store at `/run/secrets`
+  sops = {
+    # self.outPath is the flake absolute path
+    defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
+    defaultSopsFormat = "yaml";
+    # should have no passphrase
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+
+    secrets = {
+      "k3s/token" = { };
+    };
+  };
 
   users = {
     mutableUsers = false;
