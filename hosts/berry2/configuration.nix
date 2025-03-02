@@ -107,8 +107,7 @@ in
     enable = true;
     ports = [ 22 ];
     settings = {
-      PermitRootLogin = "yes";
-
+      PermitRootLogin = "no";
       # disable for public key authentication
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
