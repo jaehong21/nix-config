@@ -64,7 +64,7 @@ in
     users.jaehong21 = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDV/BTO0yuaMxO6K9jmgRDIYPE1OGnb1EeCA/ywBvEkcUEZ+wO2Hu0mxavHeKwrMvNgPabEzE93jOdIh8CjQ/XpaBuZ1d/aqXZL/MVp4mkWfGxDAsOEeSUg43lFvefTx/APStaUbZFRlTO2pH4EqSrg6QEzgeQx6XfZvFggzqVqUynzntAGINmbD3519ismRIBUdgGgz+QpNP8g4oEPMvv5gEVmnGq+o9tvy3ZphmKfbX9Cpz48XlkbqucfFojO8gFpCrFgzA/ukGkqsJ1T/jLviNHjIzgwLvBT67H0yR2MtPpNSki0gWrZ1iIVd3fa65Iu4EeVsxGR4RxrxC7iRbpt5kmfQnlPzbTvpZWb0IQJlyZaBkt68rnjj2MYuqiZwWMETh7uQYr3oAmShPTQ4lxL2D1DIIy1XuSc15ieGRdRMukSidl+LDQraOmwibdtFEITFrBTbgvT9LQe+7EjTgctrBeGwPuhJqvRbIUpukdeYy8wEl/+7Buqjl22z07no88AolI0+dXNSsTsVLS0XP3TVooBU0hzx8IdDacqFmuxEXfn6wARdAiBx8kc3cja7DE+/ICg7potq4Azc6rMnKf+oh8kLcB0ZyBvU79VYyhDLxaeA9ijuWNF90qq9SPryYcDEx0uu5z2yFORf2rr73k9CxuA8n0+Ox41XCgjLXg8kQ=="
+        (builtins.readFile ./id_rsa.pub)
       ];
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [
@@ -79,8 +79,8 @@ in
       ];
     };
   };
-  security.sudo.wheelNeedsPassword = false;
 
+  security.sudo.wheelNeedsPassword = false;
   services.getty.autologinUser = "jaehong21";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -101,7 +101,6 @@ in
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
-      MaxAuthTries = 20;
     };
   };
 
