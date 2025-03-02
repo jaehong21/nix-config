@@ -95,6 +95,13 @@ in
     wget
   ];
 
+  # Google's NTP service instead systemd-timesyncd
+  services.ntp = {
+    enable = true; # it disables systemd.timesyncd
+    servers = [ "time.google.com" ];
+    extraFlags = [ "-b" ];
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -108,6 +115,13 @@ in
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
+  };
+
+  # use docker
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = { };
   };
 
   # k3s server

@@ -73,7 +73,7 @@ in
     # initialPassword = "xxx";
     hashedPassword = "!";
     openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCbDRj+DcKgKNJ6mvcS3dbBPsYQvQIvZuiRQwHc9az1TBE7qypTyLh0xjjbchzl5HhpXzxyaPxNxUsu2VN5iudHvbzl4za0Z8FxgpGZWzSS73o0kOnf2lvdx4qb6kOeYeIpX4p9X6/33ERQc2BoN9pzJhKnfjRy7Jl6HvJTojAE4jHQz9qIIL2VMTgQweASrBVWxuoClfoKelj9UMhNm1W/VocDPF662WQXYWNQsal8KxMHoC9oEgvBQyjbR8vaiiDsDtSGTAepHUi94XhNqHIyTnRukSHYtfdLVBAkZZEfpn5lTqgG8zy8dnZ0zIvMbruKaePEjOx/BRmdOYC6oKxe9UJpc45C2PtTpLF/ZjX1gpypgQqFmRG8HDIEwpZJaYPEGOJrLF7Gt7PVhSHB3F650asc2RFHlX3WdtKBWV/hBXh03wk1ZoZp0V73/D6vZCwtfhULxBCEQ/HBhvWYT71GfRLKXlbylebGYTwLwB+L26onKIrR6+tRw1OxdjYhX227T1VNtvKE3Og3I1CFgSKtcnMsw6cFIAPo+JlDoGuXarIoPSTSVWkDTltzF5MiHMA47MgNUJNfNs+BJ+IB45wZ0Yr36ZxgoPqEemQSjKu1WkAcG0wYfljqFfNb8P0i9x7s6uTlnimiQiUdHxP/EgVQMHoLWCiZ9LRJHhDMxCnS6w=="
+      (builtins.readFile ./id_rsa.pub)
     ];
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -87,11 +87,9 @@ in
       tree
     ];
   };
+
   security.sudo.wheelNeedsPassword = false;
-
   services.getty.autologinUser = "jaehong21";
-
-  # programs.firefox.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -107,6 +105,13 @@ in
 
   # List services that you want to enable:
 
+  # Google's NTP service instead systemd-timesyncd
+  services.ntp = {
+    enable = true; # it disables systemd.timesyncd
+    servers = [ "time.google.com" ];
+    extraFlags = [ "-b" ];
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -119,20 +124,17 @@ in
     };
   };
 
-  # Google's NTP service instead systemd-timesyncd
-  services.ntp = {
-    enable = true; # it disables systemd.timesyncd
-    servers = [ "time.google.com" ];
-    extraFlags = [ "-b" ];
-  };
-
-  # use docker
-  virtualisation.docker.enable = true;
-
   # Tailscale VPN
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
+  };
+
+  # use docker
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = { };
   };
 
   # k3s agent
