@@ -73,11 +73,11 @@ in
     ];
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      cockroachdb
       fastfetch
       gh
       gnupg
       htop
+      nh
       python310
       tailscale # CLI
       tree
