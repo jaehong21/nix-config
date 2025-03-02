@@ -46,6 +46,7 @@ in
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # sops-nix for secrets
   # for NixOS, it used to store at `/run/secrets`
