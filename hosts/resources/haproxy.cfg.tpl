@@ -1,8 +1,4 @@
-# NOTE: `global` section can have conflicts with NixOS services.haproxy
-
 defaults
-    # log /dev/log local0
-    # log /dev/log local1 notice
     mode tcp
     option tcplog
     option dontlognull
@@ -26,8 +22,8 @@ frontend http-frontend
 backend http-backend
     option tcp-check
     balance roundrobin
-    server oracle2 oracle2:30080 check
-    server oracle3 oracle3:30080 check
+    server primary ${primaryServer}:30080 check
+    server backup ${backupServer}:30080 check backup
 
 frontend https-frontend
     bind *:443
@@ -36,5 +32,5 @@ frontend https-frontend
 backend https-backend
     option tcp-check
     balance roundrobin
-    server oracle2 oracle2:30443 check
-    server oracle3 oracle3:30443 check
+    server primary ${primaryServer}:30443 check
+    server backup ${backupServer}:30443 check backup 
