@@ -103,6 +103,17 @@
           ./hosts/berry2/configuration.nix
         ];
       };
+      berry3 = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = { inherit self inputs; };
+        modules = [
+          ./hosts/berry3/configuration.nix
+        ];
+      };
     };
 
     # Build darwin flake using:
