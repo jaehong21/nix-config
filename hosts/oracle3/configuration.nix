@@ -69,13 +69,13 @@ in
         "wheel"
         "networkmanager"
         "docker"
-        "haproxy"
       ];
 
       packages = with pkgs; [
         fastfetch
         gh
         gnupg
+        haproxy
         nh
         python310
         tailscale # CLI
@@ -156,7 +156,7 @@ in
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 9000 10250 ];
   networking.firewall.allowedUDPPorts = [ 8472 ];
   # networking.firewall.enable = false;
 
