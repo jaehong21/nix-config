@@ -63,6 +63,7 @@ in
     secrets = {
       "k3s/token" = { };
       "postgres/berry1/env_file" = { };
+      "redis/berry1/password" = { };
     };
   };
 
@@ -139,6 +140,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
+      # postgres
       postgres = {
         image = "public.ecr.aws/docker/library/postgres:17.4";
         ports = [ "5432:5432" ];
@@ -155,6 +157,20 @@ in
           "/var/lib/postgresql/17:/var/lib/postgresql/data"
         ];
       };
+    };
+  };
+
+  # redis
+  services.redis = {
+    # redisName: redis
+    # redisConfVar = "/var/lib/${redisName name}/redis.conf";
+    # redisDataDir = "/var/lib/${redisName name}/dump.rdb";
+    redis = {
+      enable = true;
+      port = 6379;
+      save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
+      appendOnly = false;
+      requirePassFile = "${config.sops.secrets."redis/berry1/password".path}";
     };
   };
 
