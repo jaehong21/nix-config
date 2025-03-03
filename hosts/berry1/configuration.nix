@@ -162,11 +162,11 @@ in
 
   # redis
   services.redis = {
-    # redisConfVar = "/var/lib/${redisName name}/redis.conf";
-    # redisDataDir = "/var/lib/${redisName name}/dump.rdb";
     servers = {
-      # redisName: redis
-      redis = {
+      # redisConfVar = "/var/lib/redis-${redisName}/redis.conf";
+      # redisDataDir = "/var/lib/redis-${redisName}/dump.rdb";
+      # redisName: berry1
+      berry1 = {
         enable = true;
         bind = "0.0.0.0";
         port = 6379;

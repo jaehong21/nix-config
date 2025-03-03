@@ -149,9 +149,9 @@ in
   # redis
   services.redis = {
     # sudo systemctl status redis-${redisName}
-    # redisConfVar = "/var/lib/${redisName}/redis.conf";
-    # redisDataDir = "/var/lib/${redisName}/dump.rdb";
     servers = {
+      # redisConfVar = "/var/lib/redis-${redisName}/redis.conf";
+      # redisDataDir = "/var/lib/redis-${redisName}/dump.rdb";
       # redisName: oracle1
       oracle1 = {
         enable = true;
