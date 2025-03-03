@@ -75,7 +75,6 @@ in
         fastfetch
         gh
         gnupg
-        haproxy
         nh
         python310
         tailscale # CLI
@@ -131,7 +130,7 @@ in
   # haproxy
   services.haproxy = {
     enable = true;
-    config = (builtins.readFile ./haproxy.cfg);
+    config = (builtins.readFile ../resources/haproxy.cfg);
     user = "haproxy";
     group = "haproxy";
   };
@@ -156,7 +155,7 @@ in
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 9000 10250 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
   networking.firewall.allowedUDPPorts = [ 8472 ];
   # networking.firewall.enable = false;
 
