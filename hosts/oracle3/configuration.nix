@@ -131,7 +131,7 @@ in
   # haproxy
   services.haproxy = {
     enable = true;
-    configFile = (builtins.readFile ./haproxy.cfg);
+    config = (builtins.readFile ./haproxy.cfg);
   };
 
   # k3s server
