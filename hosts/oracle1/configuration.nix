@@ -38,7 +38,7 @@ in
 
   systemd.targets.multi-user.enable = true;
 
-  networking.hostName = "oracle3";
+  networking.hostName = "oracle1";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Seoul";
@@ -65,8 +65,8 @@ in
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ (builtins.readFile ./id_rsa.pub) ];
       extraGroups = [
-        "wheel"
         "networkmanager"
+        "wheel"
         "docker"
       ];
 
@@ -126,41 +126,24 @@ in
     containers = { };
   };
 
-  # haproxy
-  services.haproxy = {
-    enable = true;
-    config =
-      let
-        template = builtins.readFile ../resources/haproxy.cfg.tpl;
-        primaryServer = "oracle3";
-        backupServer = "oracle2";
-      in
-      builtins.replaceStrings
-        [ "${primaryServer}" "${backupServer}" ]
-        [ primaryServer backupServer ]
-        template;
-    user = "haproxy";
-    group = "haproxy";
-  };
-
   # k3s server
-  services.k3s = {
-    enable = true;
-    role = "server";
-    tokenFile = "${config.sops.secrets."k3s/token".path}";
-    serverAddr = "https://kube.jaehong21.com:6443";
-    clusterInit = true;
-    extraFlags = [
-      "--write-kubeconfig-mode 644"
-      "--tls-san kube.jaehong21.com"
-      "--cluster-cidr 10.42.0.0/16"
-      "--service-cidr 10.43.0.0/16"
-      "--cluster-dns 10.43.0.10"
-      "--flannel-iface tailscale0"
-      "--flannel-backend vxlan" # default
-      "--disable servicelb,traefik,local-storage,metrics-server"
-    ];
-  };
+  # services.k3s = {
+  #   enable = true;
+  #   role = "server";
+  #   tokenFile = "${config.sops.secrets."k3s/token".path}";
+  #   serverAddr = "https://kube.jaehong21.com:6443";
+  #   clusterInit = true;
+  #   extraFlags = [
+  #     "--write-kubeconfig-mode 644"
+  #     "--tls-san kube.jaehong21.com"
+  #     "--cluster-cidr 10.42.0.0/16"
+  #     "--service-cidr 10.43.0.0/16"
+  #     "--cluster-dns 10.43.0.10"
+  #     "--flannel-iface tailscale0"
+  #     "--flannel-backend vxlan" # default
+  #     "--disable servicelb,traefik,local-storage,metrics-server"
+  #   ];
+  # };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];

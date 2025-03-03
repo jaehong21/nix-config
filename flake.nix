@@ -17,7 +17,7 @@
 
     # disko
     disko = {
-      # url = "github:nix-community/disko";
+      # "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz"}/module.nix"
       url = "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -48,6 +48,17 @@
     # Build nixos flake using:
     # $ sudo nixos-rebuild build --flake .#berry2
     nixosConfigurations = {
+      oracle1 = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = { inherit self inputs; };
+        modules = [
+          ./hosts/oracle1/configuration.nix
+        ];
+      };
       oracle2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs {
