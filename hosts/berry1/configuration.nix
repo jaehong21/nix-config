@@ -62,6 +62,7 @@ in
 
     secrets = {
       "k3s/token" = { };
+      "postgres/berry1/env_file" = { };
     };
   };
 
@@ -137,7 +138,24 @@ in
   virtualisation.docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = { };
+    containers = {
+      postgres = {
+        image = "public.ecr.aws/docker/library/postgres:17.4";
+        ports = [ "5432:5432" ];
+
+        environment = {
+          TZ = "Asia/Seoul";
+          PGDATA = "/var/lib/postgresql/data";
+          # POSTGRES_USER = "xxx";
+          # POSTGRES_PASSWORD = "xxx";
+          # POSTGRES_DB = "xxx";
+        };
+        environmentFiles = [ "${config.sops.secrets."postgres/berry1/env_file".path}" ];
+        volumes = [
+          "/var/lib/postgresql/17:/var/lib/postgresql/data"
+        ];
+      };
+    };
   };
 
   # k3s agent
