@@ -162,15 +162,17 @@ in
 
   # redis
   services.redis = {
-    # redisName: redis
     # redisConfVar = "/var/lib/${redisName name}/redis.conf";
     # redisDataDir = "/var/lib/${redisName name}/dump.rdb";
-    redis = {
-      enable = true;
-      port = 6379;
-      save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
-      appendOnly = false;
-      requirePassFile = "${config.sops.secrets."redis/berry1/password".path}";
+    servers = {
+      # redisName: redis
+      redis = {
+        enable = true;
+        port = 6379;
+        save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
+        appendOnly = false;
+        requirePassFile = "${config.sops.secrets."redis/berry1/password".path}";
+      };
     };
   };
 
