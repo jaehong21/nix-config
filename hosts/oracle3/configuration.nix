@@ -69,6 +69,7 @@ in
         "wheel"
         "networkmanager"
         "docker"
+        "haproxy"
       ];
 
       packages = with pkgs; [
@@ -125,6 +126,12 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers = { };
+  };
+
+  # haproxy
+  services.haproxy = {
+    enable = true;
+    configFile = (builtins.readFile ./haproxy.cfg);
   };
 
   # k3s server
