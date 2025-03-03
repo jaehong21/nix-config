@@ -36,7 +36,7 @@
         };
         extraSpecialArgs = { inherit self inputs; }; # pass inputs to home.nix
         modules = [
-          ./hosts/jetty/home.nix
+          ./home/jetty/configuration.nix
           {
             home.username = "jetty";
             home.homeDirectory = "/Users/jetty";
@@ -101,7 +101,7 @@
       jetty = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./darwin/jetty
+          ./darwin/jetty/configuration.nix
           {
             nixpkgs.hostPlatform = "aarch64-darwin";
             users.users.jetty = {

@@ -4,7 +4,7 @@
   imports = [
     # https://github.com/Mic92/sops-nix?tab=readme-ov-file#use-with-home-manager
     inputs.sops-nix.homeManagerModules.sops
-    ../../home/jetty
+    ./default.nix
   ];
 
   # for home-manager module,
