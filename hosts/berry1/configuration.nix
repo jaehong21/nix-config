@@ -168,6 +168,7 @@ in
       # redisName: redis
       redis = {
         enable = true;
+        bind = "0.0.0.0";
         port = 6379;
         save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
         appendOnly = false;
