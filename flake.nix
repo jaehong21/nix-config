@@ -70,6 +70,17 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
+      berry1 = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = { inherit self inputs; };
+        modules = [
+          ./hosts/berry1/configuration.nix
+        ];
+      };
       berry2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs {
