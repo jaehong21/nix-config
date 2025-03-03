@@ -18,6 +18,9 @@
     "oci/csia10kmla23/user_ocid" = { };
     "oci/csia10kmla23/fingerprint" = { };
     "oci/csia10kmla23/private_key" = { };
+    "postgres/oracle1/password" = { };
+    "postgres/nas/password" = { };
+    "postgres/berry1/password" = { };
   };
 
   # https://nixos.wiki/wiki/Zsh
@@ -62,6 +65,9 @@
       TF_VAR_oci_csia10kmla23_user_ocid = "$(cat ${config.sops.secrets."oci/csia10kmla23/user_ocid".path})";
       TF_VAR_oci_csia10kmla23_fingerprint = "$(cat ${config.sops.secrets."oci/csia10kmla23/fingerprint".path})";
       TF_VAR_oci_csia10kmla23_private_key_path = "${config.sops.secrets."oci/csia10kmla23/private_key".path}";
+      TF_VAR_postgresql_oracle1_password = "$(cat ${config.sops.secrets."postgres/oracle1/password".path})";
+      TF_VAR_postgresql_nas_password = "$(cat ${config.sops.secrets."postgres/nas/password".path})";
+      TF_VAR_postgresql_berry1_password = "$(cat ${config.sops.secrets."postgres/berry1/password".path})";
     };
 
     initExtra = ''
