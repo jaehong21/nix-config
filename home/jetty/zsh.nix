@@ -15,6 +15,9 @@
     "oci/bkw377/user_ocid" = { };
     "oci/bkw377/fingerprint" = { };
     "oci/bkw377/private_key" = { };
+    "oci/csia10kmla23/user_ocid" = { };
+    "oci/csia10kmla23/fingerprint" = { };
+    "oci/csia10kmla23/private_key" = { };
   };
 
   # https://nixos.wiki/wiki/Zsh
@@ -52,10 +55,13 @@
       TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
       TF_VAR_oci_jaehong21_user_ocid = "$(cat ${config.sops.secrets."oci/jaehong21/user_ocid".path})";
       TF_VAR_oci_jaehong21_fingerprint = "$(cat ${config.sops.secrets."oci/jaehong21/fingerprint".path})";
-      TF_VAR_oci_jaehong21_private_key = "$(cat ${config.sops.secrets."oci/jaehong21/private_key".path})";
+      TF_VAR_oci_jaehong21_private_key_path = "${config.sops.secrets."oci/jaehong21/private_key".path}";
       TF_VAR_oci_bkw377_user_ocid = "$(cat ${config.sops.secrets."oci/bkw377/user_ocid".path})";
       TF_VAR_oci_bkw377_fingerprint = "$(cat ${config.sops.secrets."oci/bkw377/fingerprint".path})";
-      TF_VAR_oci_bkw377_private_key = "$(cat ${config.sops.secrets."oci/bkw377/private_key".path})";
+      TF_VAR_oci_bkw377_private_key_path = "${config.sops.secrets."oci/bkw377/private_key".path}";
+      TF_VAR_oci_csia10kmla23_user_ocid = "$(cat ${config.sops.secrets."oci/csia10kmla23/user_ocid".path})";
+      TF_VAR_oci_csia10kmla23_fingerprint = "$(cat ${config.sops.secrets."oci/csia10kmla23/fingerprint".path})";
+      TF_VAR_oci_csia10kmla23_private_key_path = "${config.sops.secrets."oci/csia10kmla23/private_key".path}";
     };
 
     initExtra = ''
