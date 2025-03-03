@@ -22,8 +22,8 @@ frontend http-frontend
 backend http-backend
     option tcp-check
     balance roundrobin
-    server primary ${primaryServer}:30080 check
-    server backup ${backupServer}:30080 check backup
+    server ${primaryServer} ${primaryServer}:30080 check
+    server ${backupServer} ${backupServer}:30080 check backup
 
 frontend https-frontend
     bind *:443
@@ -32,5 +32,5 @@ frontend https-frontend
 backend https-backend
     option tcp-check
     balance roundrobin
-    server primary ${primaryServer}:30443 check
-    server backup ${backupServer}:30443 check backup 
+    server ${primaryServer} ${primaryServer}:30443 check
+    server ${backupServer} ${backupServer}:30443 check backup 
