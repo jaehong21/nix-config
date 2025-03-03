@@ -56,6 +56,8 @@ in
 
     secrets = {
       "k3s/token" = { };
+      "postgres/oracle1/env_file" = { };
+      "redis/oracle1/password" = { };
     };
   };
 
@@ -123,7 +125,43 @@ in
   virtualisation.docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = { };
+    containers = {
+      # postgres
+      postgres = {
+        image = "public.ecr.aws/docker/library/postgres:17.4";
+        ports = [ "5432:5432" ];
+
+        environment = {
+          TZ = "Asia/Seoul";
+          PGDATA = "/var/lib/postgresql/data";
+          # POSTGRES_USER = "xxx";
+          # POSTGRES_PASSWORD = "xxx";
+          # POSTGRES_DB = "xxx";
+        };
+        environmentFiles = [ "${config.sops.secrets."postgres/oracle1/env_file".path}" ];
+        volumes = [
+          "/var/lib/postgresql/17:/var/lib/postgresql/data"
+        ];
+      };
+    };
+  };
+
+  # redis
+  services.redis = {
+    # sudo systemctl status redis-${redisName}
+    # redisConfVar = "/var/lib/${redisName}/redis.conf";
+    # redisDataDir = "/var/lib/${redisName}/dump.rdb";
+    servers = {
+      # redisName: oracle1
+      oracle1 = {
+        enable = true;
+        bind = "0.0.0.0";
+        port = 6379;
+        save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
+        appendOnly = false;
+        requirePassFile = "${config.sops.secrets."redis/oracle1/password".path}";
+      };
+    };
   };
 
   # k3s server
@@ -146,8 +184,18 @@ in
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
-  networking.firewall.allowedUDPPorts = [ 8472 ];
+  networking.firewall.allowedTCPPorts = [
+    22 # ssh
+    80 # http
+    443 # https
+    5432 # postgres
+    6379 # redis
+    6443 # k3s api server
+    10250 # k3s metrics
+  ];
+  networking.firewall.allowedUDPPorts = [
+    8472 # flannel
+  ];
   # networking.firewall.enable = false;
 
   # Disable documentation for minimal install.
