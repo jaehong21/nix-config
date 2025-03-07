@@ -141,15 +141,15 @@ in
   };
 
   # k3s agent
-  # services.k3s = {
-  #   enable = true;
-  #   role = "agent";
-  #   tokenFile = "${config.sops.secrets."k3s/token".path}";
-  #   serverAddr = "https://kube.jaehong21.com:6443";
-  #   extraFlags = [
-  #     "--flannel-iface tailscale0"
-  #   ];
-  # };
+  services.k3s = {
+    enable = true;
+    role = "agent";
+    tokenFile = "${config.sops.secrets."k3s/token".path}";
+    serverAddr = "https://kube.jaehong21.com:6443";
+    extraFlags = [
+      "--flannel-iface tailscale0"
+    ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
