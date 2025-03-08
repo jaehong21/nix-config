@@ -129,16 +129,7 @@ in
   # haproxy
   services.haproxy = {
     enable = true;
-    config =
-      let
-        template = builtins.readFile ../resources/haproxy.cfg.tpl;
-        primaryServer = "oracle3";
-        backupServer = "oracle2";
-      in
-      builtins.replaceStrings
-        [ "${primaryServer}" "${backupServer}" ]
-        [ primaryServer backupServer ]
-        template;
+    config = builtins.readFile ./haproxy.cfg;
     user = "haproxy";
     group = "haproxy";
   };
