@@ -82,6 +82,7 @@ in
     ];
 
     packages = with pkgs; [
+      cockroachdb
       fastfetch
       gh
       gnupg
