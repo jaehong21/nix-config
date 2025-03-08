@@ -81,17 +81,6 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
-      oracle4 = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-          config.allowUnfree = true;
-        };
-        specialArgs = { inherit self inputs; };
-        modules = [
-          ./hosts/oracle4/configuration.nix
-        ];
-      };
       berry1 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs {
