@@ -12,7 +12,8 @@ let
       { inherit (pkgs) system; }).k3s;
   };
 in
-{ nixpkgs.overlays = [
+{
+  nixpkgs.overlays = [
     k3sOverlay
   ];
 
@@ -113,6 +114,9 @@ in
     servers = [ "time.google.com" ];
     extraFlags = [ "-b" ];
   };
+
+  # Enable vnstat
+  services.vnstat.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {

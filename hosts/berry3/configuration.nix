@@ -115,6 +115,9 @@ in
     extraFlags = [ "-b" ];
   };
 
+  # Enable vnstat
+  services.vnstat.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
