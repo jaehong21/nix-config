@@ -166,6 +166,14 @@ in
     };
   };
 
+  # haproxy
+  services.haproxy = {
+    enable = true;
+    config = builtins.readFile ./haproxy.cfg;
+    user = "haproxy";
+    group = "haproxy";
+  };
+
   # k3s server
   services.k3s = {
     enable = true;
