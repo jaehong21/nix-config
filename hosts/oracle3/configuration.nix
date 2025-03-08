@@ -93,7 +93,6 @@ in
     git
     htop
     vim
-    vnstat
     wget
   ];
 
@@ -103,6 +102,9 @@ in
     servers = [ "time.google.com" ];
     extraFlags = [ "-b" ];
   };
+
+  # Enable vnstat
+  services.vnstat.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
