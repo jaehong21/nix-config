@@ -172,7 +172,7 @@ in
     listen.port = 26257; # default
 
     # store data in `/var/lib/cockroachdb`
-    join = "berry1";
+    join = "berry1:26257";
     certsDir = "/var/lib/cockroach-certs";
     extraArgs = [
       "--advertise-addr=berry1:26257"
