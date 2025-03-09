@@ -144,6 +144,26 @@ in
     containers = { };
   };
 
+  # cockroachdb
+  services.cockroachdb = {
+    enable = true;
+    http.address = "0.0.0.0";
+    http.port = 8080; # default
+    listen.port = 26257; # default
+
+    # store data in `/var/lib/cockroachdb`
+    join = "berry1,berry2,berry3";
+    certsDir = "/var/lib/cockroach-certs";
+    extraArgs = [
+      "--accept-sql-without-tls"
+    ];
+
+    # sudo chown -R cockroachdb:cockroachdb /var/lib/cockroach-certs
+    # sudo chmod 600 /var/lib/cockroach-certs/node.key
+    user = "cockroachdb"; # default
+    group = "cockroachdb"; # default
+  };
+
   # k3s agent
   services.k3s = {
     enable = true;

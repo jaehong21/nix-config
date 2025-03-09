@@ -177,6 +177,11 @@ in
     extraArgs = [
       "--accept-sql-without-tls"
     ];
+
+    # sudo chown -R cockroachdb:cockroachdb /var/lib/cockroach-certs
+    # sudo chmod 600 /var/lib/cockroach-certs/node.key
+    user = "cockroachdb"; # default
+    group = "cockroachdb"; # default
   };
 
   # redis
