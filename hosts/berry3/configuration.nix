@@ -147,9 +147,7 @@ in
       cockroach3 = {
         image = "cockroachdb/cockroach:v25.1.0";
         ports = [ "26257:26257" "8080:8080" ];
-
         hostname = "berry3";
-        user = "cockroachdb:cockroachdb";
 
         cmd = [
           "start"
