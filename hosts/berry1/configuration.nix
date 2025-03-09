@@ -164,6 +164,21 @@ in
     };
   };
 
+  # cockroachdb
+  services.cockroachdb = {
+    enable = true;
+    http.address = "0.0.0.0";
+    http.port = 8080; # default
+    listen.port = 26257; # default
+
+    # store data in `/var/lib/cockroachdb`
+    join = "berry1,berry2,berry3";
+    certsDir = "/var/lib/cockroach-certs";
+    extraArgs = [
+      "--accept-sql-without-tls"
+    ];
+  };
+
   # redis
   services.redis = {
     servers = {
