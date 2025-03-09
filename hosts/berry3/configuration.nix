@@ -141,12 +141,35 @@ in
   virtualisation.docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = { };
+    containers = {
+
+      #cockroachdb
+      cockroach3 = {
+        image = "cockroachdb/cockroach:v25.1.0";
+        ports = [ "26257:26257" "8080:8080" ];
+
+        hostname = "berry3";
+        user = "cockroachdb:cockroachdb";
+
+        cmd = [
+          "start"
+          "--certs-dir=/certs"
+          "--advertise-addr=berry3:26257"
+          "--join=berry1:26257"
+          "--accept-sql-without-tls"
+        ];
+
+        volumes = [
+          "/var/lib/cockroachdb:/cockroach/cockroach-data"
+          "/var/lib/cockroach-certs:/certs"
+        ];
+      };
+    };
   };
 
   # cockroachdb
   services.cockroachdb = {
-    enable = true;
+    enable = false;
     http.address = "0.0.0.0";
     http.port = 8080; # default
     listen.port = 26257; # default
