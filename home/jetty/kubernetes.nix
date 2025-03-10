@@ -6,9 +6,10 @@
   home.packages = with pkgs; [
     # krew
     kubectl
-    (pkgs.wrapHelm pkgs.kubernetes-helm { 
-      plugins = [ pkgs.kubernetes-helmPlugins.helm-diff ]; 
+    (pkgs.wrapHelm pkgs.kubernetes-helm {
+      plugins = [ pkgs.kubernetes-helmPlugins.helm-diff ];
     })
+    kubectl-cnpg # cloudnative-pg
     istioctl # istio
     cmctl # cert-manager
   ];
