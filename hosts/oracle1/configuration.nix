@@ -201,6 +201,7 @@ in
     5432 # postgres
     6379 # redis
     6443 # k3s api server
+    9443 # k8s admission webhooks
     10250 # k3s metrics
   ];
   networking.firewall.allowedUDPPorts = [
