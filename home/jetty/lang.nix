@@ -6,8 +6,8 @@ let
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "a343533bccc62400e8a9560423486a3b6c11a23b";
-        hash = "sha256-TofHtnlrOBCxtSZ9nnlsTybDnQXUmQrlIleXF1RQAwQ=";
+        rev = "c3392ad349a5227f4a3464dce87bcc5046692fce";
+        hash = "sha256-5US0/pgxbMksF92k1+eOa8arJTJiPvsdZj9Dl+vJkM4=";
       })
       {
         config.allowUnfree = true;
@@ -46,7 +46,7 @@ in
     bun # overlays: 1.2.2
     nodejs_22
     go_1_24 # overlays: 1.24.0
-    terraform # overlays: 1.7.4
+    terraform # overlays: 1.9.3
     terragrunt
   ];
 }
