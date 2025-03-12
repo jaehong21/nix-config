@@ -82,7 +82,6 @@ in
     ];
 
     packages = with pkgs; [
-      cockroachdb
       fastfetch
       gh
       gnupg
@@ -162,47 +161,7 @@ in
         ];
       };
 
-      # cockroachdb
-      cockroach1 = {
-        image = "cockroachdb/cockroach:v25.1.0";
-        ports = [ "26257:26257" "8080:8080" ];
-        hostname = "berry1";
-
-        cmd = [
-          "start"
-          "--certs-dir=/certs"
-          "--advertise-addr=berry1:26257"
-          "--join=berry1:26257"
-          "--accept-sql-without-tls"
-        ];
-
-        volumes = [
-          "/var/lib/cockroachdb:/cockroach/cockroach-data"
-          "/var/lib/cockroach-certs:/certs"
-        ];
-      };
     };
-  };
-
-  # cockroachdb
-  services.cockroachdb = {
-    enable = false;
-    http.address = "0.0.0.0";
-    http.port = 8080; # default
-    listen.port = 26257; # default
-
-    # store data in `/var/lib/cockroachdb`
-    join = "berry1:26257";
-    certsDir = "/var/lib/cockroach-certs";
-    extraArgs = [
-      "--advertise-addr=berry1:26257"
-      "--accept-sql-without-tls"
-    ];
-
-    # sudo chown -R cockroachdb:cockroachdb /var/lib/cockroach-certs
-    # sudo chmod 600 /var/lib/cockroach-certs/node.key
-    user = "cockroachdb"; # default
-    group = "cockroachdb"; # default
   };
 
   # redis
