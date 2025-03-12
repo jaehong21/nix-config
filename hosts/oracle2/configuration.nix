@@ -92,6 +92,7 @@ in
     dnsutils
     git
     htop
+    nfs-utils
     vim
     wget
   ];
