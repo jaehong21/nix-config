@@ -6,8 +6,8 @@ let
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "ef56e777fedaa4da8c66a150081523c5de1e0171";
-        hash = "sha256-a3MMEY7i/wdF0gb7WFNTn6onzaiMOvwj7OerRVenA8o=";
+        rev = "199169a2135e6b864a888e89a2ace345703c025d";
+        hash = "sha256-igS2Z4tVw5W/x3lCZeeadt0vcU9fxtetZ/RyrqsCRQ0=";
       })
       { inherit (pkgs) system; }).k3s;
   };
