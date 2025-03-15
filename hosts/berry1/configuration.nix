@@ -58,6 +58,7 @@ in
     defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
     defaultSopsFormat = "yaml";
     # should have no passphrase
+    # NOTE: manually added `/var/lib/sops-nix/key.txt`
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
@@ -104,6 +105,7 @@ in
     curl
     dnsutils
     git
+    jq
     nfs-utils
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -192,6 +194,13 @@ in
       "--flannel-iface tailscale0"
     ];
   };
+  # https://docs.k3s.io/installation/private-registry#registries-configuration-file
+  # NOTE: manually added `/etc/rancher/k3s/registries.yaml`
+  # configs:
+  #   registry-1.docker.io:
+  #     auth:
+  #       username: xxx
+  #       password: xxx
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
