@@ -194,20 +194,12 @@ in
       "--flannel-iface tailscale0"
     ];
   };
-  # https://docs.k3s.io/installation/private-registry#registries-configuration-file
-  # NOTE: manually added `/etc/rancher/k3s/registries.yaml`
-  # configs:
-  #   registry-1.docker.io:
-  #     auth:
-  #       username: xxx
-  #       password: xxx
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

@@ -156,14 +156,6 @@ in
       "--flannel-iface tailscale0"
     ];
   };
-  # https://docs.k3s.io/installation/private-registry#registries-configuration-file
-  # NOTE: manually added `/etc/rancher/k3s/registries.yaml`
-  # configs:
-  #   registry-1.docker.io:
-  #     auth:
-  #       username: xxx
-  #       password: xxx
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
