@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   sops.secrets = {
@@ -6,6 +6,8 @@
     "api_key/groq" = { };
     "aws/jaehong21/access_key" = { };
     "aws/jaehong21/secret_key" = { };
+    "aws/trax/access_key" = { };
+    "aws/trax/secret_key" = { };
     "cloudflare/api_key" = { };
     "cloudflare/r2/access_key" = { };
     "cloudflare/r2/secret_key" = { };
@@ -51,8 +53,10 @@
       GROQ_API_KEY = "$(cat ${config.sops.secrets."api_key/groq".path})";
 
       AWS_PROFILE = "default";
-      TF_VAR_aws_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
-      TF_VAR_aws_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
+      TF_VAR_aws_jaehong21_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
+      TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
+      TF_VAR_aws_trax_access_key = "$(cat ${config.sops.secrets."aws/trax/access_key".path})";
+      TF_VAR_aws_trax_secret_key = "$(cat ${config.sops.secrets."aws/trax/secret_key".path})";
       TF_VAR_cloudflare_api_key = "$(cat ${config.sops.secrets."cloudflare/api_key".path})";
       TF_VAR_r2_access_key = "$(cat ${config.sops.secrets."cloudflare/r2/access_key".path})";
       TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
