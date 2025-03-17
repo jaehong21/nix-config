@@ -52,6 +52,8 @@
       OPENROUTER_API_KEY = "$(cat ${config.sops.secrets."api_key/openrouter".path})";
       GROQ_API_KEY = "$(cat ${config.sops.secrets."api_key/groq".path})";
 
+      NATS_URL = "nats://localhost:4222";
+
       AWS_PROFILE = "default";
       TF_VAR_aws_jaehong21_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
       TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";

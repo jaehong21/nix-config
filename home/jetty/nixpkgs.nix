@@ -22,6 +22,7 @@
     jq
     lsd
     minio-client
+    natscli
     nh
     nixpkgs-fmt
     nvtopPackages.apple
