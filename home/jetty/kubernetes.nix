@@ -17,8 +17,7 @@
   programs.zsh.shellAliases = {
     k = "kubectl";
     kcs = "kubectl config use-context $(kubectl config get-contexts -o name | fzf)";
-
-    k9s = "k9s -A";
+    kns = "kubectl config set-context --current --namespace $(kubectl get namespaces -o custom-columns=NAME:.metadata.name --no-headers | fzf)";
 
     helm-login = "aws ecr get-login-password --region ap-northeast-2 --profile ch-prod | helm registry login --username AWS --password-stdin $(cat ${config.sops.secrets."channelio/aws/ch_prod/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com";
   };

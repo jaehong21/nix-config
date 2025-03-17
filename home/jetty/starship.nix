@@ -44,7 +44,7 @@
       };
 
       kubernetes = {
-        format = "([kube](fg:kube_blue)[:](fg:kube_blue) [$context]($style)) ";
+        format = "([kube](fg:kube_blue)[:](fg:kube_blue) [$context(/$namespace)]($style)) ";
         style = "fg:kube_blue";
         disabled = false;
       };
