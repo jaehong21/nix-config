@@ -42,6 +42,7 @@
       anp = "ansible-playbook";
       tf = "terraform";
       tg = "terragrunt";
+      h = "hibiscus";
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
       python = "python3";
