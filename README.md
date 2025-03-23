@@ -15,6 +15,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```bash
 nix run nix-darwin#darwin-rebuild -- switch --flake . # or `.#jetty`, `<path to flake.nix>#jetty`
 darwin-rebuild switch --flake . # if darwin-rebuild installed
+# add `sudo` for Homebrew
 ```
 
 ## Home Manager

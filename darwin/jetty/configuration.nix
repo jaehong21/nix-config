@@ -1,6 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  # Import brew.nix for nix-homebrew configuration
+  imports = [
+    ./brew.nix
+  ];
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [

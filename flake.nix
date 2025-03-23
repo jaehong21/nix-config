@@ -14,6 +14,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    jaehong21-tap = {
+      url = "github:jaehong21/homebrew-tap";
+      flake = false;
+    };
 
     # disko
     disko = {
@@ -25,7 +40,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-core, homebrew-cask, jaehong21-tap, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>
@@ -122,6 +137,7 @@
       # <hostname>
       jetty = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
         modules = [
           ./darwin/jetty/configuration.nix
           {
