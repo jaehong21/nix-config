@@ -16,19 +16,6 @@
     };
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    # Optional: Declarative tap management
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    jaehong21-tap = {
-      url = "github:jaehong21/homebrew-tap";
-      flake = false;
-    };
 
     # disko
     disko = {
@@ -40,7 +27,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-core, homebrew-cask, jaehong21-tap, ... }@inputs: {
+  outputs = { self, nixpkgs, darwin, home-manager, nix-homebrew, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>

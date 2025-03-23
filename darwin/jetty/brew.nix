@@ -11,17 +11,6 @@
     enableRosetta = true; # for Apple Silicon
     user = "jetty";
 
-    # Declarative tap management
-    taps = {
-      "homebrew/homebrew-core" = inputs.homebrew-core;
-      "homebrew/homebrew-cask" = inputs.homebrew-cask;
-
-      # Add your custom tap
-      # https://github.com/zhaofengli/nix-homebrew?tab=readme-ov-file#declarative-taps
-      # https://github.com/<user>/homebrew-<repo>
-      "jaehong21/homebrew-tap" = inputs.jaehong21-tap;
-    };
-
     # Optional: Set to false if you want to manage taps only through nix-homebrew
     mutableTaps = true;
 
@@ -34,9 +23,18 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      upgrade = true;
       # https://mynixos.com/nix-darwin/option/homebrew.onActivation.cleanup
       cleanup = "zap"; # "none", "uninstalled", "zap"
     };
+
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+
+      # custom taps
+      "jaehong21/tap"
+    ];
 
     # Install brew formulae (CLI tools)
     brews = [
