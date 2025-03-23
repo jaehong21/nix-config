@@ -4,6 +4,7 @@
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
     age
+    air
     allure
     ansible
     autojump
