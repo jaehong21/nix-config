@@ -7,7 +7,8 @@
 
   # Enable nix-homebrew
   nix-homebrew = {
-    enable = true;
+    # NOTE: installed homebrew manually
+    enable = false;
     enableRosetta = true; # for Apple Silicon
     user = "jetty";
 
@@ -20,6 +21,8 @@
 
   # Use nix-darwin's homebrew module to install packages
   homebrew = {
+    # requires Homebrew to be installed
+    # https://brew.sh/
     enable = true;
     onActivation = {
       autoUpdate = true;
@@ -29,9 +32,6 @@
     };
 
     taps = [
-      "homebrew/core"
-      "homebrew/cask"
-
       # custom taps
       "jaehong21/tap"
     ];
