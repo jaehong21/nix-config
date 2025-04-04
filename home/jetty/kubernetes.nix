@@ -16,6 +16,7 @@
 
   programs.zsh.shellAliases = {
     k = "kubectl";
+    i = "istioctl";
     kcs = "kubectl config use-context $(kubectl config get-contexts -o name | fzf)";
     kns = "kubectl config set-context --current --namespace $(kubectl get namespaces -o custom-columns=NAME:.metadata.name --no-headers | fzf)";
 
