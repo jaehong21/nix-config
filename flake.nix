@@ -31,7 +31,7 @@
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>
-      "jetty@jetty.local" = home-manager.lib.homeManagerConfiguration {
+      "jetty@jetty-159.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -122,7 +122,7 @@
     # $ darwin-rebuild build --flake .#jetty
     darwinConfigurations = {
       # <hostname>
-      jetty = darwin.lib.darwinSystem {
+      "jetty-159" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
