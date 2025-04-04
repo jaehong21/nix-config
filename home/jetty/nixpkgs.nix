@@ -32,6 +32,7 @@
     sd
     sops
     step-ca
+    stern
     tree
     unixtools.watch
     uv
