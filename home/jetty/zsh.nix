@@ -84,11 +84,6 @@
           echo
         }
       }
-
-      # add Homebrew to $PATH
-      echo >> /Users/${config.home.username}/.zprofile
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${config.home.username}/.zprofile
-      eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.antidote.enable

@@ -7,8 +7,7 @@
 
   # Enable nix-homebrew
   nix-homebrew = {
-    # NOTE: installed homebrew manually
-    enable = false;
+    enable = true;
     enableRosetta = true; # for Apple Silicon
     user = "jetty";
 
