@@ -32,6 +32,7 @@
     ripgrep
     sd
     sops
+    sqlboiler
     step-ca
     stern
     tree
