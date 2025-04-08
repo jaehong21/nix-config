@@ -1,8 +1,27 @@
 { config, pkgs, ... }:
 
+let
+  kittyOverlay = final: prev: {
+    kitty_0_40_1 = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "6c5963357f3c1c840201eda129a99d455074db04";
+        hash = "sha256-yQugdVfi316qUfqzN8JMaA2vixl+45GxNm4oUfXlbgw=";
+      })
+      {
+        inherit (pkgs) system;
+      }).kitty;
+  };
+in
 {
+  nixpkgs.overlays = [
+    kittyOverlay
+  ];
+
   programs.kitty = {
     enable = true;
+    package = pkgs.kitty_0_40_1;
     shellIntegration = {
       enableBashIntegration = true;
       enableZshIntegration = true;
