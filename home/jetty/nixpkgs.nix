@@ -16,6 +16,7 @@
     fzf
     gh
     gnupg
+    golangci-lint
     gradle
     grpcurl
     htop
