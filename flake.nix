@@ -84,9 +84,9 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
-      berry1 = nixpkgs.lib.nixosSystem {
+      berry1 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
