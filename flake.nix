@@ -95,9 +95,9 @@
           ./hosts/berry1/configuration.nix
         ];
       };
-      berry2 = nixpkgs.lib.nixosSystem {
+      berry2 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -106,7 +106,7 @@
           ./hosts/berry2/configuration.nix
         ];
       };
-      berry3 = nixpkgs.lib.nixosSystem {
+      berry3 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
