@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   tfOverlay = final: prev: {
@@ -14,38 +14,27 @@ let
         inherit (pkgs) system;
       }).terraform;
   };
-  bunOverlay = final: prev: {
-    bun = (import
-      (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
-        hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
-      })
-      { inherit (pkgs) system; }).bun;
-  };
-  goOverlay = final: prev: {
-    go_1_24 = (import
-      (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "83a2581c81ff5b06f7c1a4e7cc736a455dfcf7b4";
-        hash = "sha256-L8Tq1dnW96U70vrNpCCGCLHz4rX1GhNRCrRI/iox9wc=";
-      })
-      { inherit (pkgs) system; }).go_1_24;
-  };
+  # bunOverlay = final: prev: {
+  #   bun_1_2_2 = (import
+  #     (pkgs.fetchFromGitHub {
+  #       owner = "NixOS";
+  #       repo = "nixpkgs";
+  #       rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
+  #       hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
+  #     })
+  #     { inherit (pkgs) system; }).bun;
+  # };
 in
 {
   nixpkgs.overlays = [
     tfOverlay
-    bunOverlay
-    goOverlay
   ];
 
   home.packages = with pkgs; [
-    bun # overlays: 1.2.2
+    bun
     nodejs_22
-    go_1_24 # overlays: 1.24.0
+    corepack_22
+    go_1_24
     terraform # overlays: 1.9.3
     terragrunt
   ];
