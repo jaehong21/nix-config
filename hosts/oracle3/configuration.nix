@@ -40,6 +40,7 @@ in
 
   networking.hostName = "oracle3";
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   time.timeZone = "Asia/Seoul";
   i18n.defaultLocale = "en_US.UTF-8";
