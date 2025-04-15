@@ -73,9 +73,9 @@
           ./hosts/oracle2/configuration.nix
         ];
       };
-      oracle3 = nixpkgs.lib.nixosSystem {
+      oracle3 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
