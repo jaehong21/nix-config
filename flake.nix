@@ -51,9 +51,9 @@
     # Build nixos flake using:
     # $ sudo nixos-rebuild build --flake .#berry2
     nixosConfigurations = {
-      oracle1 = nixpkgs.lib.nixosSystem {
+      oracle1 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
