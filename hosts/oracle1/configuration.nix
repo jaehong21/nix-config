@@ -11,10 +11,21 @@ let
       })
       { inherit (pkgs) system; }).k3s;
   };
+  dockerOverlay = final: prev: {
+    docker_27_5_1 = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "642c54c23609fefb5708b0e2be261446c59138f6";
+        hash = "sha256-4Y0ByuP4NEz2Zyso9Ozob8yR6kKuaunJ5OARv+tFLPI=";
+      })
+      { inherit (pkgs) system; }).docker;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
+    dockerOverlay
   ];
 
   imports =
@@ -126,46 +137,45 @@ in
 
   # use docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_27_5_1;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = {
-      # postgres
-      postgres = {
-        image = "public.ecr.aws/docker/library/postgres:17.4";
-        ports = [ "5432:5432" ];
-
-        environment = {
-          TZ = "Asia/Seoul";
-          PGDATA = "/var/lib/postgresql/data";
-          # POSTGRES_USER = "xxx";
-          # POSTGRES_PASSWORD = "xxx";
-          # POSTGRES_DB = "xxx";
-        };
-        environmentFiles = [ "${config.sops.secrets."postgres/oracle1/env_file".path}" ];
-        volumes = [
-          "/var/lib/postgresql/17:/var/lib/postgresql/data"
-        ];
-      };
-    };
+    containers = { };
+    # containers = {
+    #   postgres = {
+    #     image = "public.ecr.aws/docker/library/postgres:17.4";
+    #     ports = [ "5432:5432" ];
+    #     environment = {
+    #       TZ = "Asia/Seoul";
+    #       PGDATA = "/var/lib/postgresql/data";
+    #       # POSTGRES_USER = "xxx";
+    #       # POSTGRES_PASSWORD = "xxx";
+    #       # POSTGRES_DB = "xxx";
+    #     };
+    #     environmentFiles = [ "${config.sops.secrets."postgres/oracle1/env_file".path}" ];
+    #     volumes = [
+    #       "/var/lib/postgresql/17:/var/lib/postgresql/data"
+    #     ];
+    #   };
+    # };
   };
 
-  # redis
-  services.redis = {
-    # sudo systemctl status redis-${redisName}
-    servers = {
-      # redisConfVar = "/var/lib/redis-${redisName}/redis.conf";
-      # redisDataDir = "/var/lib/redis-${redisName}/dump.rdb";
-      # redisName: oracle1
-      oracle1 = {
-        enable = true;
-        bind = "0.0.0.0";
-        port = 6379;
-        save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
-        appendOnly = false;
-        requirePassFile = "${config.sops.secrets."redis/oracle1/password".path}";
-      };
-    };
-  };
+  # services.redis = {
+  #   # sudo systemctl status redis-${redisName}
+  #   servers = {
+  #     # redisConfVar = "/var/lib/redis-${redisName}/redis.conf";
+  #     # redisDataDir = "/var/lib/redis-${redisName}/dump.rdb";
+  #     # redisName: oracle1
+  #     oracle1 = {
+  #       enable = true;
+  #       bind = "0.0.0.0";
+  #       port = 6379;
+  #       save = [ [ 900 1 ] [ 300 10 ] [ 60 10000 ] ];
+  #       appendOnly = false;
+  #       requirePassFile = "${config.sops.secrets."redis/oracle1/password".path}";
+  #     };
+  #   };
+  # };
 
   # haproxy
   services.haproxy = {
