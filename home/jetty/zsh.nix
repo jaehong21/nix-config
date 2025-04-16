@@ -45,6 +45,7 @@
       hb = "hibiscus";
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
+      redis-cli = "nix shell nixpkgs#redis --command redis-cli";
       python = "python3";
       pip = "pip3";
     };
