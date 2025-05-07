@@ -100,6 +100,7 @@ in
         python310
         tailscale # CLI
         tree
+        xh
       ];
     };
   };
