@@ -143,9 +143,9 @@ in
   services.tailscale = {
     package = pkgs.tailscale_1_78_1;
     enable = true;
-    useRoutingFeatures = "both";
     extraSetFlags = [ "--accept-routes" ];
     # default values
+    # useRoutingFeatures = "server";
     # port = 41641;
     # interfaceName = "tailscale0";
   };
@@ -186,9 +186,12 @@ in
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
-  networking.firewall.allowedUDPPorts = [ 8472 41641 ];
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    trustedInterfaces = [ "tailscale0" ];
+    allowedTCPPorts = [ 22 80 443 6443 10250 ];
+    allowedUDPPorts = [ 8472 config.services.tailscale.port ];
+  };
 
   # Disable documentation for minimal install.
   documentation.enable = false;
