@@ -7,15 +7,16 @@
     air
     allure
     ansible
+    argocd
     autojump
     awscli2
-    cargo
     curl
     doggo
     fd
     fzf
     gh
     gnupg
+    go-migrate
     golangci-lint
     gradle
     grpcurl
@@ -31,11 +32,13 @@
     nvtopPackages.apple
     pre-commit
     ripgrep
+    ruff
     sd
     sops
     sqlboiler
     step-ca
     stern
+    go-swag
     tree
     unixtools.watch
     uv
