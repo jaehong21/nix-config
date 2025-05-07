@@ -36,6 +36,7 @@ in
   nixpkgs.overlays = [
     k3sOverlay
     dockerOverlay
+    tailscaleOverlay
   ];
 
   imports =
