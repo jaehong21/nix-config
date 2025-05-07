@@ -142,7 +142,7 @@ in
   services.tailscale = {
     package = pkgs.tailscale_1_78_1;
     enable = true;
-    # useRoutingFeatures = "both";
+    useRoutingFeatures = "both";
     extraSetFlags = [ "--accept-routes" ];
     # default values
     # port = 41641;
