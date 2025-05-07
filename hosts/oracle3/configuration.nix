@@ -27,7 +27,7 @@ let
         owner = "NixOS";
         repo = "nixpkgs";
         rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
-        # hash = "sha256-i47t4DRIZgwBZw2Osbrp1OJhhO1k/n+QzRx+TrmfE9Y=";
+        hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
       })
       { inherit (pkgs) system; }).tailscale;
   };
