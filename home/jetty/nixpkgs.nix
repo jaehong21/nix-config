@@ -26,7 +26,6 @@
     lsd
     minio-client
     natscli
-    ngrok
     nh
     nixpkgs-fmt
     nvtopPackages.apple
