@@ -22,12 +22,12 @@ let
       { inherit (pkgs) system; }).docker;
   };
   tailscaleOverlay = final: prev: {
-    tailscale_1_82_0 = (import
+    tailscale_1_78_1 = (import
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "2349f9de17183971db12ae9e0123dab132023bd7";
-        hash = "sha256-i47t4DRIZgwBZw2Osbrp1OJhhO1k/n+QzRx+TrmfE9Y=";
+        rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
+        # hash = "sha256-i47t4DRIZgwBZw2Osbrp1OJhhO1k/n+QzRx+TrmfE9Y=";
       })
       { inherit (pkgs) system; }).tailscale;
   };
@@ -140,10 +140,9 @@ in
 
   # Tailscale VPN
   services.tailscale = {
-    package = pkgs.tailscale_1_82_0;
+    package = pkgs.tailscale_1_78_1;
     enable = true;
     # useRoutingFeatures = "both";
-    openFirewall = true;
     extraSetFlags = [ "--accept-routes" ];
     # default values
     # port = 41641;
@@ -187,7 +186,7 @@ in
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 80 443 6443 10250 ];
-  networking.firewall.allowedUDPPorts = [ 8472 ];
+  networking.firewall.allowedUDPPorts = [ 8472 41641 ];
   # networking.firewall.enable = false;
 
   # Disable documentation for minimal install.
