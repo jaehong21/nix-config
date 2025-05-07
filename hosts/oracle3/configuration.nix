@@ -21,6 +21,16 @@ let
       })
       { inherit (pkgs) system; }).docker;
   };
+  tailscaleOverlay = final: prev: {
+    tailscale_1_82_0 = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "2349f9de17183971db12ae9e0123dab132023bd7";
+        # hash = "sha256-4Y0ByuP4NEz2Zyso9Ozob8yR6kKuaunJ5OARv+tFLPI=";
+      })
+      { inherit (pkgs) system; }).tailscale;
+  };
 in
 {
   nixpkgs.overlays = [
@@ -129,8 +139,14 @@ in
 
   # Tailscale VPN
   services.tailscale = {
+    package = pkgs.tailscale_1_82_0;
     enable = true;
-    useRoutingFeatures = "both";
+    # useRoutingFeatures = "both";
+    openFirewall = true;
+    extraSetFlags = [ "--accept-routes" ];
+    # default values
+    # port = 41641;
+    # interfaceName = "tailscale0";
   };
 
   # use docker
