@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  sops.secrets."channelio/aws/ch_dev/account_id" = { };
+  sops.secrets = {
+    "channelio/aws/ch_dev/account_id" = { };
+    "aws/nari/account_id" = { };
+  };
 
   home.packages = with pkgs; [
     colima
@@ -10,9 +13,8 @@
     docker-credential-helpers
   ];
 
-
   programs.zsh.shellAliases = {
-    docker-login = "aws ecr get-login-password --region ap-northeast-2 --profile ch-dev | docker login --username AWS --password-stdin $(cat ${config.sops.secrets."channelio/aws/ch_dev/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com";
+    docker-login = "aws ecr get-login-password --region ap-northeast-2 --profile ch-dev | docker login --username AWS --password-stdin $(cat ${config.sops.secrets."channelio/aws/ch_dev/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com && aws ecr get-login-password --region ap-northeast-2 --profile nari | docker login --username AWS --password-stdin $(cat ${config.sops.secrets."aws/nari/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com";
   };
 
   xdg.enable = true;

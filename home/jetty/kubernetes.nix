@@ -9,6 +9,7 @@
     (pkgs.wrapHelm pkgs.kubernetes-helm {
       plugins = [ pkgs.kubernetes-helmPlugins.helm-diff ];
     })
+    eksctl
     kubectl-cnpg # cloudnative-pg
     istioctl # istio
     cmctl # cert-manager
