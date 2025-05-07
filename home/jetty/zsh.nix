@@ -8,6 +8,8 @@
     "aws/jaehong21/secret_key" = { };
     "aws/trax/access_key" = { };
     "aws/trax/secret_key" = { };
+    "aws/nari/access_key" = { };
+    "aws/nari/secret_key" = { };
     "cloudflare/api_key" = { };
     "cloudflare/r2/access_key" = { };
     "cloudflare/r2/secret_key" = { };
@@ -46,8 +48,7 @@
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
       redis-cli = "nix shell nixpkgs#redis --command redis-cli";
-      python = "python3";
-      pip = "pip3";
+      python = "python3.13";
     };
 
     sessionVariables = {
@@ -61,6 +62,8 @@
       TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
       TF_VAR_aws_trax_access_key = "$(cat ${config.sops.secrets."aws/trax/access_key".path})";
       TF_VAR_aws_trax_secret_key = "$(cat ${config.sops.secrets."aws/trax/secret_key".path})";
+      TF_VAR_aws_nari_access_key = "$(cat ${config.sops.secrets."aws/nari/access_key".path})";
+      TF_VAR_aws_nari_secret_key = "$(cat ${config.sops.secrets."aws/nari/secret_key".path})";
       TF_VAR_cloudflare_api_key = "$(cat ${config.sops.secrets."cloudflare/api_key".path})";
       TF_VAR_r2_access_key = "$(cat ${config.sops.secrets."cloudflare/r2/access_key".path})";
       TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
@@ -85,6 +88,9 @@
           echo
         }
       }
+
+      # bun global packages
+      # export PATH="/Users/jetty/.cache/.bun/bin:$PATH"
     '';
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.antidote.enable
