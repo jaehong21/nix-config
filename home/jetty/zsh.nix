@@ -81,7 +81,7 @@
       TF_VAR_postgresql_berry1_password = "$(cat ${config.sops.secrets."postgres/berry1/password".path})";
     };
 
-    initExtra = ''
+    initContent = ''
       # add newline to prompt except for the first prompt
       precmd() {
         precmd() {
