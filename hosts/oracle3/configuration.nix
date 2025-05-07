@@ -191,18 +191,18 @@ in
     allowedTCPPorts = [ 22 80 443 6443 10250 ];
     allowedUDPPorts = [ 8472 config.services.tailscale.port ];
 
-    extraCommands =
-      let
-        # These rules are inserted at position 1. Each new rule pushes previous ones down.
-        mkPrioAcceptRule = proto: port: ''
-          iptables -I INPUT 1 -p ${proto} --dport ${toString port} -j ACCEPT -m comment --comment "High priority accept for NixOS defined ${proto} port ${toString port}"
-        '';
-
-        tcpPrioRules = map (mkPrioAcceptRule "tcp") config.networking.firewall.allowedTCPPorts;
-        udpPrioRules = map (mkPrioAcceptRule "udp") config.networking.firewall.allowedUDPPorts;
-      in
-      # Concatenate all generated rule strings, separated by newlines
-      builtins.concatStringsSep "\n" (tcpPrioRules ++ udpPrioRules);
+    # extraCommands =
+    #   let
+    #     # These rules are inserted at position 1. Each new rule pushes previous ones down.
+    #     mkPrioAcceptRule = proto: port: ''
+    #       iptables -I INPUT 1 -p ${proto} --dport ${toString port} -j ACCEPT -m comment --comment "High priority accept for NixOS defined ${proto} port ${toString port}"
+    #     '';
+    #
+    #     tcpPrioRules = map (mkPrioAcceptRule "tcp") config.networking.firewall.allowedTCPPorts;
+    #     udpPrioRules = map (mkPrioAcceptRule "udp") config.networking.firewall.allowedUDPPorts;
+    #   in
+    #   # Concatenate all generated rule strings, separated by newlines
+    #   builtins.concatStringsSep "\n" (tcpPrioRules ++ udpPrioRules);
   };
 
   # Disable documentation for minimal install.
