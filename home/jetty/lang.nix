@@ -2,7 +2,7 @@
 
 let
   tfOverlay = final: prev: {
-    terraform = (import
+    terraform_1_9_3 = (import
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
@@ -14,28 +14,45 @@ let
         inherit (pkgs) system;
       }).terraform;
   };
-  # bunOverlay = final: prev: {
-  #   bun_1_2_2 = (import
+  bunOverlay = final: prev: {
+    bun_1_1_43 = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "50165c4f7eb48ce82bd063e1fb8047a0f515f8ce";
+        hash = "sha256-tmD7875tu1P0UvhI3Q/fXvIe8neJo7H9ZrPQ+QF7Q3E=";
+      })
+      { inherit (pkgs) system; }).bun;
+  };
+  # cargoOverlay = final: prev: {
+  #   cargo_1_85_0 = (import
   #     (pkgs.fetchFromGitHub {
   #       owner = "NixOS";
   #       repo = "nixpkgs";
-  #       rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
-  #       hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
+  #       rev = "88e992074d86ad50249de12b7fb8dbaadf8dc0c5";
+  #       hash = "sha256-xwNv3FYTC5pl4QVZ79gUxqCEvqKzcKdXycpH5UbYscw=";
   #     })
-  #     { inherit (pkgs) system; }).bun;
+  #     {
+  #       inherit (pkgs) system;
+  #     }).cargo;
   # };
 in
 {
   nixpkgs.overlays = [
     tfOverlay
+    bunOverlay
   ];
 
   home.packages = with pkgs; [
-    bun
+    rustup
+    bun_1_1_43
     nodejs_22
     corepack_22
     go_1_24
-    terraform # overlays: 1.9.3
+    python313
+    # python313Packages.torch
+    # python313Packages.torchaudio
+    terraform_1_9_3
     terragrunt
   ];
 }
