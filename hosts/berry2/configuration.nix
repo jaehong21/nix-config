@@ -50,6 +50,9 @@ in
     "cgroup_enable=memory"
   ];
 
+  # Add NFS support
+  boot.supportedFilesystems = [ "nfs" ];
+
   # disable swap
   swapDevices = lib.mkForce [ ];
 
