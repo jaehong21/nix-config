@@ -38,4 +38,19 @@
       signByDefault = true;
     };
   };
+
+
+  xdg.enable = true;
+  # https://github.com/abiosoft/colima/blob/main/embedded/defaults/colima.yaml
+  xdg.configFile."lazygit/config.yml" = {
+    source = (pkgs.formats.yaml { }).generate "any" {
+      keybinding = {
+        universal = {
+          prevItem-alt = "e";
+          nextItem-alt = "n";
+          edit = "E"; # originally "e"
+        };
+      };
+    };
+  };
 }
