@@ -45,7 +45,7 @@
     # Install brew casks (GUI applications)
     casks = [
       # "firefox"
-      "colemak-dh"
+      # "colemak-dh"
     ];
 
     # Optional: Mac App Store apps (requires 'mas' to be installed)
