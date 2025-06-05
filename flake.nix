@@ -4,7 +4,7 @@
   inputs = {
     # Nix Ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-24.11";
     # Nix Darwin
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -28,11 +28,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, darwin, home-manager, nix-homebrew, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-old, darwin, home-manager, nix-homebrew, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
-      # <username>@<hostname>
-      "jetty@jetty-213.local" = home-manager.lib.homeManagerConfiguration {
+      # <username>@<hostname>, e.g. "jetty@jetty-213"
+      "jetty" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -51,9 +51,9 @@
     # Build nixos flake using:
     # $ sudo nixos-rebuild build --flake .#berry2
     nixosConfigurations = {
-      oracle1 = nixpkgs-stable.lib.nixosSystem {
+      oracle1 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -62,9 +62,9 @@
           ./hosts/oracle1/configuration.nix
         ];
       };
-      oracle2 = nixpkgs-stable.lib.nixosSystem {
+      oracle2 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -73,9 +73,9 @@
           ./hosts/oracle2/configuration.nix
         ];
       };
-      oracle3 = nixpkgs-stable.lib.nixosSystem {
+      oracle3 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -84,9 +84,9 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
-      berry1 = nixpkgs-stable.lib.nixosSystem {
+      berry1 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -95,9 +95,9 @@
           ./hosts/berry1/configuration.nix
         ];
       };
-      berry2 = nixpkgs-stable.lib.nixosSystem {
+      berry2 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -106,9 +106,9 @@
           ./hosts/berry2/configuration.nix
         ];
       };
-      berry3 = nixpkgs-stable.lib.nixosSystem {
+      berry3 = nixpkgs-old.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-stable {
+        pkgs = import nixpkgs-old {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -123,7 +123,7 @@
     # $ darwin-rebuild build --flake .#jetty
     darwinConfigurations = {
       # <hostname>
-      "jetty-213" = darwin.lib.darwinSystem {
+      "jetty" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [

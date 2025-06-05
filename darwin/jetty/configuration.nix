@@ -12,6 +12,8 @@
     pkgs.vim
   ];
 
+  networking.hostName = "jetty";
+
   # using `Determinate` for Auto upgrade nix package and the daemon service.
   # cannot use nix.* options in nix-darwin
   nix.enable = false;
