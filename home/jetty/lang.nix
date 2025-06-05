@@ -54,5 +54,18 @@ in
     # python313Packages.torchaudio
     terraform_1_9_3
     terragrunt
+
+    # install global npm packages by `npm-global install -g <pkg>` script
+    # `npm-global install -g @anthropic-ai/claude-code`
+    (writeShellScriptBin "npm-global" ''
+      #!/bin/bash
+      export npm_config_prefix="$HOME/.npm-global"
+      mkdir -p "$HOME/.npm-global/bin"
+      PATH="$HOME/.npm-global/bin:$PATH"
+      npm "$@"
+    '')
   ];
+
+  # for npm global packages PATH
+  home.sessionPath = [ "$HOME/.npm-global/bin" ];
 }
