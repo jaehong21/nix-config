@@ -45,6 +45,7 @@
       tf = "terraform";
       tg = "terragrunt";
       hb = "hibiscus";
+      c = "claude";
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
       redis-cli = "nix shell nixpkgs#redis --command redis-cli";

@@ -33,6 +33,9 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
 
+  # for homebrew
+  system.primaryUser = "jetty";
+
   # https://daiderd.com/nix-darwin/manual/index.html#opt-security.pam.enableSudoTouchIdAuth
   security.pam.services.sudo_local.touchIdAuth = true;
 }
