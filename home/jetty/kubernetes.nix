@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   sops.secrets."channelio/aws/ch_prod/account_id" = { };
@@ -23,6 +23,14 @@
 
     helm-login = "aws ecr get-login-password --region ap-northeast-2 --profile ch-prod | helm registry login --username AWS --password-stdin $(cat ${config.sops.secrets."channelio/aws/ch_prod/account_id".path}).dkr.ecr.ap-northeast-2.amazonaws.com";
   };
+
+  # symlink node and npx to brew prefix for Claude Desktop
+  home.activation.linkKubeForClaude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    BREW_PREFIX=$(brew --prefix 2>/dev/null || echo "/opt/homebrew")
+    mkdir -p "$BREW_PREFIX/bin"
+    ln -sf ${pkgs.kubectl}/bin/kubectl "$BREW_PREFIX/bin/kubectl" 2>/dev/null || true
+  '';
+
 
   programs.k9s = {
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.k9s.enable
