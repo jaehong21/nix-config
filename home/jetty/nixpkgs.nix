@@ -42,7 +42,6 @@
     tree
     tshark
     unixtools.watch
-    uv
     wget
     xh
     yamlfmt

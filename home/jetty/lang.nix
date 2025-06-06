@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   tfOverlay = final: prev: {
@@ -50,6 +50,7 @@ in
     corepack_22
     go_1_24
     python313
+    uv
     # python313Packages.torch
     # python313Packages.torchaudio
     terraform_1_9_3
@@ -68,4 +69,12 @@ in
 
   # for npm global packages PATH
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
+
+  # symlink node and npx to brew prefix for Claude Desktop
+  home.activation.linkNodeForClaude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    BREW_PREFIX=$(brew --prefix 2>/dev/null || echo "/opt/homebrew")
+    mkdir -p "$BREW_PREFIX/bin"
+    ln -sf ${pkgs.nodejs_22}/bin/node "$BREW_PREFIX/bin/node" 2>/dev/null || true
+    ln -sf ${pkgs.nodejs_22}/bin/npx "$BREW_PREFIX/bin/npx" 2>/dev/null || true
+  '';
 }
