@@ -101,7 +101,6 @@ in
       htop
       ncdu
       nh
-      python310
       tailscale # CLI
       tree
     ];
