@@ -101,6 +101,7 @@ in
       gh
       gnupg
       htop
+      ncdu
       nh
       python310
       tailscale # CLI
