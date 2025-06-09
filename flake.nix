@@ -4,7 +4,7 @@
   inputs = {
     # Nix Ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     # Nix Darwin
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -28,7 +28,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-old, darwin, home-manager, nix-homebrew, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, darwin, home-manager, nix-homebrew, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
@@ -51,9 +51,9 @@
     # Build nixos flake using:
     # $ sudo nixos-rebuild build --flake .#berry2
     nixosConfigurations = {
-      oracle1 = nixpkgs-old.lib.nixosSystem {
+      oracle1 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -62,9 +62,9 @@
           ./hosts/oracle1/configuration.nix
         ];
       };
-      oracle2 = nixpkgs-old.lib.nixosSystem {
+      oracle2 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -73,9 +73,9 @@
           ./hosts/oracle2/configuration.nix
         ];
       };
-      oracle3 = nixpkgs-old.lib.nixosSystem {
+      oracle3 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -84,9 +84,9 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
-      berry1 = nixpkgs-old.lib.nixosSystem {
+      berry1 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -95,9 +95,9 @@
           ./hosts/berry1/configuration.nix
         ];
       };
-      berry2 = nixpkgs-old.lib.nixosSystem {
+      berry2 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
@@ -106,9 +106,9 @@
           ./hosts/berry2/configuration.nix
         ];
       };
-      berry3 = nixpkgs-old.lib.nixosSystem {
+      berry3 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-old {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
