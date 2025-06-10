@@ -51,7 +51,7 @@ in
   ];
 
   # Add NFS support
-  boot.supportedFilesystems = [ "nfs" ];
+  # boot.supportedFilesystems = [ "nfs" ];
 
   # disable swap
   swapDevices = lib.mkForce [ ];
