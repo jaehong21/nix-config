@@ -89,9 +89,6 @@
           echo
         }
       }
-
-      # bun global packages
-      # export PATH="/Users/jetty/.cache/.bun/bin:$PATH"
     '';
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.antidote.enable
