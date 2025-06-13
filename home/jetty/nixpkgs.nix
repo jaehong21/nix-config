@@ -10,6 +10,7 @@
     argocd
     autojump
     awscli2
+    cloudflared
     curl
     doggo
     fd
