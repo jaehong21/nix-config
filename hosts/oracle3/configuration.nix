@@ -63,6 +63,9 @@ in
   networking.hostName = "oracle3";
   networking.networkmanager.enable = true;
 
+  # Explicitly enable dbus for NixOS 25.05 compatibility
+  services.dbus.enable = true;
+
   time.timeZone = "Asia/Seoul";
   i18n.defaultLocale = "en_US.UTF-8";
 
