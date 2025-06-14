@@ -29,7 +29,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-vicuna, darwin, home-manager, nix-homebrew, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-vicuna, darwin, home-manager, nix-homebrew, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
@@ -76,7 +76,7 @@
       };
       oracle3 = nixpkgs-vicuna.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-vicuna {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
