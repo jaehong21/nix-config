@@ -63,9 +63,9 @@
           ./hosts/oracle1/configuration.nix
         ];
       };
-      oracle2 = nixpkgs-vicuna.lib.nixosSystem {
+      oracle2 = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        pkgs = import nixpkgs-vicuna {
+        pkgs = import nixpkgs-stable {
           system = "aarch64-linux";
           config.allowUnfree = true;
         };
