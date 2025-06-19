@@ -21,22 +21,22 @@ let
       })
       { inherit (pkgs) system; }).docker;
   };
-  tailscaleOverlay = final: prev: {
-    tailscale_1_78_1 = (import
-      (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
-        hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
-      })
-      { inherit (pkgs) system; }).tailscale;
-  };
+  # tailscaleOverlay = final: prev: {
+  #   tailscale_1_78_1 = (import
+  #     (pkgs.fetchFromGitHub {
+  #       owner = "NixOS";
+  #       repo = "nixpkgs";
+  #       rev = "d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
+  #       hash = "sha256-oZLdIlpBKY+WEJlKMafIUK+MBqddHreSeGc4b4yF1uU=";
+  #     })
+  #     { inherit (pkgs) system; }).tailscale;
+  # };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
     dockerOverlay
-    tailscaleOverlay
+    # tailscaleOverlay
   ];
 
   imports =
@@ -152,7 +152,7 @@ in
 
   # Tailscale VPN
   services.tailscale = {
-    package = pkgs.tailscale_1_78_1;
+    # package = pkgs.tailscale_1_78_1;
     enable = true;
     extraSetFlags = [ "--accept-routes" ];
     # default values
