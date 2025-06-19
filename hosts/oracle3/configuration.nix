@@ -113,6 +113,14 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep 5";
+    clean.dates = "daily"; # default: weekly
+    flake = "/home/jaehong21/.config/nix-config";
+  };
+
   environment.systemPackages = with pkgs; [
     curl
     dnsutils
