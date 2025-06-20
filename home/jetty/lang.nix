@@ -53,6 +53,8 @@ in
     # golang
     go_1_24
     golangci-lint
+    # helm
+    helm-ls
     # python
     python313
     uv
