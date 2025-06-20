@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # https://search.nixos.org/packages
@@ -20,8 +20,6 @@
     gnupg
     go-migrate
     go-swag
-    golangci-lint
-    gradle
     grpcurl
     htop
     hugo
@@ -30,11 +28,9 @@
     minio-client
     natscli
     nh
-    nixpkgs-fmt
     nvtopPackages.apple
     pre-commit
     ripgrep
-    ruff
     sd
     sops
     sqlboiler
@@ -45,7 +41,6 @@
     unixtools.watch
     wget
     xh
-    yamlfmt
     yq
   ];
 }

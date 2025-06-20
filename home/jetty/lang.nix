@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   tfOverlay = final: prev: {
@@ -44,21 +44,32 @@ in
   ];
 
   home.packages = with pkgs; [
+    # rust
     rustup
+    # JS/TS
     bun_1_1_43
     nodejs_22
     corepack_22
+    # golang
     go_1_24
+    golangci-lint
+    # python
     python313
     uv
-    # python313Packages.torch
-    # python313Packages.torchaudio
+    ruff
+    # terraform
     terraform_1_9_3
     terragrunt
+    # java
+    gradle
+    # nix
+    nil
+    nixpkgs-fmt
+    # yaml
+    yamlfmt
   ];
 
   home.sessionPath = [
     "$HOME/.cache/.bun/bin"
-    # "$HOME/.npm-global/bin"
   ];
 }
