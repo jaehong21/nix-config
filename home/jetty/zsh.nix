@@ -2,6 +2,7 @@
 
 {
   sops.secrets = {
+    "openai/api_key" = { };
     "aws/jaehong21/access_key" = { };
     "aws/jaehong21/secret_key" = { };
     "aws/trax/access_key" = { };
@@ -43,7 +44,6 @@
       tf = "terraform";
       tg = "terragrunt";
       hb = "hibiscus";
-      c = "claude";
 
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
       redis-cli = "nix shell nixpkgs#redis --command redis-cli";
@@ -52,6 +52,7 @@
 
     sessionVariables = {
       AWS_PROFILE = "default";
+      OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai/api_key".path})";
       TF_VAR_aws_jaehong21_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
       TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
       TF_VAR_aws_trax_access_key = "$(cat ${config.sops.secrets."aws/trax/access_key".path})";
