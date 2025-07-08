@@ -1,6 +1,6 @@
 # Nix config
 
-## Install Nix with *Determinate*
+## Install Nix with _Determinate_
 
 ```bash
 # install nix by Determinate System
