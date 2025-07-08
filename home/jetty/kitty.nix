@@ -2,12 +2,12 @@
 
 let
   kittyOverlay = final: prev: {
-    kitty_0_40_1 = (import
+    kitty_0_42_0 = (import
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "6c5963357f3c1c840201eda129a99d455074db04";
-        hash = "sha256-yQugdVfi316qUfqzN8JMaA2vixl+45GxNm4oUfXlbgw=";
+        rev = "fe51d34885f7b5e3e7b59572796e1bcb427eccb1";
+        hash = "sha256-qmmFCrfBwSHoWw7cVK4Aj+fns+c54EBP8cGqp/yK410=";
       })
       {
         inherit (pkgs) system;
@@ -21,7 +21,7 @@ in
 
   programs.kitty = {
     enable = true;
-    package = pkgs.kitty_0_40_1;
+    package = pkgs.kitty_0_42_0;
     shellIntegration = {
       enableBashIntegration = true;
       enableZshIntegration = true;
@@ -31,7 +31,7 @@ in
       size = 15.5;
     };
     # from https://github.com/kovidgoyal/kitty-themes/tree/master/themes
-    themeFile = "kanagawa";
+    themeFile = "tokyo_night_moon";
     keybindings = {
       # Window Management
       "cmd+d" = "launch --location=vsplit --cwd=current";
