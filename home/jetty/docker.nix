@@ -29,16 +29,16 @@
     source = (pkgs.formats.yaml { }).generate "any" {
       # Number of CPUs to be allocated to the virtual machine.
       # Default: 2
-      cpu = 6;
+      cpu = 4;
 
       # Size of the memory in GiB to be allocated to the virtual machine.
       # Default: 2
-      memory = 12;
+      memory = 8;
 
       # Size of the disk in GiB to be allocated to the virtual machine.
       # NOTE: value can only be increased after virtual machine has been created.
       # Default: 100
-      disk = 100;
+      disk = 20;
 
       # Architecture of the virtual machine (x86_64, aarch64, host).
       # NOTE: value cannot be changed after virtual machine is created.
