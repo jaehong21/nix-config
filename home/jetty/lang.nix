@@ -24,18 +24,6 @@ let
       })
       { inherit (pkgs) system; }).bun;
   };
-  # cargoOverlay = final: prev: {
-  #   cargo_1_85_0 = (import
-  #     (pkgs.fetchFromGitHub {
-  #       owner = "NixOS";
-  #       repo = "nixpkgs";
-  #       rev = "88e992074d86ad50249de12b7fb8dbaadf8dc0c5";
-  #       hash = "sha256-xwNv3FYTC5pl4QVZ79gUxqCEvqKzcKdXycpH5UbYscw=";
-  #     })
-  #     {
-  #       inherit (pkgs) system;
-  #     }).cargo;
-  # };
 in
 {
   nixpkgs.overlays = [
@@ -44,34 +32,34 @@ in
   ];
 
   home.packages = with pkgs; [
-    # rust
-    rustup
     # JS/TS
     bun_1_1_43
     nodejs_22
     corepack_22
-    # golang
-    go_1_24
-    golangci-lint
-    # helm
-    helm-ls
     # python
     python313
     uv
-    ruff
+    # java
+    jdk23
+    gradle
+
+    # golang
+    go_1_24
+
+    # rust
+    rustup
+
     # terraform
     terraform_1_9_3
     terragrunt
-    # java
-    gradle
-    # nix
-    nil
-    nixpkgs-fmt
-    # yaml
-    yamlfmt
   ];
 
+  programs.zsh.shellAliases = {
+    java = "${pkgs.jdk23}/bin/java";
+  };
+
   home.sessionPath = [
+    "$HOME/.cargo/bin"
     "$HOME/.cache/.bun/bin"
   ];
 }
