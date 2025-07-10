@@ -36,18 +36,24 @@
     syntaxHighlighting.enable = false;
 
     shellAliases = {
+      # list
       ls = "lsd";
       f = "cd $(fd --type directory --hidden | fzf)";
 
-      an = "ansible";
+      # shortcuts
       anp = "ansible-playbook";
       tf = "terraform";
       tg = "terragrunt";
       hb = "hibiscus";
 
+      # code assistants
+      cc = "claude";
+      gc = "gemini";
+
+      # misc
+      python = "python3.13";
       psql = "nix shell nixpkgs#postgresql_17 --command psql";
       redis-cli = "nix shell nixpkgs#redis --command redis-cli";
-      python = "python3.13";
     };
 
     sessionVariables = {
