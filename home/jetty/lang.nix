@@ -15,12 +15,12 @@ let
       }).terraform;
   };
   bunOverlay = final: prev: {
-    bun_1_1_43 = (import
+    bun_1_2_17 = (import
       (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "50165c4f7eb48ce82bd063e1fb8047a0f515f8ce";
-        hash = "sha256-tmD7875tu1P0UvhI3Q/fXvIe8neJo7H9ZrPQ+QF7Q3E=";
+        rev = "69dfebb3d175bde602f612915c5576a41b18486b";
+        hash = "sha256-Ah4qq+SbwMaGkuXCibyg+Fwn00el4KmI3XFX6htfDuk=";
       })
       { inherit (pkgs) system; }).bun;
   };
@@ -33,7 +33,7 @@ in
 
   home.packages = with pkgs; [
     # JS/TS
-    bun_1_1_43
+    bun_1_2_17
     nodejs_22
     corepack_22
     # python
