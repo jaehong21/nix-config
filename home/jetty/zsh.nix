@@ -47,6 +47,7 @@
       hb = "hibiscus";
 
       # code assistants
+      claude = "~/.claude/local/claude"; # local claude-cli by `migrate-installer` command
       cc = "claude";
       gc = "gemini";
 
