@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     # JS/TS
     vtsls
+    typescript-language-server
     deno
     vscode-langservers-extracted # html, css, eslint, html, json, markdown
     tailwindcss-language-server
