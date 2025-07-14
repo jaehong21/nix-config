@@ -6,8 +6,8 @@
     settings = {
       add_newline = false; # default: true
       # format = "$all";
-      format = "$directory$git_branch$git_status$aws$kubernetes$cmd_duration\n$character";
-      # right_format = "$cmd_duration";
+      format = "$directory$git_branch$git_status$aws$kubernetes\n$character";
+      right_format = "$cmd_duration";
 
       palette = "custom";
       palettes.custom = {
