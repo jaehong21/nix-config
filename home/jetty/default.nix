@@ -3,7 +3,6 @@
 {
   imports = [
     ./nixpkgs.nix
-    ./direnv.nix
     ./git.nix
     ./zsh.nix
     ./kitty.nix
