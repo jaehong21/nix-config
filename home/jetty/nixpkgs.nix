@@ -10,12 +10,14 @@
     argocd
     autojump
     awscli2
+    bat
     cloudflared
     curl
     doggo
     fd
+    ffmpeg
     fx
-    fzf
+    gallery-dl
     gh
     gnupg
     go-migrate
@@ -41,6 +43,7 @@
     unixtools.watch
     wget
     xh
-    yq
+    yq-go
+    yt-dlp
   ];
 }
