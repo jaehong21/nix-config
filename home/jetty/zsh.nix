@@ -1,36 +1,11 @@
-{ config, ... }:
+{ ... }:
 
 {
-  sops.secrets = {
-    "openai/api_key" = { };
-    "aws/jaehong21/access_key" = { };
-    "aws/jaehong21/secret_key" = { };
-    "aws/trax/access_key" = { };
-    "aws/trax/secret_key" = { };
-    "aws/nari/access_key" = { };
-    "aws/nari/secret_key" = { };
-    "cloudflare/api_key" = { };
-    "cloudflare/r2/access_key" = { };
-    "cloudflare/r2/secret_key" = { };
-    "oci/jaehong21/user_ocid" = { };
-    "oci/jaehong21/fingerprint" = { };
-    "oci/jaehong21/private_key" = { };
-    "oci/bkw377/user_ocid" = { };
-    "oci/bkw377/fingerprint" = { };
-    "oci/bkw377/private_key" = { };
-    "oci/csia10kmla23/user_ocid" = { };
-    "oci/csia10kmla23/fingerprint" = { };
-    "oci/csia10kmla23/private_key" = { };
-    "postgres/oracle1/password" = { };
-    "postgres/nas/password" = { };
-    "postgres/berry1/password" = { };
-  };
-
   # https://github.com/nix-community/home-manager/blob/release-25.05/modules/programs/fzf.nix
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "fd --type file --hidden --exclude .git";
+    defaultCommand = "fd --type f --hidden --exclude .git";
     defaultOptions = [ ]; # "--height 40%" "--layout reverse" "--border" ];
   };
 
@@ -47,6 +22,12 @@
     nix-direnv.enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # https://nixos.wiki/wiki/Zsh
@@ -58,7 +39,6 @@
     autosuggestion.enable = false;
     syntaxHighlighting.enable = false;
     defaultKeymap = null; # 'emacs' | 'vicmd' | 'viins' | null
-
 
     initContent = ''
       # add newline to prompt except for the first prompt
@@ -101,34 +81,6 @@
       redis-cli = "nix shell nixpkgs#redis --command redis-cli";
     };
 
-    sessionVariables = {
-      AWS_PROFILE = "default";
-      OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai/api_key".path})";
-      # GOOGLE_CLOUD_PROJECT = "jaehong21"; # used in `gemini-cli`
-      TF_VAR_aws_jaehong21_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
-      TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
-      TF_VAR_aws_trax_access_key = "$(cat ${config.sops.secrets."aws/trax/access_key".path})";
-      TF_VAR_aws_trax_secret_key = "$(cat ${config.sops.secrets."aws/trax/secret_key".path})";
-      TF_VAR_aws_nari_access_key = "$(cat ${config.sops.secrets."aws/nari/access_key".path})";
-      TF_VAR_aws_nari_secret_key = "$(cat ${config.sops.secrets."aws/nari/secret_key".path})";
-      TF_VAR_cloudflare_api_key = "$(cat ${config.sops.secrets."cloudflare/api_key".path})";
-      TF_VAR_r2_access_key = "$(cat ${config.sops.secrets."cloudflare/r2/access_key".path})";
-      TF_VAR_r2_secret_key = "$(cat ${config.sops.secrets."cloudflare/r2/secret_key".path})";
-      TF_VAR_oci_jaehong21_user_ocid = "$(cat ${config.sops.secrets."oci/jaehong21/user_ocid".path})";
-      TF_VAR_oci_jaehong21_fingerprint = "$(cat ${config.sops.secrets."oci/jaehong21/fingerprint".path})";
-      TF_VAR_oci_jaehong21_private_key_path = "${config.sops.secrets."oci/jaehong21/private_key".path}";
-      TF_VAR_oci_bkw377_user_ocid = "$(cat ${config.sops.secrets."oci/bkw377/user_ocid".path})";
-      TF_VAR_oci_bkw377_fingerprint = "$(cat ${config.sops.secrets."oci/bkw377/fingerprint".path})";
-      TF_VAR_oci_bkw377_private_key_path = "${config.sops.secrets."oci/bkw377/private_key".path}";
-      TF_VAR_oci_csia10kmla23_user_ocid = "$(cat ${config.sops.secrets."oci/csia10kmla23/user_ocid".path})";
-      TF_VAR_oci_csia10kmla23_fingerprint = "$(cat ${config.sops.secrets."oci/csia10kmla23/fingerprint".path})";
-      TF_VAR_oci_csia10kmla23_private_key_path = "${config.sops.secrets."oci/csia10kmla23/private_key".path}";
-      TF_VAR_postgresql_oracle1_password = "$(cat ${config.sops.secrets."postgres/oracle1/password".path})";
-      TF_VAR_postgresql_nas_password = "$(cat ${config.sops.secrets."postgres/nas/password".path})";
-      TF_VAR_postgresql_berry1_password = "$(cat ${config.sops.secrets."postgres/berry1/password".path})";
-    };
-
-
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.antidote.enable
     antidote = {
       enable = true;
@@ -148,8 +100,9 @@
         "ohmyzsh/ohmyzsh path:plugins/docker kind:defer"
         "ohmyzsh/ohmyzsh path:plugins/ssh kind:defer"
         "ohmyzsh/ohmyzsh path:plugins/colored-man-pages kind:defer"
-        # "ohmyzsh/ohmyzsh path:plugins/magic-enter"
+        "ohmyzsh/ohmyzsh path:plugins/magic-enter"
         # git
+        "ohmyzsh/ohmyzsh path:plugins/jj"
         "ohmyzsh/ohmyzsh path:plugins/git"
         "ohmyzsh/ohmyzsh path:plugins/gh kind:defer"
         # kubernetes
