@@ -43,6 +43,9 @@
     # bash
     bash-language-server
     shfmt
+    # nushell
+    # nufmt
+
     # json
     nodePackages.jsonlint
     # yaml
@@ -58,10 +61,9 @@
   ];
 
 
-  home.sessionVariables = {
+  /* home.sessionVariables = {
     VALE_CONFIG_PATH = "${config.home.homeDirectory}/vale/.vale.ini";
-  };
-  xdg.enable = true;
+  }; */
   xdg.configFile."vale/.vale.ini".text = ''
   '';
 }
