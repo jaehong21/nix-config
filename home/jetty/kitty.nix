@@ -54,6 +54,9 @@ in
       "cmd+shift+r" = "load_config_file";
     };
     settings = {
+      # SHELL
+      shell = "/Users/jetty/.nix-profile/bin/nu";
+
       # Window Layout
       enabled_layouts = "splits";
       initial_window_width = 1200;

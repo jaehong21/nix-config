@@ -2,14 +2,23 @@
 
 {
   imports = [
+    # system
     ./nixpkgs.nix
+    ./env.nix
     ./git.nix
-    ./zsh.nix
+
+    # shell
+    # ./zsh.nix
+    ./nushell.nix
     ./kitty.nix
     ./starship.nix
+
+    # ide
     ./neovim.nix
     ./lang.nix
     ./lsp.nix
+
+    # container
     ./docker.nix
     ./kubernetes.nix
   ];
