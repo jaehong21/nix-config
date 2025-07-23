@@ -3,14 +3,32 @@
 {
   sops.secrets."github/token" = { };
 
-  programs.zsh.sessionVariables = {
+  home.sessionVariables = {
     GITHUB_ACTOR = "jaehong21";
     GITHUB_TOKEN = "$(cat ${config.sops.secrets."github/token".path})";
     GITHUB_PACKAGES_INSTALL_KEY = "$(cat ${config.sops.secrets."github/token".path})";
   };
 
-  programs.lazygit.enable = true;
-  programs.zsh.shellAliases = { lg = "lazygit"; };
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = "jaehong21";
+        email = "dev@jaehong21.com";
+      };
+      ui = {
+        default-command = [ "log" ];
+        paginate = "never"; # same as --no-pager
+      };
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      notARepository = "prompt"; # default
+    };
+  };
 
   # https://nixos.wiki/wiki/Git
   programs.git = {
@@ -36,24 +54,6 @@
       # gpg --list-secret-keys --keyid-format=long
       key = "5D40F4C4F02D860E";
       signByDefault = true;
-    };
-  };
-
-
-  xdg.enable = true;
-  xdg.configFile."lazygit/config.yml" = {
-    source = (pkgs.formats.yaml { }).generate "any" {
-      # keybinding = {
-      #   universal = {
-      #     prevItem-alt = "e";
-      #     nextItem-alt = "n";
-      #     edit = "E"; # originally "e"
-      #     new = "N"; # originally "n"
-      #   };
-      #   branches = {
-      #     moveCommitsToNewBranch = "<disabled>"; # originally "N"
-      #   };
-      # };
     };
   };
 }
