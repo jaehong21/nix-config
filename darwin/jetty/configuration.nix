@@ -30,6 +30,7 @@
     # pkgs.fish
     # pkgs.nushell
     "/Users/jetty/.nix-profile/bin/zsh"
+    "/Users/jetty/.nix-profile/bin/fish"
     "/Users/jetty/.nix-profile/bin/nu"
   ];
 
