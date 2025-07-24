@@ -25,17 +25,19 @@ $env.config.show_banner = "short"
 
 # Scripts
 # https://github.com/nushell/awesome-nu?tab=readme-ov-file#scripts
+
 source scripts/git-aliases.nu
 
 # Aliases
-alias n = nvim alias cat= bat --no-pager
-alias l = ls alias la= ls -a
+alias n = nvim
+alias l = ls
+alias la = ls -a
 alias ll = ls -la
 alias f = cd (glob **/* --no-file --exclude [ **/.git/** ] | path relative-to (pwd) | to text | fzf)
 
 # nu
-alias "config nu" = ^$env.EDITOR ($env.XDG_CONFIG_HOME/nix-config/home/config/nu/config.nu)
-alias "config env" = ^$env.EDITOR ($env.XDG_CONFIG_HOME/nix-config/home/config/nu/env.nu)
+alias "config nu" = ^$env.EDITOR ($env.XDG_CONFIG_HOME)/nix-config/home/config/nu/config.nu
+alias "config env" = ^$env.EDITOR ($env.XDG_CONFIG_HOME)/nix-config/home/config/nu/env.nu
 
 # shortcuts 
 alias anp = ansible-playbook
