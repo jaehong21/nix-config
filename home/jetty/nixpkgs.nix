@@ -1,6 +1,35 @@
 { pkgs, ... }:
 
 {
+  # Home Manager configuration
+  programs = {
+    zoxide = {
+      enable = true;
+      # enableZshIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+      options = [ "--cmd j" ];
+    };
+    fzf = {
+      enable = true;
+      # enableZshIntegration = true;
+      enableFishIntegration = true;
+      defaultCommand = "fd --type f --hidden --exclude .git";
+    };
+    carapace = {
+      enable = true;
+      # enableZshIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      # enableZshIntegration = true;
+      enableNushellIntegration = true;
+    };
+  };
+
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
     age

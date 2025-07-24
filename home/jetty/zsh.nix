@@ -1,34 +1,8 @@
 { ... }:
 
+# WARN: `zsh` is not used for now
 {
-  # https://github.com/nix-community/home-manager/blob/release-25.05/modules/programs/fzf.nix
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-    defaultCommand = "fd --type f --hidden --exclude .git";
-    defaultOptions = [ ]; # "--height 40%" "--layout reverse" "--border" ];
-  };
-
-  # https://github.com/nix-community/home-manager/blob/release-25.05/modules/programs/zoxide.nix
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-    options = [ "--cmd j" ];
-  };
-
-  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.direnv.enable
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.carapace = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
+  home.shell.enableZshIntegration = true;
   # https://nixos.wiki/wiki/Zsh
   programs.zsh = {
     enable = true;

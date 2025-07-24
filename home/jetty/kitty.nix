@@ -54,8 +54,7 @@ in
       "cmd+shift+r" = "load_config_file";
     };
     settings = {
-      # SHELL
-      shell = "/Users/jetty/.nix-profile/bin/nu";
+      # shell = "/Users/jetty/.nix-profile/bin/nu";
 
       # Window Layout
       enabled_layouts = "splits";

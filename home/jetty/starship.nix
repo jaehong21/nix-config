@@ -3,6 +3,7 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
     settings = {
       add_newline = false; # default: true

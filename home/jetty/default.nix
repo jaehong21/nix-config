@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -9,6 +9,7 @@
 
     # shell
     # ./zsh.nix
+    ./fish.nix
     ./nushell.nix
     ./kitty.nix
     ./starship.nix

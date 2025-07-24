@@ -21,13 +21,13 @@
   # included in `Determinate`
   # nix.settings.experimental-features = "nix-command flakes";
 
-  # programs.zsh.enable = true;
-  # programs.fish.enable = true;
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   # A list of permissible login shells for user accounts.
   environment.shells = [
-    # pkgs.zsh
-    # pkgs.fish
+    pkgs.zsh
+    pkgs.fish
     # pkgs.nushell
     "/Users/jetty/.nix-profile/bin/zsh"
     "/Users/jetty/.nix-profile/bin/fish"
