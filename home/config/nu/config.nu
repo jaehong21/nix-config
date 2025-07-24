@@ -15,17 +15,19 @@ $env.PATH = ($env.PATH| split row (char esep) | prepend [
 
 # Editor
 $env.EDITOR = "nvim"
-$env.configbuffer_editor = $env.EDITOR
+$env.config.buffer_editor = $env.EDITOR
 
-# Banner
+# Display
 $env.config.show_banner = "short"
+$env.config.table.mode = "rounded"
 
 # Modules
 # https://github.com/nushell/nu_scripts/tree/main/modules
+use std/dirs
+use std-rfc/kv * # https://github.com/nushell/nushell/blob/main/crates/nu-std/std-rfc/kv/mod.nu
 
 # Scripts
 # https://github.com/nushell/awesome-nu?tab=readme-ov-file#scripts
-
 source scripts/git-aliases.nu
 
 # Aliases
