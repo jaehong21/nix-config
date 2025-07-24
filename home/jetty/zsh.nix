@@ -22,7 +22,6 @@
     nix-direnv.enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
 
   programs.carapace = {
