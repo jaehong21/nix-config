@@ -10,5 +10,7 @@
     envFile.text = ''
       source ${config.xdg.configHome}/nix-config/home/config/nu/env.nu;
     '';
+
+    # environmentVariables = { }; # at `home/config/nushell/env.nu`
   };
 }
