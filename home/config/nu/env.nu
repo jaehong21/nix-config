@@ -12,6 +12,7 @@ let SECRETS_PATH = ($env.XDG_CONFIG_HOME)/sops-nix/secrets;
 
 # API Keys
 $env.OPENAI_API_KEY = (open ($SECRETS_PATH)/openai/api_key | str trim)
+$env.CHANNELIO_LINEAR_API_KEY = (open ($SECRETS_PATH)/channelio/linear/api_key | str trim)
 
 # GitHub
 $env.GITHUB_TOKEN = (open ($SECRETS_PATH)/github/token | str trim)

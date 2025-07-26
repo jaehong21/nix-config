@@ -8,6 +8,9 @@
     AWS_PROFILE = "default";
     OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai/api_key".path})";
     # GOOGLE_CLOUD_PROJECT = "jaehong21"; # used in `gemini-cli`
+
+    CHANNELIO_LINEAR_API_KEY = "$(cat ${config.sops.secrets."channelio/linear/api_key".path})";
+
     TF_VAR_aws_jaehong21_access_key = "$(cat ${config.sops.secrets."aws/jaehong21/access_key".path})";
     TF_VAR_aws_jaehong21_secret_key = "$(cat ${config.sops.secrets."aws/jaehong21/secret_key".path})";
     TF_VAR_aws_trax_access_key = "$(cat ${config.sops.secrets."aws/trax/access_key".path})";
@@ -39,6 +42,7 @@
     "aws/trax/secret_key" = { };
     "aws/nari/access_key" = { };
     "aws/nari/secret_key" = { };
+    "channelio/linear/api_key" = { };
     "cloudflare/api_key" = { };
     "cloudflare/r2/access_key" = { };
     "cloudflare/r2/secret_key" = { };
