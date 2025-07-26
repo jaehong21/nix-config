@@ -1,7 +1,7 @@
 # XDG environment variables
 let username = (whoami)
-$env.XDG_CONFIG_HOME = "/Users/" + ($username) + "/.config"
-$env.XDG_DATA_HOME = "/Users/" + ($username) + "/.local/share"
+$env.XDG_CONFIG_HOME = $"/Users/($username)/.config"
+$env.XDG_DATA_HOME = $"/Users/($username)/.local/share"
 
 # ENV variables
 $env.AWS_PROFILE = "default"
