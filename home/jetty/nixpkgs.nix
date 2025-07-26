@@ -28,8 +28,14 @@
       # enableZshIntegration = true;
       enableNushellIntegration = true;
     };
+    tmux = {
+      enable = true;
+      shell = "${pkgs.nushell}/bin/nu";
+      mouse = true;
+      focusEvents = true;
+      keyMode = "vi"; # default: "emacs"
+    };
   };
-
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
     age
