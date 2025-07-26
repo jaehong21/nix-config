@@ -20,6 +20,11 @@
         default-command = [ "log" ];
         paginate = "never"; # same as --no-pager
       };
+      signing = {
+        behavior = "own";
+        backend = "gpg";
+        key = "5D40F4C4F02D860E";
+      };
     };
   };
 
