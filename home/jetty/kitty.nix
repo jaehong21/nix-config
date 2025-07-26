@@ -33,6 +33,10 @@ in
     # from https://github.com/kovidgoyal/kitty-themes/tree/master/themes
     themeFile = "tokyo_night_moon";
     keybindings = {
+      # Last Cmd Result
+      # "cmd+shift+p" = "combine : launch --stdin-source=@last_cmd_output --type=clipboard : paste_from_clipboard";
+      "cmd+shift+p" = "launch --stdin-source=@last_cmd_output --type=clipboard";
+
       # Window Management
       "cmd+d" = "launch --location=vsplit --cwd=current";
       "cmd+j" = "launch --location=hsplit --cwd=current";
