@@ -11,9 +11,9 @@ def "t cc" [name?: string] {
 }
 def "tmux cc" [name?: string] {
     let session_name = if ($name | is-empty) {
-        $"(pwd | path basename)/(random uuid | str substring 0..8)"
+        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/(random uuid | str substring 0..8)"
     } else {
-        $"(pwd | path basename)/($name)"
+        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/($name)"
     }
 
     tmux new-session -d -s $session_name claude
@@ -25,9 +25,9 @@ def "t n" [name?: string] {
 }
 def "tmux n" [name?: string] {
     let session_name = if ($name | is-empty) {
-        $"(pwd | path basename)/(random uuid | str substring 0..8)"
+        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/(random uuid | str substring 0..8)"
     } else {
-        $"(pwd | path basename)/($name)"
+        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/($name)"
     }
     tmux new-session -d -s $session_name
     tmux attach-session -t $session_name
