@@ -1,6 +1,7 @@
 # XDG environment variables
-$env.XDG_CONFIG_HOME = "/Users/jetty/.config"
-$env.XDG_DATA_HOME = "/Users/jetty/.local/share"
+let username = (whoami)
+$env.XDG_CONFIG_HOME = "/Users/" + ($username) + "/.config"
+$env.XDG_DATA_HOME = "/Users/" + ($username) + "/.local/share"
 
 # ENV variables
 $env.AWS_PROFILE = "default"

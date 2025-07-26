@@ -1,16 +1,17 @@
 # Configure PATH
+let username = (whoami)
 $env.PATH = ($env.PATH| split row (char esep) | prepend [
   # nix
-  "/Users/jetty/.nix-profile/bin"
-  "/run/current-system/sw/bin"
-  "/nix/var/nix/profiles/default/bin"
+  /Users/($username)/.nix-profile/bin
+  /run/current-system/sw/bin
+  /nix/var/nix/profiles/default/bin
   # homebrew
-  "/opt/homebrew/bin"
-  "/opt/homebrew/sbin"
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
   # cargo
-  "/Users/jetty/.cargo/bin"
+  /Users/($username)/.cargo/bin
   # bun
-  "/Users/jetty/.cache/.bun/bin"
+  /Users/($username)/.cache/.bun/bin
 ] | uniq )
 
 # Editor
