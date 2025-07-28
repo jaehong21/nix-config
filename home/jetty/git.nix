@@ -32,6 +32,10 @@
     enable = true;
     settings = {
       notARepository = "prompt"; # default
+      os = {
+        # open github web link with nushell
+        openLink = "nu -c 'start {{link}}'";
+      };
     };
   };
 
