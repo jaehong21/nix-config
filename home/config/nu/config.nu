@@ -11,7 +11,7 @@ $env.PATH = ($env.PATH| split row (char esep) | prepend [
   # cargo
   /Users/($username)/.cargo/bin
   # bun
-  /Users/($username)/.cache/.bun/bin
+  /Users/($username)/.bun/bin
 ] | uniq )
 
 # Editor
@@ -60,14 +60,18 @@ alias tg = terragrunt
 alias hb = hibiscus
 
 # Code Assistant
-alias claude  = ~/.claude/local/claude
+alias claude = /Users/jetty/.claude/local/claude
 alias cc = claude
 alias ccb = ccusage blocks
 alias ccbl = ccusage blocks --live
 alias gc = gemini
-alias oc = opencode
 
 # misc
 alias python = python3.13
 alias psql = nix shell nixpkgs#postgresql_17 --command psql
 alias redis-cli = nix shell nixpkgs#redis --command redis-cli
+
+# kubernetes
+def helm-login [] {
+  aws ecr get-login-password --region ap-northeast-2 --profile ch-prod | helm registry login --username AWS --password-stdin "882639023316.dkr.ecr.ap-northeast-2.amazonaws.com"
+}
