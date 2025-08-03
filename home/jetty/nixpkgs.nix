@@ -56,7 +56,11 @@
     gh
     git-cliff
     gnupg
-    go-migrate
+    # https://github.com/golang-migrate/migrate/issues/1279#issuecomment-2905714815
+    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/go/go-migrate/package.nix#L51
+    (go-migrate.overrideAttrs (oldAttrs: {
+      tags = [ "postgres" "sqlite3" ];
+    }))
     go-swag
     grpcurl
     htop
