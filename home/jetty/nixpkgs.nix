@@ -54,6 +54,7 @@
     fx
     gallery-dl
     gh
+    git-cliff
     gnupg
     go-migrate
     go-swag
@@ -61,6 +62,7 @@
     htop
     hugo
     jq
+    just
     lsd
     minio-client
     natscli
