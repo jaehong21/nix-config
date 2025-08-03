@@ -62,6 +62,7 @@ alias hb = hibiscus
 # Code Assistant
 alias claude = /Users/jetty/.claude/local/claude
 alias cc = claude
+alias ccusage = bunx ccusage
 alias ccb = ccusage blocks
 alias ccbl = ccusage blocks --live
 alias gc = gemini
