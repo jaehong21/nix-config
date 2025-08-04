@@ -6,8 +6,6 @@ $env.XDG_DATA_HOME = $"/Users/($username)/.local/share"
 # ENV variables
 $env.AWS_PROFILE = "default"
 $env.GITHUB_ACTOR = "jaehong21"
-$env.DIRENV_LOG_FORMAT = ""
-$env.DIRENV_WARN_TIMEOUT = "1m"
 
 # Secrets
 let SECRETS_PATH = ($env.XDG_CONFIG_HOME)/sops-nix/secrets;

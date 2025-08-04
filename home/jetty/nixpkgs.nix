@@ -25,6 +25,13 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      config = {
+        global = {
+          log_format = "-";
+          log_filter = "^$";
+          warn_timeout = "1m";
+        };
+      };
       # enableZshIntegration = true;
       enableNushellIntegration = true;
     };

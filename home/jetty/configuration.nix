@@ -30,8 +30,6 @@
 
   home.sessionVariables = {
     # EDITOR = "emacs";
-    # suppress direnv log
-    DIRENV_LOG_FORMAT = "";
   };
 
   # to use ~/.config instead of /Users/<username>/Library/...
