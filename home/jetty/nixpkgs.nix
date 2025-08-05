@@ -1,6 +1,22 @@
 { pkgs, ... }:
 
+let
+  hugoOverlay = final: prev: {
+    hugo_0_145_0 = (import
+      (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "63158b9cbb6ec93d26255871c447b0f01da81619";
+        hash = "sha256-FurMxmjEEqEMld11eX2vgfAx0Rz0JhoFm8UgxbfCZa8=";
+      })
+      { inherit (pkgs) system; }).hugo;
+  };
+in
 {
+  nixpkgs.overlays = [
+    hugoOverlay
+  ];
+
   # Home Manager configuration
   programs = {
     zoxide = {
@@ -43,6 +59,13 @@
       keyMode = "vi"; # default: "emacs"
     };
   };
+
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = null; # default behavior
+  #   port = 11434; # default
+  # };
+
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
     age
@@ -71,7 +94,7 @@
     go-swag
     grpcurl
     htop
-    hugo
+    hugo_0_145_0
     jq
     just
     lsd
