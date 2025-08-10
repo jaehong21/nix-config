@@ -58,7 +58,7 @@
 
     signing = {
       format = "openpgp";
-      signer = "gpg"; # path to signer binary
+      signer = "${config.home.homeDirectory}/.nix-profile/bin/gpg"; # path to signer binary
       # gpg --import private.key
       # gpg --list-secret-keys --keyid-format=long
       key = "5D40F4C4F02D860E";

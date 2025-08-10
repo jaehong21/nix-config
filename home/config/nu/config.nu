@@ -1,6 +1,7 @@
 # Configure PATH
 let username = (whoami)
 $env.PATH = ($env.PATH| split row (char esep) | prepend [
+  /usr/local/bin
   # nix
   /Users/($username)/.nix-profile/bin
   /run/current-system/sw/bin
