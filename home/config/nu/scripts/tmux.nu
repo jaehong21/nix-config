@@ -6,20 +6,6 @@ alias "t l" = tmux list-sessions
 alias "t k" = tmux kill-server
 alias "tmux k" = tmux kill-server
 
-def "t cc" [name?: string] {
-  tmux cc $name
-}
-def "tmux cc" [name?: string] {
-    let session_name = if ($name | is-empty) {
-        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/(random uuid | str substring 0..8)"
-    } else {
-        $"(pwd | path basename | str replace --all ' ' '_' | str replace --all '.' '')/($name)"
-    }
-
-    tmux new-session -d -s $session_name claude
-    tmux attach-session -t $session_name
-}
-
 def "t n" [name?: string] {
   tmux n $name
 }
