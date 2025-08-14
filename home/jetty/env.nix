@@ -37,6 +37,7 @@
 
   sops.secrets = {
     "openai/api_key" = { };
+    "gemini/api_key" = { };
     "aws/jaehong21/access_key" = { };
     "aws/jaehong21/secret_key" = { };
     "aws/trax/access_key" = { };
