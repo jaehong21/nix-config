@@ -53,12 +53,15 @@
     extraConfig = {
       core = {
         pager = "less -F -X";
+        # store exclude files in ~/.config/git/ignore
+        excludesFile = "${config.xdg.configHome}/git/ignore";
       };
     };
 
     signing = {
       format = "openpgp";
-      signer = "${config.home.homeDirectory}/.nix-profile/bin/gpg"; # path to signer binary
+      signer = "gpg";
+      # signer = "${config.home.homeDirectory}/.nix-profile/bin/gpg"; # path to signer binary
       # gpg --import private.key
       # gpg --list-secret-keys --keyid-format=long
       key = "5D40F4C4F02D860E";
