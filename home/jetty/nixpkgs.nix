@@ -43,8 +43,8 @@ in
       nix-direnv.enable = true;
       config = {
         global = {
-          log_format = "-";
-          log_filter = "^$";
+          # log_format = "-";
+          # log_filter = "^$";
           warn_timeout = "1m";
         };
       };
@@ -92,6 +92,7 @@ in
       tags = [ "postgres" "sqlite3" ];
     }))
     go-swag
+    google-cloud-sdk
     grpcurl
     htop
     hugo_0_145_0
