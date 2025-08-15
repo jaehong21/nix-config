@@ -43,6 +43,7 @@
     # bash
     bash-language-server
     shfmt
+    shellcheck
     # nushell
     # nufmt
 
