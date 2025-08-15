@@ -40,6 +40,7 @@
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager"
+      "docker"
     ];
 
     packages = with pkgs; [
@@ -94,7 +95,18 @@
   };
 
   # use docker
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
+
+  # nvidia
+  services.xserver.videoDrivers = [
+    "nvidia"
+  ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
 
   # Open ports in the firewall.
   networking.firewall.enable = false;
