@@ -24,6 +24,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jaehong21 = {
     isNormalUser = true;
+    openssh.authorizedKeys.keys = [ (builtins.readFile ./id_rsa.pub) ];
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager"
@@ -66,7 +67,13 @@
   services.vnstat.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
 
   # Tailscale VPN
   services.tailscale = {
