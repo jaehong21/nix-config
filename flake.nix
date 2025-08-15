@@ -85,6 +85,17 @@
           ./hosts/oracle3/configuration.nix
         ];
       };
+      desk1 = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        pkgs = import nixpkgs-stable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = { inherit self inputs; };
+        modules = [
+          ./hosts/desk1/configuration.nix
+        ];
+      };
       berry1 = nixpkgs-vicuna.lib.nixosSystem {
         system = "aarch64-linux";
         pkgs = import nixpkgs-vicuna {
