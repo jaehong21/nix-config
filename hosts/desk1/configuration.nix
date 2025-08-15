@@ -1,13 +1,10 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
+{ self, inputs, config, pkgs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
+      inputs.sops-nix.nixosModules.sops
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -20,6 +17,21 @@
 
   time.timeZone = "Asia/Seoul";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # sops-nix for secrets
+  # for NixOS, it used to store at `/run/secrets`
+  sops = {
+    # self.outPath is the flake absolute path
+    defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
+    defaultSopsFormat = "yaml";
+    # should have no passphrase
+    # NOTE: add `key.txt` manually
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+
+    secrets = {
+      "k3s/token" = { };
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jaehong21 = {
