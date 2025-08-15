@@ -79,6 +79,7 @@ in
     cloudflared
     curl
     doggo
+    exiftool
     fd
     ffmpeg
     fx
@@ -103,6 +104,7 @@ in
     natscli
     nh
     nvtopPackages.apple
+    p7zip
     pre-commit
     ripgrep
     sd
