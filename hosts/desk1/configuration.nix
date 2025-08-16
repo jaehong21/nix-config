@@ -1,4 +1,4 @@
-{ self, inputs, config, pkgs, ... }:
+{ self, inputs, config, pkgs, lib, ... }:
 
 let
   k3sOverlay = final: prev: {
@@ -92,6 +92,7 @@ in
     git
     htop
     nfs-utils
+    nvidia-docker
     nvtopPackages.nvidia
     vim
     wget
@@ -126,6 +127,14 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_27_5_1;
   hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.docker.daemon.settings = {
+    runtimes = {
+      path = lib.getExe' (lib.getOutput "tools" config.hardware.nvidia-container-toolkit.package) "nvidia-container-runtime";
+    };
+  };
+  virtualisation.oci-containers = {
+    backend = "docker";
+  };
 
   # nvidia
   services.xserver.videoDrivers = [
