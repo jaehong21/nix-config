@@ -27,6 +27,17 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  # Mount NFS
+  systemd.mounts = [
+    {
+      what = "192.168.0.9:/volume1/nfs/comfyui";
+      where = "/mnt/nas/comfyui";
+      type = "nfs";
+      options = "nfsvers=4,rw,nolock,soft";
+      wantedBy = [ "multi-user.target" ];
+    }
+  ];
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
