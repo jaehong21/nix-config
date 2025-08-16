@@ -95,6 +95,10 @@ in
     nvtopPackages.nvidia
     vim
     wget
+
+    # NVIDIA container runtime tools
+    # nvidia-container-toolkit
+    # libnvidia-container
   ];
 
   # Google's NTP service instead systemd-timesyncd
@@ -125,10 +129,9 @@ in
   # use docker
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
     package = pkgs.docker_27_5_1;
   };
-  # hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
   };
@@ -137,6 +140,8 @@ in
   services.xserver.videoDrivers = [
     "nvidia"
   ];
+  # hardware.graphics.enable = true;
+  # hardware.graphics.enable32Bit = true;
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
