@@ -92,6 +92,7 @@ in
     git
     htop
     nfs-utils
+    nvtopPackages.nvidia
     vim
     wget
   ];
