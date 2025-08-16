@@ -30,8 +30,8 @@
   # Mount NFS
   systemd.mounts = [
     {
-      what = "192.168.0.9:/volume1/nfs/comfyui";
-      where = "/mnt/nas/comfyui";
+      what = "192.168.0.9:/volume1/nfs";
+      where = "/mnt/nas";
       type = "nfs";
       options = "nfsvers=4,rw,nolock,soft";
       wantedBy = [ "multi-user.target" ];
