@@ -92,7 +92,6 @@ in
     git
     htop
     nfs-utils
-    nvidia-docker
     nvtopPackages.nvidia
     vim
     wget
@@ -124,14 +123,12 @@ in
   };
 
   # use docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_27_5_1;
-  hardware.nvidia-container-toolkit.enable = true;
-  virtualisation.docker.daemon.settings = {
-    runtimes = {
-      path = lib.getExe' (lib.getOutput "tools" config.hardware.nvidia-container-toolkit.package) "nvidia-container-runtime";
-    };
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+    package = pkgs.docker_27_5_1;
   };
+  # hardware.nvidia-container-toolkit.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
   };
