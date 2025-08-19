@@ -11,21 +11,10 @@ let
       })
       { inherit (pkgs) system; }).k3s;
   };
-  dockerOverlay = final: prev: {
-    docker_27_5_1 = (import
-      (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "642c54c23609fefb5708b0e2be261446c59138f6";
-        hash = "sha256-4Y0ByuP4NEz2Zyso9Ozob8yR6kKuaunJ5OARv+tFLPI=";
-      })
-      { inherit (pkgs) system; }).docker;
-  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
-    dockerOverlay
   ];
 
   imports =
@@ -135,7 +124,8 @@ in
   # use docker
   virtualisation.docker = {
     enable = true;
-    package = pkgs.docker_27_5_1;
+    # https://discourse.nixos.org/t/nvidia-docker-container-runtime-doesnt-detect-my-gpu/51336/21
+    package = pkgs.docker_25; # backport to docker_25 for driver `cdi` with gpu capabilities
   };
   hardware.nvidia-container-toolkit.enable = true; # need to run with CDI (e.g. `--device=nvidia.com/gpu=all`)
   virtualisation.oci-containers = {
