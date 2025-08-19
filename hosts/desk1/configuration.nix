@@ -75,7 +75,9 @@ in
       gh
       gnupg
       nh
-      python310
+      uv
+      python312
+      go_1_24
       tailscale # CLI
       tree
     ];
@@ -85,6 +87,10 @@ in
   services.getty.autologinUser = "jaehong21";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment.sessionVariables = {
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+  };
 
   environment.systemPackages = with pkgs; [
     curl
@@ -137,14 +143,15 @@ in
   };
 
   # nvidia
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   services.xserver.videoDrivers = [
     "nvidia"
   ];
-  # hardware.graphics.enable = true;
-  # hardware.graphics.enable32Bit = true;
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
+    nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
