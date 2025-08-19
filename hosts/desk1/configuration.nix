@@ -137,7 +137,7 @@ in
     enable = true;
     package = pkgs.docker_27_5_1;
   };
-  hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.enable = true; # need to run with CDI (e.g. `--device=nvidia.com/gpu=all`)
   virtualisation.oci-containers = {
     backend = "docker";
   };
@@ -150,8 +150,8 @@ in
   ];
   hardware.nvidia = {
     modesetting.enable = true;
-    open = false;
-    nvidiaSettings = true;
+    open = true;
+    nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
