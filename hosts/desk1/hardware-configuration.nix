@@ -26,6 +26,18 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+  # NOTE: `sudo mkfs.ext4 /dev/sda` manually
+  fileSystems."/mnt/sda" =
+    {
+      device = "/dev/disk/by-uuid/50a525d2-cef0-4bc6-ba34-7525c661c80a"; # /dev/sda, HDD, 3.6TB
+      fsType = "ext4";
+    };
+  # NOTE: `sudo mkfs.ext4 /dev/sdb` manually
+  fileSystems."/mnt/sdb" =
+    {
+      device = "/dev/disk/by-uuid/5fb21900-20e7-4348-bef7-181db666eb44"; # /dev/sdb, SSD, 111.8GB
+      fsType = "ext4";
+    };
 
   # Mount NFS
   systemd.mounts = [
