@@ -79,6 +79,7 @@ in
     cloudflared
     curl
     doggo
+    duckdb
     exiftool
     fd
     ffmpeg
@@ -87,6 +88,7 @@ in
     gh
     git-cliff
     gnupg
+    gnutar
     # https://github.com/golang-migrate/migrate/issues/1279#issuecomment-2905714815
     # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/go/go-migrate/package.nix#L51
     (go-migrate.overrideAttrs (oldAttrs: {
@@ -106,6 +108,7 @@ in
     nvtopPackages.apple
     p7zip
     pre-commit
+    rclone
     ripgrep
     sd
     sops
