@@ -60,15 +60,7 @@ in
     ];
 
     packages = with pkgs; [
-      fastfetch
-      gh
-      gnupg
-      nh
-      uv
-      python312
-      go_1_24
       tailscale # CLI
-      tree
     ];
   };
 
@@ -84,10 +76,13 @@ in
   environment.systemPackages = with pkgs; [
     curl
     dnsutils
+    fastfetch
     git
+    gnupg
     htop
     nfs-utils
     nvtopPackages.nvidia
+    tree
     vim
     wget
 
