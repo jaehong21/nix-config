@@ -33,7 +33,7 @@
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
-      "jetty" = home-manager.lib.homeManagerConfiguration {
+      "jetty@jetty" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -44,6 +44,20 @@
           {
             home.username = "jetty";
             home.homeDirectory = "/Users/jetty";
+          }
+        ];
+      };
+      "jaehong21@desk1" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit self inputs; };
+        modules = [
+          ./home/desk1/configuration.nix
+          {
+            home.username = "jaehong21";
+            home.homeDirectory = "/home/jaehong21";
           }
         ];
       };
