@@ -68,6 +68,7 @@ in
 
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
+    _1password-cli
     age
     air
     allure
