@@ -55,16 +55,8 @@
     # helm
     helm-ls
     # markdown
-    vale
     markdownlint-cli
     # dockerfile
     hadolint
   ];
-
-
-  /* home.sessionVariables = {
-    VALE_CONFIG_PATH = "${config.home.homeDirectory}/vale/.vale.ini";
-  }; */
-  xdg.configFile."vale/.vale.ini".text = ''
-  '';
 }
