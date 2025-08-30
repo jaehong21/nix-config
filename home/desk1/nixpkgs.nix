@@ -50,6 +50,7 @@
     bat
     fd
     ffmpeg
+    gcc
     gh
     gnutar
     jq
