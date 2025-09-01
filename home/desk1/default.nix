@@ -2,10 +2,16 @@
 
 {
   imports = [
+    # system
     ./nixpkgs.nix
     ./git.nix
-    ./lang.nix
+
+    # shell
+    ./nushell.nix
+
+    # ide
     ./neovim.nix
+    ./lang.nix
     ./lsp.nix
   ];
 }
