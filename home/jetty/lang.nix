@@ -53,13 +53,4 @@ in
     terraform_1_9_3
     terragrunt
   ];
-
-  programs.zsh.shellAliases = {
-    java = "${pkgs.jdk23}/bin/java";
-  };
-
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
-    "$HOME/.cache/.bun/bin"
-  ];
 }

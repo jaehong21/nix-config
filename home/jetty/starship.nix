@@ -2,8 +2,8 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.starship.enable
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
+    # enableZshIntegration = true;
+    # enableFishIntegration = true;
     enableNushellIntegration = true;
     settings = {
       add_newline = false; # default: true

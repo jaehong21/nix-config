@@ -1,14 +1,6 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
-  sops.secrets."github/token" = { };
-
-  home.sessionVariables = {
-    GITHUB_ACTOR = "jaehong21";
-    GITHUB_TOKEN = "$(cat ${config.sops.secrets."github/token".path})";
-    GITHUB_PACKAGES_INSTALL_KEY = "$(cat ${config.sops.secrets."github/token".path})";
-  };
-
   programs.jujutsu = {
     enable = true;
     settings = {

@@ -4,12 +4,11 @@
   imports = [
     # system
     ./nixpkgs.nix
-    ./env.nix
     ./git.nix
 
     # shell
     # ./zsh.nix
-    ./fish.nix
+    # ./fish.nix
     ./nushell.nix
     ./kitty.nix
     ./starship.nix

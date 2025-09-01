@@ -22,20 +22,20 @@ in
     zoxide = {
       enable = true;
       # enableZshIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       enableNushellIntegration = true;
       options = [ "--cmd j" ];
     };
     fzf = {
       enable = true;
       # enableZshIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       defaultCommand = "fd --type f --hidden --exclude .git";
     };
     carapace = {
       enable = true;
       # enableZshIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       enableNushellIntegration = true;
     };
     direnv = {

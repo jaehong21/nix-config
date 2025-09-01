@@ -23,8 +23,9 @@ in
     enable = true;
     package = pkgs.kitty_0_42_0;
     shellIntegration = {
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      # enableBashIntegration = true;
+      # enableZshIntegration = true;
+      # enableFishIntegration = true;
     };
     font = {
       name = "Hack Nerd Font";
