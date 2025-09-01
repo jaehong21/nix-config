@@ -16,9 +16,4 @@
     # rust
     rustup
   ];
-
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
-    "$HOME/.cache/.bun/bin"
-  ];
 }

@@ -7,7 +7,7 @@
       enable = true;
       # enableZshIntegration = true;
       # enableFishIntegration = true;
-      # enableNushellIntegration = true;
+      enableNushellIntegration = true;
       options = [ "--cmd j" ];
     };
     fzf = {
@@ -20,7 +20,7 @@
       enable = true;
       # enableZshIntegration = true;
       # enableFishIntegration = true;
-      # enableNushellIntegration = true;
+      enableNushellIntegration = true;
     };
     direnv = {
       enable = true;
@@ -33,7 +33,7 @@
         };
       };
       # enableZshIntegration = true;
-      # enableNushellIntegration = true;
+      enableNushellIntegration = true;
     };
   };
 

@@ -69,6 +69,10 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  environment.shells = [
+    "/home/jaehong21/.nix-profile/bin/nu"
+  ];
+
   environment.sessionVariables = {
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
