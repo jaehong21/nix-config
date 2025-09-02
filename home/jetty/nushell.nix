@@ -2,6 +2,9 @@
 
 {
   home.shell.enableNushellIntegration = true;
+
+  # NOTE: add `XDG_CONFIG_HOME` and `XDG_DATA_HOME` before installing nushell`
+  # https://www.nushell.sh/book/configuration.html#startup-variables
   programs.nushell = {
     enable = true;
     configFile.text = ''
