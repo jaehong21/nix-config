@@ -103,12 +103,14 @@ in
     jq
     just
     lsd
+    marp-cli
     minio-client
     natscli
     nh
     nvtopPackages.apple
     p7zip
     pre-commit
+    presenterm
     rclone
     ripgrep
     sd
