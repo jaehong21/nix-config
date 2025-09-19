@@ -39,6 +39,3 @@ $env.TF_VAR_oci_bkw377_private_key_path =  ($SECRETS_PATH)/oci/bkw377/private_ke
 $env.TF_VAR_oci_csia10kmla23_user_ocid = (open ($SECRETS_PATH)/oci/csia10kmla23/user_ocid | str trim)
 $env.TF_VAR_oci_csia10kmla23_fingerprint = (open ($SECRETS_PATH)/oci/csia10kmla23/fingerprint | str trim)
 $env.TF_VAR_oci_csia10kmla23_private_key_path = ($SECRETS_PATH)/oci/csia10kmla23/private_key
-$env.TF_VAR_postgresql_oracle1_password = (open ($SECRETS_PATH)/postgres/oracle1/password | str trim)
-$env.TF_VAR_postgresql_nas_password = (open ($SECRETS_PATH)/postgres/nas/password | str trim)
-$env.TF_VAR_postgresql_berry1_password = (open ($SECRETS_PATH)/postgres/berry1/password | str trim)
