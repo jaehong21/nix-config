@@ -110,7 +110,6 @@ in
     nvtopPackages.apple
     p7zip
     pre-commit
-    presenterm
     rclone
     ripgrep
     sd
