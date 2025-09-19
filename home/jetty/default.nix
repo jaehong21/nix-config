@@ -4,6 +4,7 @@
   imports = [
     # system
     ./nixpkgs.nix
+    ./secrets.nix
     ./git.nix
 
     # shell
