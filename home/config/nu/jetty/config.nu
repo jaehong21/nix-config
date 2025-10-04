@@ -41,7 +41,8 @@ source ../scripts/kubernetes.nu
 source ../scripts/tmux.nu
 
 # Aliases
-alias ssh = kitten ssh --kitten interpreter=python
+alias ssh = kitten ssh --kitten interpreter=sh
+# alias ssh = kitten ssh --kitten interpreter=python
 alias n = nvim
 alias l = ls
 alias la = ls -a
@@ -61,21 +62,25 @@ alias tf = terraform
 alias tg = terragrunt
 alias hb = hibiscus
 
-# Claude Code
+# Code Assistant
 alias claude = /Users/jetty/.claude/local/claude
 alias cc = claude
 alias ccusage = bunx ccusage
 alias ccb = ccusage blocks
 alias ccbl = ccusage blocks --live
-
-# Gemini CLI
 alias gc = gemini
+alias oc = opencode
 
 # misc
 alias python = python3.13
 alias psql = nix shell nixpkgs#postgresql_17 --command psql
 alias redis-cli = nix shell nixpkgs#redis --command redis-cli
 alias varlock = docker run --rm ghcr.io/dmno-dev/varlock:0.0.11
+
+# aws
+def --env aws-profile [] {
+  $env.AWS_PROFILE = (aws configure list-profiles | fzf)
+}
 
 # kubernetes
 def helm-login [] {
