@@ -38,6 +38,7 @@ in
     corepack_22
     # python
     python313
+    python313Packages.conda
     uv
     # java
     jdk23

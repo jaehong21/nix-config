@@ -81,6 +81,7 @@ in
     curl
     doggo
     duckdb
+    eks-node-viewer
     exiftool
     fd
     ffmpeg
