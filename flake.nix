@@ -33,7 +33,7 @@
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
-      "jetty@jetty" = home-manager.lib.homeManagerConfiguration {
+      "jetty@jetty-2" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
