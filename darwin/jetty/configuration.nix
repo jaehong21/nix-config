@@ -32,7 +32,7 @@
 
     # "/Users/jetty/.nix-profile/bin/zsh"
     # "/Users/jetty/.nix-profile/bin/fish"
-    "/Users/jetty/.nix-profile/bin/nu"
+    # "/Users/jetty/.nix-profile/bin/nu"
   ];
 
   # Set Git commit hash for darwin-version.
