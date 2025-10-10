@@ -3,7 +3,7 @@
 {
   # Import brew.nix for nix-homebrew configuration
   imports = [
-    ./brew.nix
+    # ./brew.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
