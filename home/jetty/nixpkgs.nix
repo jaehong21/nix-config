@@ -121,6 +121,7 @@ in
     tree
     tshark
     unixtools.watch
+    watchexec
     wget
     xh
     yq-go
