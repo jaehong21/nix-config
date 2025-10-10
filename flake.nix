@@ -7,10 +7,11 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-vicuna.url = "github:NixOS/nixpkgs/nixos-24.11";
     # Nix Darwin
-    darwin = {
-      url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # darwin = {
+    #   url = "github:LnL7/nix-darwin/master";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -29,7 +30,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-vicuna, darwin, home-manager, nix-homebrew, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-vicuna, home-manager, nix-homebrew, ... }@inputs: {
     homeConfigurations = {
       # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
@@ -147,22 +148,22 @@
 
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#jetty
-    darwinConfigurations = {
-      # <hostname>
-      "jetty" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./darwin/jetty/configuration.nix
-          {
-            nixpkgs.hostPlatform = "aarch64-darwin";
-            users.users.jetty = {
-              name = "jetty";
-              home = "/Users/jetty";
-            };
-          }
-        ];
-      };
-    };
+    # darwinConfigurations = {
+    #   # <hostname>
+    #   "jetty" = darwin.lib.darwinSystem {
+    #     system = "aarch64-darwin";
+    #     specialArgs = { inherit inputs; };
+    #     modules = [
+    #       ./darwin/jetty/configuration.nix
+    #       {
+    #         nixpkgs.hostPlatform = "aarch64-darwin";
+    #         users.users.jetty = {
+    #           name = "jetty";
+    #           home = "/Users/jetty";
+    #         };
+    #       }
+    #     ];
+    #   };
+    # };
   };
 }
