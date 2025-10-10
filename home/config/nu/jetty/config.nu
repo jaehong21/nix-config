@@ -1,6 +1,6 @@
 # Configure PATH
 let username = (whoami)
-$env.PATH = ($env.PATH| split row (char esep) | prepend [
+$env.PATH = ($env.PATH | split row (char esep) | prepend [
   /usr/local/bin
   # nix
   /Users/($username)/.nix-profile/bin
@@ -55,7 +55,7 @@ alias "config env" = ^$env.EDITOR $"($env.XDG_CONFIG_HOME)/nix-config/home/confi
 alias dc = detect columns
 alias tt = to text
 
-# shortcuts 
+# shortcuts
 alias anp = ansible-playbook
 alias lg = lazygit
 alias tf = terraform
