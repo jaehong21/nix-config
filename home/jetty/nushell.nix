@@ -7,6 +7,9 @@
   # https://www.nushell.sh/book/configuration.html#startup-variables
   programs.nushell = {
     enable = true;
+    shellAliases = config.home.shellAliases;
+    environmentVariables = config.home.sessionVariables;
+
     configFile.text = ''
       source ${config.xdg.configHome}/nix-config/home/config/nu/jetty/config.nu;
     '';
