@@ -28,7 +28,7 @@
       # Size of the disk in GiB to be allocated to the virtual machine.
       # NOTE: value can only be increased after virtual machine has been created.
       # Default: 100
-      disk = 50;
+      disk = 100;
 
       # Architecture of the virtual machine (x86_64, aarch64, host).
       # NOTE: value cannot be changed after virtual machine is created.
