@@ -3,6 +3,8 @@
 {
   sops.secrets = {
     "openai/api_key" = { };
+    "openrouter/api_key" = { };
+    "groq/api_key" = { };
     "gemini/api_key" = { };
     "github/token" = { };
 
@@ -34,4 +36,3 @@
     "oci/csia10kmla23/private_key" = { };
   };
 }
-

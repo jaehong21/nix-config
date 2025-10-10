@@ -12,6 +12,8 @@ let SECRETS_PATH = ($env.XDG_CONFIG_HOME)/sops-nix/secrets;
 
 # API Keys
 $env.OPENAI_API_KEY = (open ($SECRETS_PATH)/openai/api_key | str trim)
+$env.OPENROUTER_API_KEY =  (open ($SECRETS_PATH)/openrouter/api_key | str trim)
+$env.GROQ_API_KEY = (open ($SECRETS_PATH)/groq/api_key | str trim)
 $env.GEMINI_API_KEY = (open ($SECRETS_PATH)/gemini/api_key | str trim)
 $env.CHANNELIO_LINEAR_API_KEY = (open ($SECRETS_PATH)/channelio/linear/api_key | str trim)
 
