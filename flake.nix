@@ -11,14 +11,14 @@
     #   url = "github:LnL7/nix-darwin/master";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    # Homebrew
+    # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     # Home Manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Homebrew
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    # home-manager = {
+    #   url = "github:nix-community/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # disko
     disko = {
@@ -30,38 +30,37 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-vicuna, home-manager, nix-homebrew, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-vicuna, ... }@inputs: {
     homeConfigurations = {
-      # Work laptop
       # <username>@<hostname>, e.g. "jetty@jetty-213"
-      "jetty@jetty-2" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit self inputs; }; # pass inputs to home.nix
-        modules = [
-          ./home/jetty/configuration.nix
-          {
-            home.username = "jetty";
-            home.homeDirectory = "/Users/jetty";
-          }
-        ];
-      };
-      "jaehong21@desk1" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit self inputs; };
-        modules = [
-          ./home/desk1/configuration.nix
-          {
-            home.username = "jaehong21";
-            home.homeDirectory = "/home/jaehong21";
-          }
-        ];
-      };
+      # "jetty@jetty" = home-manager.lib.homeManagerConfiguration {
+      #   pkgs = import nixpkgs {
+      #     system = "aarch64-darwin";
+      #     config.allowUnfree = true;
+      #   };
+      #   extraSpecialArgs = { inherit self inputs; }; # pass inputs to home.nix
+      #   modules = [
+      #     ./home/jetty/configuration.nix
+      #     {
+      #       home.username = "jetty";
+      #       home.homeDirectory = "/Users/jetty";
+      #     }
+      #   ];
+      # };
+      # "jaehong21@desk1" = home-manager.lib.homeManagerConfiguration {
+      #   pkgs = import nixpkgs {
+      #     system = "x86_64-linux";
+      #     config.allowUnfree = true;
+      #   };
+      #   extraSpecialArgs = { inherit self inputs; };
+      #   modules = [
+      #     ./home/desk1/configuration.nix
+      #     {
+      #       home.username = "jaehong21";
+      #       home.homeDirectory = "/home/jaehong21";
+      #     }
+      #   ];
+      # };
     };
 
     # Build nixos flake using:
@@ -148,7 +147,7 @@
 
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#jetty
-    # darwinConfigurations = {
+    darwinConfigurations = {
     #   # <hostname>
     #   "jetty" = darwin.lib.darwinSystem {
     #     system = "aarch64-darwin";
@@ -164,6 +163,6 @@
     #       }
     #     ];
     #   };
-    # };
+    };
   };
 }
