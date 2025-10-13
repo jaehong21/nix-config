@@ -1,25 +1,29 @@
-{ self, inputs, config, pkgs, ... }:
+{
+  self,
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   k3sOverlay = final: prev: {
-    k3s = (import
-      (pkgs.fetchFromGitHub {
+    k3s =
+      (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
         rev = "199169a2135e6b864a888e89a2ace345703c025d";
         hash = "sha256-igS2Z4tVw5W/x3lCZeeadt0vcU9fxtetZ/RyrqsCRQ0=";
-      })
-      { inherit (pkgs) system; }).k3s;
+      }) { inherit (pkgs) system; }).k3s;
   };
   dockerOverlay = final: prev: {
-    docker_27_5_1 = (import
-      (pkgs.fetchFromGitHub {
+    docker_27_5_1 =
+      (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
         rev = "642c54c23609fefb5708b0e2be261446c59138f6";
         hash = "sha256-4Y0ByuP4NEz2Zyso9Ozob8yR6kKuaunJ5OARv+tFLPI=";
-      })
-      { inherit (pkgs) system; }).docker;
+      }) { inherit (pkgs) system; }).docker;
   };
 in
 {
@@ -28,13 +32,12 @@ in
     dockerOverlay
   ];
 
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.disko.nixosModules.disko
-      ./disk-config.nix
-      inputs.sops-nix.nixosModules.sops
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./disk-config.nix
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   boot = {
     loader = {
@@ -98,7 +101,10 @@ in
   security.sudo.wheelNeedsPassword = false;
   services.getty.autologinUser = "jaehong21";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.systemPackages = with pkgs; [
     curl

@@ -2,14 +2,13 @@
 
 let
   hugoOverlay = final: prev: {
-    hugo_0_145_0 = (import
-      (pkgs.fetchFromGitHub {
+    hugo_0_145_0 =
+      (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
         rev = "63158b9cbb6ec93d26255871c447b0f01da81619";
         hash = "sha256-FurMxmjEEqEMld11eX2vgfAx0Rz0JhoFm8UgxbfCZa8=";
-      })
-      { inherit (pkgs) system; }).hugo;
+      }) { inherit (pkgs) system; }).hugo;
   };
 in
 {
@@ -94,7 +93,10 @@ in
     # https://github.com/golang-migrate/migrate/issues/1279#issuecomment-2905714815
     # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/go/go-migrate/package.nix#L51
     (go-migrate.overrideAttrs (oldAttrs: {
-      tags = [ "postgres" "sqlite3" ];
+      tags = [
+        "postgres"
+        "sqlite3"
+      ];
     }))
     go-swag
     google-cloud-sdk

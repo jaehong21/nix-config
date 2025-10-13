@@ -1,15 +1,21 @@
-{ self, inputs, config, pkgs, lib, ... }:
+{
+  self,
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   k3sOverlay = final: prev: {
-    k3s = (import
-      (pkgs.fetchFromGitHub {
+    k3s =
+      (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
         rev = "199169a2135e6b864a888e89a2ace345703c025d";
         hash = "sha256-igS2Z4tVw5W/x3lCZeeadt0vcU9fxtetZ/RyrqsCRQ0=";
-      })
-      { inherit (pkgs) system; }).k3s;
+      }) { inherit (pkgs) system; }).k3s;
   };
 in
 {
@@ -17,11 +23,10 @@ in
     k3sOverlay
   ];
 
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.sops-nix.nixosModules.sops
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -67,7 +72,10 @@ in
   security.sudo.wheelNeedsPassword = false;
   services.getty.autologinUser = "jaehong21";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.shells = [
     "/home/jaehong21/.nix-profile/bin/nu"
@@ -185,4 +193,3 @@ in
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

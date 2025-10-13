@@ -2,16 +2,18 @@
 
 let
   kittyOverlay = final: prev: {
-    kitty_0_42_0 = (import
-      (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "fe51d34885f7b5e3e7b59572796e1bcb427eccb1";
-        hash = "sha256-qmmFCrfBwSHoWw7cVK4Aj+fns+c54EBP8cGqp/yK410=";
-      })
-      {
-        inherit (pkgs) system;
-      }).kitty;
+    kitty_0_42_0 =
+      (import
+        (pkgs.fetchFromGitHub {
+          owner = "NixOS";
+          repo = "nixpkgs";
+          rev = "fe51d34885f7b5e3e7b59572796e1bcb427eccb1";
+          hash = "sha256-qmmFCrfBwSHoWw7cVK4Aj+fns+c54EBP8cGqp/yK410=";
+        })
+        {
+          inherit (pkgs) system;
+        }
+      ).kitty;
   };
 in
 {
