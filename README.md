@@ -5,7 +5,7 @@
 ```bash
 # install nix by Determinate System
 # https://github.com/DeterminateSystems/nix-installer
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
 
 # to  uninstall
 # https://zero-to-nix.com/start/uninstall/
