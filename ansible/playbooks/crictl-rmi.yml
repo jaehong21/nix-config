@@ -1,0 +1,21 @@
+- name: Prune unused containerd images
+  hosts: all
+  become: true
+  # serial: 3
+  gather_facts: false
+  tasks:
+    - name: Remove unused container images
+      ansible.builtin.command:
+        argv:
+          - crictl
+          - rmi
+          - --prune
+      register: prune_result
+      changed_when: prune_result.stdout is defined and prune_result.stdout | trim != ""
+      ignore_errors: true
+
+    - name: Show prune result
+      ansible.builtin.debug:
+        msg: |-
+          crictl rmi --prune {{ 'succeeded' if prune_result.rc == 0 else 'failed (rc=' ~ prune_result.rc ~ ')' }}
+          {{ prune_result.stdout | default(prune_result.stderr, true) | trim | default('No output', true) }}

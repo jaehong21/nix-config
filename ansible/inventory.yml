@@ -1,0 +1,9 @@
+all:
+  children:
+    nixos:
+      hosts:
+        oracle1:
+        oracle2:
+        oracle3:
+        berry1:
+        berry2:
