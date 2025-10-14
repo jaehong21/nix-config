@@ -5,17 +5,12 @@
     nh_config_path: '"$HOME/.config/nix-config"'
   tasks:
     - name: Update nix-config using git
-      ansible.builtin.git:
-        repo: "https://github.com/jaehong21/nix-config.git"
-        dest: "{{ nh_config_path }}"
-        update: yes
-        version: main
+      ansible.builtin.command:
+        cmd: git -C "{{ nh_config_path }}" pull
 
     - name: Execute nh os switch
-      ansible.builtin.shell: >
-        nh os switch {{ nh_config_path }}
-      args:
-        executable: /run/current-system/sw/bin/bash
+      ansible.builtin.command:
+        cmd: nh os switch {{ nh_config_path }}
       register: nh_result
       failed_when: nh_result.rc != 0
 
