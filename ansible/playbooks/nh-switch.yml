@@ -9,7 +9,6 @@
         repo: "https://github.com/jaehong21/nix-config.git"
         dest: "{{ nh_config_path }}"
         update: yes
-        clone: no
         version: main
 
     - name: Execute nh os switch
