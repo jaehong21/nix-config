@@ -1,0 +1,25 @@
+- name: Run nh os switch
+  hosts: all
+  gather_facts: false
+  vars:
+    nh_config_path: '"$HOME/.config/nix-config"'
+  tasks:
+    - name: Update nix-config using git
+      ansible.builtin.git:
+        repo: "https://github.com/jaehong21/nix-config.git"
+        dest: "{{ nh_config_path }}"
+        update: yes
+        clone: no
+        version: main
+
+    - name: Execute nh os switch
+      ansible.builtin.shell: >
+        nh os switch {{ nh_config_path }}
+      args:
+        executable: /run/current-system/sw/bin/bash
+      register: nh_result
+      failed_when: nh_result.rc != 0
+
+    - name: Show nh os switch stdout
+      ansible.builtin.debug:
+        msg: "{{ nh_result.stdout_lines | default(['<no stdout>']) }}"

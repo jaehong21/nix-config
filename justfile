@@ -11,7 +11,12 @@ tailscale command="status" host="all":
     if [ "{{ command }}" != "status" ]; then echo "Usage: just tailscale status [host]" >&2; exit 1; fi
     {{ ANSIBLE_ENV }} ansible-playbook -l "{{ host }}" ansible/playbooks/tailscale-status.yml
 
-crictl subcommand="rmi" host="all":
+crictl command="rmi" host="all":
     set -euo pipefail
-    if [ "{{ subcommand }}" != "rmi" ]; then echo "Usage: just crictl rmi [host]" >&2; exit 1; fi
+    if [ "{{ command }}" != "rmi" ]; then echo "Usage: just crictl rmi [host]" >&2; exit 1; fi
     {{ ANSIBLE_ENV }} ansible-playbook -l "{{ host }}" ansible/playbooks/crictl-rmi.yml
+
+nh command="switch" host="all":
+    set -euo pipefail
+    if [ "{{ command }}" != "switch" ]; then echo "Usage: just nh switch [host]" >&2; exit 1; fi
+    {{ ANSIBLE_ENV }} ansible-playbook -l "{{ host }}" ansible/playbooks/nh-switch.yml
