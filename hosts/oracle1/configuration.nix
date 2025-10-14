@@ -12,8 +12,8 @@ let
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "199169a2135e6b864a888e89a2ace345703c025d";
-        hash = "sha256-igS2Z4tVw5W/x3lCZeeadt0vcU9fxtetZ/RyrqsCRQ0=";
+        rev = "f4b140d5b253f5e2a1ff4e5506edbf8267724bde";
+        hash = "sha256-rqoqF0LEi+6ZT59tr+hTQlxVwrzQsET01U4uUdmqRtM=";
       }) { inherit (pkgs) system; }).k3s;
   };
   dockerOverlay = final: prev: {
@@ -70,8 +70,8 @@ in
 
     secrets = {
       "k3s/token" = { };
-      "postgres/oracle1/env_file" = { };
-      "redis/oracle1/password" = { };
+      # "postgres/oracle1/env_file" = { };
+      # "redis/oracle1/password" = { };
     };
   };
 
@@ -215,8 +215,8 @@ in
     22 # ssh
     80 # http
     443 # https
-    5432 # postgres
-    6379 # redis
+    # 5432 # postgres
+    # 6379 # redis
     6443 # k3s api server
     10250 # k3s metrics
   ];
