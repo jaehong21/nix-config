@@ -87,6 +87,7 @@ in
       ];
 
       packages = with pkgs; [
+        dust
         fastfetch
         gh
         gnupg
