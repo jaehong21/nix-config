@@ -211,6 +211,7 @@ in
       443
       6443
       10250
+      30990 # temp
     ];
     allowedUDPPorts = [
       8472
