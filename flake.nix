@@ -5,7 +5,6 @@
     # Nix Ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-vicuna.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     # disko
     disko = {
@@ -22,7 +21,6 @@
       self,
       nixpkgs,
       nixpkgs-stable,
-      nixpkgs-vicuna,
       ...
     }@inputs: {
       # Build nixos flake using:
@@ -59,17 +57,6 @@
           specialArgs = { inherit self inputs; };
           modules = [
             ./hosts/oracle3/configuration.nix
-          ];
-        };
-        desk1 = nixpkgs-stable.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = import nixpkgs-stable {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-          specialArgs = { inherit self inputs; };
-          modules = [
-            ./hosts/desk1/configuration.nix
           ];
         };
       };
