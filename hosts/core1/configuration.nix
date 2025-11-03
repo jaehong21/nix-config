@@ -129,13 +129,24 @@
     };
   };
 
+  # Tailscale VPN
+  services.tailscale = {
+    enable = true;
+  };
+
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    22 # ssh
-    80 # http
-    443 # https
-  ];
-  networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall = {
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+    allowedTCPPorts = [
+      22 # ssh
+      80 # http
+      443 # https
+    ];
+    allowedUDPPorts = [
+      config.services.tailscale.port # 41641
+    ];
+  };
   # networking.firewall.enable = false;
 
   # Disable documentation for minimal install.
