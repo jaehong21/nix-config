@@ -1,7 +1,7 @@
 {
-  # self,
+  self,
   inputs,
-  # config,
+  config,
   pkgs,
   ...
 }:
@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     ./disk-config.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   boot = {
@@ -31,6 +32,21 @@
 
   time.timeZone = "Asia/Seoul";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # sops-nix for secrets
+  # for NixOS, it used to store at `/run/secrets`
+  sops = {
+    # self.outPath is the flake absolute path
+    defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
+    defaultSopsFormat = "yaml";
+    # should have no passphrase
+    # NOTE: add `key.txt` manually
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+
+    secrets = {
+      "cloudflare/api_token" = { };
+    };
+  };
 
   users = {
     mutableUsers = false;
@@ -82,8 +98,15 @@
 
   services.caddy = {
     enable = true;
+    environmentFile = "${config.sops.secrets."cloudflare/api_token".path}";
+    package = pkgs.caddy.withPlugins {
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
+    };
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
       reverse_proxy localhost:8080
+      tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+      }
     '';
   };
 
