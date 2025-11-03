@@ -104,12 +104,10 @@
       hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
     };
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
-      http://headscale.jaehong21.com {
-        reverse_proxy localhost:8080
+      reverse_proxy localhost:8080
+      tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
       }
-      # tls {
-      #   dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-      # }
     '';
   };
 
