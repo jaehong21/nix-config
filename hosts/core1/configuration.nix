@@ -80,6 +80,31 @@
     };
   };
 
+  services.caddy = {
+    enable = true;
+    virtualHosts."headscale.jaehong21.com".extraConfig = ''
+      reverse_proxy localhost:8080
+    '';
+  };
+
+  services.headscale = {
+    enable = true;
+    address = "0.0.0.0";
+    port = 8080;
+    # https://github.com/juanfont/headscale/blob/main/config-example.yaml
+    settings = {
+      server_url = "https://headscale.jaehong21.com";
+      dns = {
+        magic_dns = true;
+        base_domain = "ts.net"; # <hostname>.ts.net
+      };
+      database = {
+        type = "sqlite"; # default
+        # sqlite.path = "/var/lib/headscale/db.sqlite";
+      };
+    };
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
