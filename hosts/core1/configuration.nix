@@ -101,6 +101,7 @@
     environmentFile = "${config.sops.secrets."cloudflare/api_token".path}";
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
+      hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
     };
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
       reverse_proxy localhost:8080
