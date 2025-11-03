@@ -118,6 +118,9 @@
     # https://github.com/juanfont/headscale/blob/main/config-example.yaml
     settings = {
       server_url = "https://headscale.jaehong21.com";
+      prefixes = {
+        allocation = "random"; # default: "sequential"
+      };
       dns = {
         magic_dns = true;
         base_domain = "ts.net"; # <hostname>.ts.net
