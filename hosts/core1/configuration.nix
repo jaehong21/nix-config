@@ -45,6 +45,7 @@
 
       packages = with pkgs; [
         nh
+        python313
       ];
     };
   };
