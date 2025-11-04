@@ -103,11 +103,12 @@
       plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
       hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
     };
+    # https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148
+    globalConfig = ''
+      acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+    '';
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
       reverse_proxy localhost:8080
-      tls {
-        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-      }
     '';
   };
 
