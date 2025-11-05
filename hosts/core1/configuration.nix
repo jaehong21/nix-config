@@ -63,7 +63,7 @@
         awscli2
         nh
         python313
-        sqlite3
+        sqlite
       ];
     };
   };
