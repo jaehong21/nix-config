@@ -59,6 +59,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
+      "k3s/token_2" = { };
       "cloudflare/api_token" = { };
     };
   };
@@ -167,7 +168,7 @@ in
   services.k3s = {
     enable = true;
     role = "server";
-    # tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+    tokenFile = "${config.sops.secrets."k3s/token_2".path}";
     serverAddr = "https://k3s.jaehong21.com:6443";
     clusterInit = false; # use sqlite instead of etcd for now
     extraFlags = [
