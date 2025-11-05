@@ -60,8 +60,10 @@
       ];
 
       packages = with pkgs; [
+        awscli2
         nh
         python313
+        sqlite3
       ];
     };
   };
