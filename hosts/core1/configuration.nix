@@ -6,7 +6,22 @@
   ...
 }:
 
+let
+  k3sOverlay = final: prev: {
+    k3s =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "45ebaee5d90bab997812235564af4cf5107bde89";
+        hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
+      }) { inherit (pkgs) system; }).k3s;
+  };
+in
 {
+  nixpkgs.overlays = [
+    k3sOverlay
+  ];
+
   imports = [
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
@@ -148,6 +163,20 @@
     enable = true;
   };
 
+  # k3s server
+  services.k3s = {
+    enable = true;
+    role = "server";
+    # tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+    serverAddr = "https://k3s.jaehong21.com:6443";
+    clusterInit = false; # use sqlite instead of etcd for now
+    extraFlags = [
+      "--tls-san k3s.jaehong21.com"
+      "--flannel-iface tailscale0"
+      "--disable servicelb,traefik,local-storage,metrics-server"
+    ];
+  };
+
   # Open ports in the firewall.
   networking.firewall = {
     checkReversePath = "loose";
@@ -156,9 +185,11 @@
       22 # ssh
       80 # http
       443 # https
+      6443 # k3s api server
     ];
     allowedUDPPorts = [
       config.services.tailscale.port # 41641
+      8472 # flannel (vxlan)
     ];
   };
   # networking.firewall.enable = false;
