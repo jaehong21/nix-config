@@ -128,6 +128,13 @@
       dns = {
         magic_dns = true;
         base_domain = "ts.net"; # <hostname>.ts.net
+        extra_records = [
+          {
+            name = "nas.ts.net";
+            type = "A";
+            value = "192.168.0.9";
+          }
+        ];
       };
       database = {
         type = "sqlite"; # default
