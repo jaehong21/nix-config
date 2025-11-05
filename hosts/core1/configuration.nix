@@ -61,6 +61,7 @@
 
       packages = with pkgs; [
         awscli2
+        croc
         nh
         python313
         sqlite
