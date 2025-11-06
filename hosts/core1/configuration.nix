@@ -184,6 +184,7 @@ in
   # restic backup
   services.restic = {
     backups = {
+      # use `sudo restic-r2backup snapshots` to check
       r2backup = {
         initialize = true;
         passwordFile = config.sops.secrets."restic/password".path;
