@@ -183,7 +183,6 @@ in
 
   # restic backup
   services.restic = {
-    enable = true;
     backups = {
       r2backup = {
         initialize = true;
