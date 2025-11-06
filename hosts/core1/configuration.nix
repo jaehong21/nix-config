@@ -61,6 +61,9 @@ in
     secrets = {
       # "k3s/token_2" = { };
       "cloudflare/api_token" = { };
+      "restic/password" = { };
+      "restic/r2/repository" = { };
+      "restic/r2/env" = { };
     };
   };
 
@@ -176,6 +179,36 @@ in
       "--flannel-iface tailscale0"
       "--disable servicelb,traefik,local-storage,metrics-server"
     ];
+  };
+
+  # restic backup
+  services.restic = {
+    enable = true;
+    backups = {
+      r2backup = {
+        initialize = true;
+        passwordFile = config.sops.secrets."restic/password".path;
+
+        # cloudflare R2
+        repositoryFile = config.sops.secrets."restic/r2/repository".path;
+        # 1) AWS_ACCESS_KEY_ID, 2) AWS_SECRET_ACCESS_KEY should be set
+        environmentFile = config.sops.secrets."restic/r2/env".path;
+        paths = [
+          "/var/lib/headscale"
+          "/var/lib/rancher/k3s/server/db"
+        ];
+        exclude = [
+          ".git"
+        ];
+        timerConfig = {
+          OnCalendar = "daily";
+          Persistent = true;
+        };
+        pruneOpts = [
+          "--keep-daily=7"
+        ];
+      };
+    };
   };
 
   # Open ports in the firewall.
