@@ -192,6 +192,10 @@ in
         repositoryFile = config.sops.secrets."restic/r2/repository".path;
         # 1) AWS_ACCESS_KEY_ID, 2) AWS_SECRET_ACCESS_KEY should be set
         environmentFile = config.sops.secrets."restic/r2/env".path;
+        extraOptions = [
+          "s3.region=apac"
+          "s3.bucket-lookup=path"
+        ];
         paths = [
           "/var/lib/headscale"
           "/var/lib/rancher/k3s/server/db"
