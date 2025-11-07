@@ -25,11 +25,21 @@ let
         hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
       }) { inherit (pkgs) system; }).docker;
   };
+  caddyOverlay = final: prev: {
+    caddy_2_10_0 =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "648f70160c03151bc2121d179291337ad6bc564b";
+        hash = "sha256-FK8iq76wlacriq3u0kFCehsRYTAqjA9nfprpiSWRWIc=";
+      }) { inherit (pkgs) system; }).caddy;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
     dockerOverlay
+    caddyOverlay
   ];
 
   imports = [
@@ -131,7 +141,7 @@ in
   services.caddy = {
     enable = true;
     environmentFile = "${config.sops.secrets."cloudflare/api_token".path}";
-    package = pkgs.caddy.withPlugins {
+    package = pkgs.caddy_2_10_0.withPlugins {
       plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
       hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
     };
