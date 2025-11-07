@@ -221,7 +221,7 @@ in
 
         # cloudflare R2
         repositoryFile = config.sops.secrets."restic/r2/repository".path;
-        # 1) AWS_ACCESS_KEY_ID, 2) AWS_SECRET_ACCESS_KEY should be set
+        # 1) AWS_ACCESS_KEY_ID, 2) AWS_SECRET_ACCESS_KEY, 3) HC_URL should be set
         environmentFile = config.sops.secrets."restic/r2/env".path;
         extraOptions = [
           "s3.region=apac"
@@ -244,6 +244,8 @@ in
           "--keep-daily=7"
           "--keep-monthly=12"
         ];
+        # send ping to healthchecks.io
+        backupCleanupCommand = "curl -fsS -m 10 --retry 5 -o /dev/null $HC_URL";
       };
     };
   };
