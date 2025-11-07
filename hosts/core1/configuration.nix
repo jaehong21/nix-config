@@ -143,7 +143,7 @@ in
     environmentFile = "${config.sops.secrets."cloudflare/api_token".path}";
     package = pkgs.caddy_2_10_0.withPlugins {
       plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
-      hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
+      hash = "sha256-GkmhBeHiuwdpRUDBPG9TRHqLvGnsxltPZMQ9CcRcdGA=";
     };
     # https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148
     globalConfig = ''
