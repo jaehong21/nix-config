@@ -16,10 +16,20 @@ let
         hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
       }) { inherit (pkgs) system; }).k3s;
   };
+  dockerOverlay = final: prev: {
+    docker_28_5_1 =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
+        hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
+      }) { inherit (pkgs) system; }).docker;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
+    dockerOverlay
   ];
 
   imports = [
@@ -75,7 +85,7 @@ in
       extraGroups = [
         "networkmanager"
         "wheel"
-        # "docker"
+        "docker"
       ];
 
       packages = with pkgs; [
@@ -167,6 +177,14 @@ in
   # Tailscale VPN
   services.tailscale = {
     enable = true;
+  };
+
+  # docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_28_5_1;
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = { };
   };
 
   # k3s server
