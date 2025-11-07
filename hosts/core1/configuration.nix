@@ -201,7 +201,10 @@ in
       uptime-kuma = {
         image = "louislam/uptime-kuma:2.0.2";
         ports = [ "3001:3001" ];
-        volumes = [ "/var/lib/uptime-kuma:/app/data" ];
+        volumes = [
+          "/var/lib/uptime-kuma:/app/data"
+          "/var/run/docker.sock:/var/run/docker.sock:ro"
+        ];
       };
     };
   };
