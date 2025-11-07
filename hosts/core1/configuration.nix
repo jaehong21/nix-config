@@ -129,6 +129,8 @@ in
     globalConfig = ''
       acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
     '';
+    # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/web-servers/caddy/default.nix
+    # cert is stored at `/var/lib/caddy/.local/share/caddy/certificates/acme-...`
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
       reverse_proxy localhost:8080
     '';
@@ -205,11 +207,13 @@ in
           ".git"
         ];
         timerConfig = {
-          OnCalendar = "daily";
+          OnCalendar = "03:00"; # every day at 3am
           Persistent = true;
+          RandomizedDelaySec = "10m"; # random delay up to 10 minutes
         };
         pruneOpts = [
           "--keep-daily=7"
+          "--keep-monthly=12"
         ];
       };
     };
