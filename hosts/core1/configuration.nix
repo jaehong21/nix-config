@@ -201,6 +201,7 @@ in
         ];
         paths = [
           "/var/lib/headscale"
+          "/var/lib/caddy"
           "/var/lib/rancher/k3s/server/db"
         ];
         exclude = [
