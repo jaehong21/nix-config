@@ -154,9 +154,9 @@ in
     virtualHosts."headscale.jaehong21.com".extraConfig = ''
       reverse_proxy localhost:8080
     '';
-    virtualHosts."uptime.jaehong21.com".extraConfig = ''
-      reverse_proxy localhost:3001
-    '';
+    # virtualHosts."uptime.jaehong21.com".extraConfig = ''
+    #   reverse_proxy localhost:3001
+    # '';
   };
 
   services.headscale = {
@@ -197,16 +197,7 @@ in
   virtualisation.docker.package = pkgs.docker_28_5_1;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = {
-      uptime-kuma = {
-        image = "louislam/uptime-kuma:2.0.2";
-        ports = [ "3001:3001" ];
-        volumes = [
-          "/var/lib/uptime-kuma:/app/data"
-          "/var/run/docker.sock:/var/run/docker.sock:ro"
-        ];
-      };
-    };
+    containers = { };
   };
 
   # k3s server
