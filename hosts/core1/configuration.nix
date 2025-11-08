@@ -262,6 +262,7 @@ in
       80 # http
       443 # https
       6443 # k3s api server
+      10250 # kubelet metrics
     ];
     allowedUDPPorts = [
       config.services.tailscale.port # 41641
