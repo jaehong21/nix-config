@@ -248,7 +248,7 @@ in
           "--keep-monthly=12"
         ];
         # send ping to healthchecks.io
-        backupCleanupCommand = "curl -fsS -m 10 --retry 5 -o /dev/null $HC_URL";
+        backupCleanupCommand = "${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null $HC_URL";
       };
     };
   };
