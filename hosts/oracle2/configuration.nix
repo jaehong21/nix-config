@@ -12,24 +12,14 @@ let
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "f4b140d5b253f5e2a1ff4e5506edbf8267724bde";
-        hash = "sha256-rqoqF0LEi+6ZT59tr+hTQlxVwrzQsET01U4uUdmqRtM=";
+        rev = "45ebaee5d90bab997812235564af4cf5107bde89";
+        hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
       }) { inherit (pkgs) system; }).k3s;
-  };
-  dockerOverlay = final: prev: {
-    docker_27_5_1 =
-      (import (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "642c54c23609fefb5708b0e2be261446c59138f6";
-        hash = "sha256-4Y0ByuP4NEz2Zyso9Ozob8yR6kKuaunJ5OARv+tFLPI=";
-      }) { inherit (pkgs) system; }).docker;
   };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
-    dockerOverlay
   ];
 
   imports = [
@@ -69,7 +59,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "k3s/token" = { };
+      "k3s/token_2" = { };
     };
   };
 
@@ -79,19 +69,13 @@ in
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ (builtins.readFile ./id_rsa.pub) ];
       extraGroups = [
-        "wheel"
         "networkmanager"
-        "docker"
+        "wheel"
       ];
 
       packages = with pkgs; [
-        fastfetch
-        gh
-        gnupg
         nh
-        python310
-        tailscale # CLI
-        tree
+        python313
       ];
     };
   };
@@ -114,13 +98,6 @@ in
     wget
   ];
 
-  # Google's NTP service instead systemd-timesyncd
-  services.ntp = {
-    enable = true; # it disables systemd.timesyncd
-    servers = [ "time.google.com" ];
-    extraFlags = [ "-b" ];
-  };
-
   # Enable vnstat
   services.vnstat.enable = true;
 
@@ -136,53 +113,40 @@ in
   # Tailscale VPN
   services.tailscale = {
     enable = true;
-    useRoutingFeatures = "both";
-  };
-
-  # use docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_27_5_1;
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = { };
   };
 
   # haproxy
   services.haproxy = {
     enable = true;
     config = builtins.readFile ./haproxy.cfg;
-    user = "haproxy";
-    group = "haproxy";
   };
 
-  # k3s server
-  services.k3s = {
-    enable = true;
-    role = "server";
-    tokenFile = "${config.sops.secrets."k3s/token".path}";
-    serverAddr = "https://kube.jaehong21.com:6443";
-    clusterInit = true;
-    extraFlags = [
-      "--write-kubeconfig-mode 644"
-      "--tls-san kube.jaehong21.com"
-      "--cluster-cidr 10.42.0.0/16"
-      "--service-cidr 10.43.0.0/16"
-      "--cluster-dns 10.43.0.10"
-      "--flannel-iface tailscale0"
-      "--flannel-backend vxlan" # default
-      "--disable servicelb,traefik,local-storage,metrics-server"
-    ];
-  };
+  # k3s agent
+  # services.k3s = {
+  #   enable = true;
+  #   role = "agent";
+  #   tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+  #   serverAddr = "https://k3s.jaehong21.com:6443";
+  #   extraFlags = [
+  #     "--flannel-iface tailscale0"
+  #   ];
+  # };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    22
-    80
-    443
-    6443
-    10250
-  ];
-  networking.firewall.allowedUDPPorts = [ 8472 ];
+  networking.firewall = {
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+    allowedTCPPorts = [
+      22 # ssh
+      80 # http
+      443 # https
+      10250 # kubelet metrics
+    ];
+    allowedUDPPorts = [
+      config.services.tailscale.port # 41641
+      8472 # flannel (vxlan)
+    ];
+  };
   # networking.firewall.enable = false;
 
   # Disable documentation for minimal install.
