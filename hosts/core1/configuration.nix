@@ -84,6 +84,7 @@ in
       "restic/password" = { };
       "restic/r2/repository" = { };
       "restic/r2/env" = { };
+      "postgres/core1/env" = { };
     };
   };
 
@@ -197,7 +198,23 @@ in
   virtualisation.docker.package = pkgs.docker_28_5_1;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = { };
+    containers = {
+      postgres = {
+        image = "public.ecr.aws/docker/library/postgres:18.0";
+        ports = [ "5432:5432" ];
+        environment = {
+          TZ = "Asia/Seoul";
+          PGDATA = "/var/lib/postgresql/data";
+          # POSTGRES_USER = "xxx";
+          # POSTGRES_PASSWORD = "xxx";
+          # POSTGRES_DB = "xxx";
+        };
+        environmentFiles = [ "${config.sops.secrets."postgres/core1/env".path}" ];
+        volumes = [
+          "/var/lib/postgresql/18:/var/lib/postgresql/data"
+        ];
+      };
+    };
   };
 
   # k3s server
