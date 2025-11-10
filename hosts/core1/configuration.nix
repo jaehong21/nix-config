@@ -152,12 +152,14 @@ in
     '';
     # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/web-servers/caddy/default.nix
     # cert is stored at `/var/lib/caddy/.local/share/caddy/certificates/acme-...`
-    virtualHosts."headscale.jaehong21.com".extraConfig = ''
-      reverse_proxy localhost:8080
-    '';
-    # virtualHosts."uptime.jaehong21.com".extraConfig = ''
-    #   reverse_proxy localhost:3001
-    # '';
+    virtualHosts = {
+      "headscale.jaehong21.com".extraConfig = ''
+        reverse_proxy localhost:8080
+      '';
+      "uptime.jaehong21.com".extraConfig = ''
+        reverse_proxy localhost:3001
+      '';
+    };
   };
 
   services.headscale = {
@@ -191,6 +193,17 @@ in
   # Tailscale VPN
   services.tailscale = {
     enable = true;
+  };
+
+  # uptime-kuma
+  services.uptime-kuma = {
+    enable = true;
+    settings = {
+      # default
+      # DATA_DIR = "/var/lib/uptime-kuma/";
+      # HOST = "127.0.0.1";
+      # PORT = "3001";
+    };
   };
 
   # docker
