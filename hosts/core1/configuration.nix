@@ -85,6 +85,7 @@ in
       "restic/r2/repository" = { };
       "restic/r2/env" = { };
       "postgres/core1/env" = { };
+      "pocket_id/encryption_key" = { };
     };
   };
 
@@ -156,6 +157,9 @@ in
       "headscale.jaehong21.com".extraConfig = ''
         reverse_proxy localhost:8080
       '';
+      "id.jaehong21.com".extraConfig = ''
+        reverse_proxy localhost:1411
+      '';
       "uptime.jaehong21.com".extraConfig = ''
         reverse_proxy localhost:3001
       '';
@@ -225,6 +229,23 @@ in
         environmentFiles = [ "${config.sops.secrets."postgres/core1/env".path}" ];
         volumes = [
           "/var/lib/postgresql/18:/var/lib/postgresql/data"
+        ];
+      };
+      pocket-id = {
+        image = "ghcr.io/pocket-id/pocket-id:v1.15.0";
+        ports = [ "1411:1411" ];
+        environment = {
+          APP_URL = "https://id.jaehong21.com";
+          TRUST_PROXY = "true";
+          ENCRYPTION_KEY_FILE = "${config.sops.secrets."pocket_id/encryption_key".path}";
+          ANALYTICS_DISABLED = "true";
+          # default
+          # PORT = "1411";
+          # DB_PROVIDER = "sqlite";
+          # KEYS_STORAGE = "file";
+        };
+        volumes = [
+          "/var/lib/pocket-id:/app/data"
         ];
       };
     };
