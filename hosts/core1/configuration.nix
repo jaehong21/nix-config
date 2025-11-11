@@ -85,7 +85,7 @@ in
       "restic/r2/repository" = { };
       "restic/r2/env" = { };
       "postgres/core1/env" = { };
-      "pocket_id/encryption_key" = { };
+      "pocket_id/core1/env" = { };
     };
   };
 
@@ -237,13 +237,14 @@ in
         environment = {
           APP_URL = "https://id.jaehong21.com";
           TRUST_PROXY = "true";
-          ENCRYPTION_KEY_FILE = "${config.sops.secrets."pocket_id/encryption_key".path}";
           ANALYTICS_DISABLED = "true";
+          # ENCRYPTION_KEY = "xxx";
           # default
           # PORT = "1411";
           # DB_PROVIDER = "sqlite";
           # KEYS_STORAGE = "file";
         };
+        environmentFiles = [ "${config.sops.secrets."pocket_id/core1/env".path}" ];
         volumes = [
           "/var/lib/pocket-id:/app/data"
         ];
