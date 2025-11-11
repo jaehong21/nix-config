@@ -275,9 +275,7 @@ in
           "/var/lib/headscale"
           "/var/lib/caddy"
           "/var/lib/rancher/k3s/server/db"
-        ];
-        exclude = [
-          ".git"
+          "/var/lib/pocket-id"
         ];
         timerConfig = {
           OnCalendar = "03:00"; # every day at 3am
