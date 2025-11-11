@@ -160,9 +160,9 @@ in
       "id.jaehong21.com".extraConfig = ''
         reverse_proxy localhost:1411
       '';
-      "uptime.jaehong21.com".extraConfig = ''
-        reverse_proxy localhost:3001
-      '';
+      # "uptime.jaehong21.com".extraConfig = ''
+      #   reverse_proxy localhost:3001
+      # '';
     };
   };
 
@@ -197,17 +197,6 @@ in
   # Tailscale VPN
   services.tailscale = {
     enable = true;
-  };
-
-  # uptime-kuma
-  services.uptime-kuma = {
-    enable = true;
-    settings = {
-      # default
-      # DATA_DIR = "/var/lib/uptime-kuma/";
-      # HOST = "127.0.0.1";
-      # PORT = "3001";
-    };
   };
 
   # docker
