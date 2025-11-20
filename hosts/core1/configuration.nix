@@ -238,6 +238,28 @@ in
           "/var/lib/pocket-id:/app/data"
         ];
       };
+      greptime = {
+        image = "greptime/greptimedb:v1.0.0-beta.1";
+        ports = [ "4000-4003:4000-4003" ];
+        cmd = [
+          "standalone"
+          "start"
+        ];
+        environment = {
+          # https://docs.greptime.com/user-guide/deployments-administration/configuration/
+          # https://github.com/GreptimeTeam/greptimedb/blob/v1.0.0-beta.1/config/standalone.example.toml
+          GREPTIMEDB_STANDALONE__HTTP__ADDR = "0.0.0.0:4000";
+          GREPTIMEDB_STANDALONE__GRPC__BIND_ADDR = "0.0.0.0:4001";
+          GREPTIMEDB_STANDALONE__MYSQL__ENABLE = "false";
+          GREPTIMEDB_STANDALONE__POSTGRES__ADDR = "0.0.0.0:4003";
+          # default
+          # GREPTIMEDB_STANDALONE__STORAGE__DATA_HOME = "./greptimedb_data";
+          # GREPTIMEDB_STANDALONE__STORAGE__TYPE = "File";
+        };
+        volumes = [
+          "/var/lib/greptime:/greptimedb_data"
+        ];
+      };
     };
   };
 
@@ -300,6 +322,9 @@ in
       22 # ssh
       80 # http
       443 # https
+      4000 # greptime http
+      4001 # greptime grpc
+      4003 # greptime postgres
       6443 # k3s api server
       10250 # kubelet metrics
     ];
