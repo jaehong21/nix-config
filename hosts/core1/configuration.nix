@@ -173,15 +173,20 @@ in
     # https://github.com/juanfont/headscale/blob/main/config-example.yaml
     settings = {
       server_url = "https://headscale.jaehong21.com";
-      noise = {
-        private_key_path = "/var/lib/headscale/noise_private.key"; # default
-      };
       prefixes = {
         allocation = "random"; # default: "sequential"
       };
       dns = {
         magic_dns = true;
         base_domain = "ts.net"; # <hostname>.ts.net
+        override_local_dns = true; # default
+        # NOTE: dns.nameservers.global must be set when dns.override_local_dns is true
+        nameservers.global = [
+          "1.1.1.1"
+          "1.0.0.1"
+          "2606:4700:4700::1111"
+          "2606:4700:4700::1001"
+        ];
         extra_records = [
           {
             name = "nas.ts.net";
