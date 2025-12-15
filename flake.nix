@@ -4,7 +4,7 @@
   inputs = {
     # Nix Ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # disko
     disko = {
@@ -22,7 +22,8 @@
       nixpkgs,
       nixpkgs-stable,
       ...
-    }@inputs: {
+    }@inputs:
+    {
       # Build nixos flake using:
       # $ sudo nixos-rebuild build --flake .#berry2
       nixosConfigurations = {
