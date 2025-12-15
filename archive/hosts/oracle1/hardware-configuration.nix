@@ -2,9 +2,9 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  # config,
+  config,
   lib,
-  # pkgs,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -16,9 +16,7 @@
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
-    "virtio_pci"
     "virtio_scsi"
-    "usbhid"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
