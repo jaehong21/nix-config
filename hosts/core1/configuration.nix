@@ -173,6 +173,9 @@ in
     # https://github.com/juanfont/headscale/blob/main/config-example.yaml
     settings = {
       server_url = "https://headscale.jaehong21.com";
+      noise = {
+        private_key_path = "/var/lib/headscale/noise_private.key"; # default
+      };
       prefixes = {
         allocation = "random"; # default: "sequential"
       };
