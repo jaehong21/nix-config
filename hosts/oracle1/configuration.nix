@@ -81,7 +81,7 @@ in
   };
 
   security.sudo.wheelNeedsPassword = false;
-  services.getty.autologinUser = "jaehong21";
+  services.getty.autologinUser = null;
 
   nix.settings.experimental-features = [
     "nix-command"
