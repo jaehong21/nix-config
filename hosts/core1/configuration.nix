@@ -8,12 +8,12 @@
 
 let
   k3sOverlay = final: prev: {
-    k3s =
+    k3s = # version: 1.34.2+k3s1
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "45ebaee5d90bab997812235564af4cf5107bde89";
-        hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
+        rev = "09b8fda8959d761445f12b55f380d90375a1d6bb";
+        hash = "sha256-aq+dQoaPONOSjtFIBnAXseDm9TUhIbe215TPmkfMYww=";
       }) { inherit (pkgs) system; }).k3s;
   };
   dockerOverlay = final: prev: {
