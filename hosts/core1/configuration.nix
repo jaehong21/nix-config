@@ -102,7 +102,7 @@ in
 
       packages = with pkgs; [
         awscli2
-        croc
+        chisel
         nh
         python313
         sqlite
