@@ -246,6 +246,25 @@ in
           "/var/lib/pocket-id:/app/data"
         ];
       };
+      # chisel-server = {
+      #   image = "jpillora/chisel:1.11.3";
+      #   ports = [ "9090:9090" ];
+      #   networks = [ "host" ];
+      #   # NOTE: `/var/lib/chisel/chisel.key` and `/var/lib/chisel/users.json` should be created manually
+      #
+      #   cmd = [
+      #     "server"
+      #     "--port"
+      #     "9090"
+      #     "--keyfile"
+      #     "/var/lib/chisel/chisel.key"
+      #     "--authfile"
+      #     "/var/lib/chisel/users.json"
+      #   ];
+      #   volumes = [
+      #     "/var/lib/chisel:/var/lib/chisel:ro"
+      #   ];
+      # };
       greptime = {
         image = "greptime/greptimedb:v1.0.0-beta.1";
         ports = [ "4000-4003:4000-4003" ];
@@ -334,6 +353,7 @@ in
       4001 # greptime grpc
       4003 # greptime postgres
       6443 # k3s api server
+      9090 # chisel server
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
