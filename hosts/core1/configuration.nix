@@ -229,7 +229,7 @@ in
         ];
       };
       pocket-id = {
-        image = "ghcr.io/pocket-id/pocket-id:v1.16.0";
+        image = "ghcr.io/pocket-id/pocket-id:v2.0.0";
         ports = [ "1411:1411" ];
         environment = {
           APP_URL = "https://id.jaehong21.com";
@@ -238,8 +238,7 @@ in
           # ENCRYPTION_KEY = "xxx";
           # default
           # PORT = "1411";
-          # DB_PROVIDER = "sqlite";
-          # KEYS_STORAGE = "file";
+          # DB_CONNECTION_STRING = "data/pocket-id.db";
         };
         environmentFiles = [ "${config.sops.secrets."pocket_id/core1/env".path}" ];
         volumes = [
