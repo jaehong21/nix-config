@@ -8,7 +8,7 @@
 
 let
   k3sOverlay = final: prev: {
-    k3s = # version: 1.34.2+k3s1
+    k3s_1_34_2 =
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
@@ -303,6 +303,7 @@ in
   # k3s server
   services.k3s = {
     enable = true;
+    package = pkgs.k3s_1_34_2;
     role = "server";
     # tokenFile = "${config.sops.secrets."k3s/token_2".path}"; # only enable for etcd cluster
     serverAddr = "https://k3s.jaehong21.com:6443";
