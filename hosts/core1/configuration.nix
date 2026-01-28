@@ -34,12 +34,22 @@ let
         hash = "sha256-FK8iq76wlacriq3u0kFCehsRYTAqjA9nfprpiSWRWIc=";
       }) { inherit (pkgs) system; }).caddy;
   };
+  headscaleOverlay = final: prev: {
+    headscale_0_27_1 =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "f665af0cdb70ed27e1bd8f9fdfecaf451260fc55";
+        hash = "sha256-ujL2AoYBnJBN262HD95yer7QYUmYp5kFZGYbyCCKxq8=";
+      }) { inherit (pkgs) system; }).headscale;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
     dockerOverlay
     caddyOverlay
+    headscaleOverlay
   ];
 
   imports = [
@@ -168,6 +178,7 @@ in
 
   services.headscale = {
     enable = true;
+    package = pkgs.headscale_0_27_1;
     address = "0.0.0.0";
     port = 8080;
     # https://github.com/juanfont/headscale/blob/main/config-example.yaml
