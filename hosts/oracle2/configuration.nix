@@ -155,6 +155,22 @@ in
     };
   };
 
+  services.pgbouncer = {
+    enable = true;
+    openFirewall = true; # 6432
+    settings = {
+      pgbouncer = {
+        listen_addr = "*";
+        listen_port = 6432; # default
+        # https://www.pgbouncer.org/config.html#authentication-settings
+        auth_type = "trust";
+      };
+      databases = {
+        trax_mento_dev = "host=core1 dbname=trax_mento_dev";
+      };
+    };
+  };
+
   # haproxy
   services.haproxy = {
     enable = true;
@@ -181,6 +197,7 @@ in
       80 # http
       443 # https
       9090 # chisel server
+      # 6432 # pgbouncer
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
