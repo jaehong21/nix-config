@@ -85,7 +85,6 @@ in
       ];
 
       packages = with pkgs; [
-        chisel
         nh
         python313
       ];
@@ -132,27 +131,7 @@ in
   virtualisation.docker.package = pkgs.docker_28_5_1;
   virtualisation.oci-containers = {
     backend = "docker";
-    containers = {
-      chisel-server = {
-        image = "jpillora/chisel:1.11.3";
-        ports = [ "9090:9090" ];
-        networks = [ "host" ];
-        # NOTE: `/var/lib/chisel/chisel.key` and `/var/lib/chisel/users.json` should be created manually
-
-        cmd = [
-          "server"
-          "--port"
-          "9090"
-          "--keyfile"
-          "/var/lib/chisel/chisel.key" # `chisel server --keygen /var/lib/chisel/chisel.key`
-          "--authfile"
-          "/var/lib/chisel/users.json"
-        ];
-        volumes = [
-          "/var/lib/chisel:/var/lib/chisel:ro"
-        ];
-      };
-    };
+    containers = { };
   };
 
   services.pgbouncer = {
@@ -163,7 +142,12 @@ in
         listen_addr = "*";
         listen_port = 6432; # default
         # https://www.pgbouncer.org/config.html#authentication-settings
-        auth_type = "trust";
+        # WARN: deprecated option
+        auth_type = "plain";
+        # https://www.pgbouncer.org/config.html#authentication-file-format
+        # NOTE: created manually
+        # "username" "password"
+        auth_file = "/var/lib/pgbouncer/users.txt";
       };
       databases = {
         trax_mento_dev = "host=core1 dbname=trax_mento_dev";
@@ -196,7 +180,6 @@ in
       22 # ssh
       80 # http
       443 # https
-      9090 # chisel server
       # 6432 # pgbouncer
       10250 # kubelet metrics
     ];
