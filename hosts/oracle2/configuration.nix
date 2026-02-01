@@ -16,10 +16,20 @@ let
         hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
       }) { inherit (pkgs) system; }).k3s;
   };
+  dockerOverlay = final: prev: {
+    docker_28_5_1 =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
+        hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
+      }) { inherit (pkgs) system; }).docker;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
+    dockerOverlay
   ];
 
   imports = [
@@ -71,9 +81,11 @@ in
       extraGroups = [
         "networkmanager"
         "wheel"
+        "docker"
       ];
 
       packages = with pkgs; [
+        chisel
         nh
         python313
       ];
@@ -115,6 +127,34 @@ in
     enable = true;
   };
 
+  # docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_28_5_1;
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      chisel-server = {
+        image = "jpillora/chisel:1.11.3";
+        ports = [ "9090:9090" ];
+        networks = [ "host" ];
+        # NOTE: `/var/lib/chisel/chisel.key` and `/var/lib/chisel/users.json` should be created manually
+
+        cmd = [
+          "server"
+          "--port"
+          "9090"
+          "--keyfile"
+          "/var/lib/chisel/chisel.key" # `chisel server --keygen /var/lib/chisel/chisel.key`
+          "--authfile"
+          "/var/lib/chisel/users.json"
+        ];
+        volumes = [
+          "/var/lib/chisel:/var/lib/chisel:ro"
+        ];
+      };
+    };
+  };
+
   # haproxy
   services.haproxy = {
     enable = true;
@@ -140,6 +180,7 @@ in
       22 # ssh
       80 # http
       443 # https
+      9090 # chisel server
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
