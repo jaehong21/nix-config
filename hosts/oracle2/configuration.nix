@@ -134,27 +134,6 @@ in
     containers = { };
   };
 
-  services.pgbouncer = {
-    enable = true;
-    openFirewall = true; # 6432
-    settings = {
-      pgbouncer = {
-        listen_addr = "*";
-        listen_port = 6432; # default
-        # https://www.pgbouncer.org/config.html#authentication-settings
-        # WARN: deprecated option
-        auth_type = "plain";
-        # https://www.pgbouncer.org/config.html#authentication-file-format
-        # NOTE: created manually
-        # "username" "password"
-        auth_file = "/var/lib/pgbouncer/users.txt";
-      };
-      databases = {
-        trax_mento_dev = "host=core1 dbname=trax_mento_dev";
-      };
-    };
-  };
-
   # haproxy
   services.haproxy = {
     enable = true;
@@ -180,7 +159,6 @@ in
       22 # ssh
       80 # http
       443 # https
-      # 6432 # pgbouncer
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
