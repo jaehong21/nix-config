@@ -35,12 +35,12 @@ let
       }) { inherit (pkgs) system; }).caddy;
   };
   headscaleOverlay = final: prev: {
-    headscale_0_27_1 =
+    headscale_0_28_0 =
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "f665af0cdb70ed27e1bd8f9fdfecaf451260fc55";
-        hash = "sha256-ujL2AoYBnJBN262HD95yer7QYUmYp5kFZGYbyCCKxq8=";
+        rev = "09061f748ee21f68a089cd5d91ec1859cd93d0be";
+        hash = "sha256-nyxxxW1/2ouu9dU0I02ul5pHrmUrE1JVFhfFlmYe3Lw=";
       }) { inherit (pkgs) system; }).headscale;
   };
 in
@@ -177,7 +177,7 @@ in
 
   services.headscale = {
     enable = true;
-    package = pkgs.headscale_0_27_1;
+    package = pkgs.headscale_0_28_0;
     address = "0.0.0.0";
     port = 8080;
     # https://github.com/juanfont/headscale/blob/main/config-example.yaml
