@@ -14,7 +14,7 @@ let
         repo = "nixpkgs";
         rev = "45ebaee5d90bab997812235564af4cf5107bde89";
         hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
-      }) { inherit (pkgs) system; }).k3s;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
 in
 {

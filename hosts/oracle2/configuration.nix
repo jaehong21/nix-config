@@ -14,7 +14,7 @@ let
         repo = "nixpkgs";
         rev = "45ebaee5d90bab997812235564af4cf5107bde89";
         hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
-      }) { inherit (pkgs) system; }).k3s;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
   dockerOverlay = final: prev: {
     docker_28_5_1 =
@@ -23,7 +23,7 @@ let
         repo = "nixpkgs";
         rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
         hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
-      }) { inherit (pkgs) system; }).docker;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).docker;
   };
 in
 {

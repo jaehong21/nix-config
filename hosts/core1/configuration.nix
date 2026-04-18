@@ -14,7 +14,7 @@ let
         repo = "nixpkgs";
         rev = "09b8fda8959d761445f12b55f380d90375a1d6bb";
         hash = "sha256-aq+dQoaPONOSjtFIBnAXseDm9TUhIbe215TPmkfMYww=";
-      }) { inherit (pkgs) system; }).k3s;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
   dockerOverlay = final: prev: {
     docker_28_5_1 =
@@ -23,7 +23,7 @@ let
         repo = "nixpkgs";
         rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
         hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
-      }) { inherit (pkgs) system; }).docker;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).docker;
   };
   caddyOverlay = final: prev: {
     caddy_2_10_0 =
@@ -32,7 +32,7 @@ let
         repo = "nixpkgs";
         rev = "648f70160c03151bc2121d179291337ad6bc564b";
         hash = "sha256-FK8iq76wlacriq3u0kFCehsRYTAqjA9nfprpiSWRWIc=";
-      }) { inherit (pkgs) system; }).caddy;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).caddy;
   };
   headscaleOverlay = final: prev: {
     headscale_0_28_0 =
@@ -41,7 +41,7 @@ let
         repo = "nixpkgs";
         rev = "09061f748ee21f68a089cd5d91ec1859cd93d0be";
         hash = "sha256-nyxxxW1/2ouu9dU0I02ul5pHrmUrE1JVFhfFlmYe3Lw=";
-      }) { inherit (pkgs) system; }).headscale;
+      }) { system = pkgs.stdenv.hostPlatform.system; }).headscale;
   };
 in
 {
