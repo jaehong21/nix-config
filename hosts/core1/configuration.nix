@@ -89,7 +89,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      # "k3s/token_2" = { };
+      # "k3s/token" = { };
       "cloudflare/api_token" = { };
       "restic/password" = { };
       "restic/r2/repository" = { };
@@ -285,7 +285,7 @@ in
     enable = true;
     package = pkgs.k3s_1_34_2;
     role = "server";
-    # tokenFile = "${config.sops.secrets."k3s/token_2".path}"; # only enable for etcd cluster
+    # tokenFile = "${config.sops.secrets."k3s/token".path}"; # only enable for etcd cluster
     serverAddr = "https://k3s.jaehong21.com:6443";
     clusterInit = false; # use sqlite instead of etcd for now
     extraFlags = [
