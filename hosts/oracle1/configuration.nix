@@ -12,8 +12,8 @@ let
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "45ebaee5d90bab997812235564af4cf5107bde89";
-        hash = "sha256-b8mTUdmB80tHcvvVD+Gf+X2HMMxHGiD/UmOr5nYDAmY=";
+        rev = "83e29f2b8791f6dec20804382fcd9a666d744c07";
+        hash = "sha256-nex6TL2x1/sVHCyDWcvl1t/dbTedb9bAGC4DLf/pmYk=";
       }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
 in
@@ -59,7 +59,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "k3s/token_2" = { };
+      "k3s/token" = { };
     };
   };
 
@@ -125,7 +125,7 @@ in
   services.k3s = {
     enable = true;
     role = "agent";
-    tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+    tokenFile = "${config.sops.secrets."k3s/token".path}";
     serverAddr = "https://k3s.jaehong21.com:6443";
     extraFlags = [
       "--flannel-iface tailscale0"
