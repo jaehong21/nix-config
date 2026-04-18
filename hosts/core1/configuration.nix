@@ -8,12 +8,12 @@
 
 let
   k3sOverlay = final: prev: {
-    k3s_1_34_2 =
+    k3s_1_35_2 =
       (import (pkgs.fetchFromGitHub {
         owner = "NixOS";
         repo = "nixpkgs";
-        rev = "09b8fda8959d761445f12b55f380d90375a1d6bb";
-        hash = "sha256-aq+dQoaPONOSjtFIBnAXseDm9TUhIbe215TPmkfMYww=";
+        rev = "83e29f2b8791f6dec20804382fcd9a666d744c07";
+        hash = "sha256-nex6TL2x1/sVHCyDWcvl1t/dbTedb9bAGC4DLf/pmYk=";
       }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
   dockerOverlay = final: prev: {
@@ -283,7 +283,7 @@ in
   # k3s server
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_34_2;
+    package = pkgs.k3s_1_35_2;
     role = "server";
     # tokenFile = "${config.sops.secrets."k3s/token".path}"; # only enable for etcd cluster
     serverAddr = "https://k3s.jaehong21.com:6443";
