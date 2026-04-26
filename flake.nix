@@ -6,6 +6,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     # disko
     disko = {
       # "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/v1.11.0.tar.gz"}/module.nix"
@@ -21,9 +27,26 @@
       self,
       nixpkgs,
       nixpkgs-stable,
+      home-manager,
       ...
     }@inputs:
     {
+      homeConfigurations = {
+        "jetty" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = {
+            inherit self inputs;
+            nixConfigDir = "/Users/jetty/.config/nix-config";
+          };
+          modules = [
+            ./home/jetty/configuration.nix
+          ];
+        };
+      };
+
       # Build nixos flake using:
       # $ sudo nixos-rebuild build --flake .#berry2
       nixosConfigurations = {

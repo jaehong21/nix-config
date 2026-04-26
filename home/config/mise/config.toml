@@ -1,0 +1,135 @@
+[tools]
+# Languages and Runtimes
+node = "24.11.1"
+bun = "1.3"
+go = "1.24"
+python = "3.14"
+rust = { version = "1.94.1", components = "rust-analyzer", targets = "wasm32-wasip1" }
+
+# Package managers
+pipx = "latest"
+uv = "latest"
+
+# Coding Assistants
+codex = "latest"
+# claude = "latest" # use native installer
+# "npm:opencode-ai" = "latest"
+"npm:@mariozechner/pi-coding-agent" = "latest"
+"npm:aicommit2" = "latest"
+"npm:skills" = "latest"
+"npm:tokscale" = "latest"
+# "npm:mcporter" = "latest"
+"cargo:rikabot" = "latest"
+ollama = "latest"
+
+# LSPs and formatters
+"aqua:LuaLS/lua-language-server" = "latest"
+"cargo:https://github.com/oxalica/nil" = { version = "branch:main", crate = "nil" }
+"cargo:kdlfmt" = { version = "latest" }
+"github:a-h/templ" = "latest"
+"github:google/yamlfmt" = "latest"
+"go:github.com/lasorda/protobuf-language-server" = "master"
+"go:golang.org/x/tools/gopls" = "latest"
+"go:mvdan.cc/gofumpt" = "latest"
+"npm:@astrojs/language-server" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+"npm:@microsoft/compose-language-service" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@taplo/cli" = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:bash-language-server" = "latest"
+"npm:dockerfile-language-server-nodejs" = "latest"
+"npm:jsonlint" = "latest"
+"npm:pyright" = "latest"
+"npm:svelte-language-server" = "latest"
+"npm:tree-sitter-cli" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:yaml-language-server" = "latest"
+"pipx:autotools-language-server" = "latest"
+"pipx:ty" = "latest"
+"pipx:yamllint" = "latest"
+# rust-analyzer = `rustup component add rust-analyzer`
+golangci-lint = "latest"
+protobuf = "latest"
+ruff = "latest"
+shfmt = "latest"
+stylua = "latest"
+terraform-ls = "latest"
+
+# Kubernetes
+krew = "latest"
+kubeseal = "latest"
+stern = "latest"
+kind = "latest"
+
+# IaC Tools
+terraform = "1.9.3"
+terragrunt = "latest"
+# pulumi = "latest"
+# ansible = "latest"
+
+# CLI
+awscli = { version = "latest", symlink_bins = "true" }
+dive = "latest"
+duckdb = "latest"
+# dust = "latest"
+fd = "latest"
+fx = "latest"
+git-cliff = "latest"
+grpcurl = "latest"
+# helix = "latest"
+hugo = "v0.145.0"
+jq = "latest"
+# just = "latest"
+lazydocker = "latest"
+neovim = "0.12"
+pandoc = "latest"
+prek = "latest"
+rclone = "latest"
+restic = "latest"
+ripgrep = "latest"
+television = "latest"
+tmux = "latest"
+watchexec = "latest"
+yq = "latest"
+
+"cargo:xh" = "latest"
+"cargo:worktrunk" = "latest"
+"github:rtk-ai/rtk" = "latest"
+"github:steipete/gogcli" = "latest"
+"go:github.com/golang-migrate/migrate/v4/cmd/migrate" = { version = "latest", tags = "sqlite,postgres" }
+"go:github.com/joshmedeski/sesh/v2" = "latest"
+"go:github.com/jpillora/chisel" = "latest"
+"go:github.com/natesales/q" = "latest"
+"go:github.com/nats-io/natscli/nats" = "latest"
+"go:github.com/pranshuparmar/witr/cmd/witr" = "latest"
+"npm:@tobilu/qmd" = "latest"
+"npm:agent-browser" = "latest"
+"npm:kagi-cli" = "latest"
+"npm:playwright" = "latest"
+
+# Git Tools
+"github:cli/cli" = "latest" # gh cli
+# gh extension install yusukebe/gh-markdown-preview
+pre-commit = "latest"
+
+# Encryption
+sops = "latest"
+age = "latest"
+fnox = "latest"
+
+# Disabled Tools
+# deno = "latest"
+# java = "corretto-21.0.8"
+# gradle = "8.5"
+# argo = "latest"
+
+[settings]
+experimental = true
+
+[settings.npm]
+bun = true
+[settings.pipx]
+uvx = true
