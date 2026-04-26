@@ -23,40 +23,7 @@ codex = "latest"
 ollama = "latest"
 
 # LSPs and formatters
-"aqua:LuaLS/lua-language-server" = "latest"
-"cargo:https://github.com/oxalica/nil" = { version = "branch:main", crate = "nil" }
-"cargo:kdlfmt" = { version = "latest" }
-"github:a-h/templ" = "latest"
-"github:google/yamlfmt" = "latest"
-"go:github.com/lasorda/protobuf-language-server" = "master"
-"go:golang.org/x/tools/gopls" = "latest"
-"go:mvdan.cc/gofumpt" = "latest"
-"npm:@astrojs/language-server" = "latest"
-"npm:@fsouza/prettierd" = "latest"
-"npm:@microsoft/compose-language-service" = "latest"
-"npm:@tailwindcss/language-server" = "latest"
-"npm:@taplo/cli" = "latest"
-"npm:@vtsls/language-server" = "latest"
-"npm:bash-language-server" = "latest"
-"npm:dockerfile-language-server-nodejs" = "latest"
-"npm:jsonlint" = "latest"
-"npm:pyright" = "latest"
-"npm:svelte-language-server" = "latest"
-"npm:tree-sitter-cli" = "latest"
-"npm:typescript" = "latest"
-"npm:typescript-language-server" = "latest"
-"npm:vscode-langservers-extracted" = "latest"
-"npm:yaml-language-server" = "latest"
-"pipx:autotools-language-server" = "latest"
 "pipx:ty" = "latest"
-"pipx:yamllint" = "latest"
-# rust-analyzer = `rustup component add rust-analyzer`
-golangci-lint = "latest"
-protobuf = "latest"
-ruff = "latest"
-shfmt = "latest"
-stylua = "latest"
-terraform-ls = "latest"
 
 # Kubernetes
 krew = "latest"
@@ -74,18 +41,15 @@ terragrunt = "latest"
 awscli = { version = "latest", symlink_bins = "true" }
 dive = "latest"
 duckdb = "latest"
-# dust = "latest"
 fd = "latest"
+fnox = "latest"
 fx = "latest"
 git-cliff = "latest"
 grpcurl = "latest"
-# helix = "latest"
 hugo = "v0.145.0"
 jq = "latest"
-# just = "latest"
 lazydocker = "latest"
 neovim = "0.12"
-pandoc = "latest"
 prek = "latest"
 rclone = "latest"
 restic = "latest"
@@ -96,7 +60,6 @@ watchexec = "latest"
 yq = "latest"
 
 "cargo:xh" = "latest"
-"cargo:worktrunk" = "latest"
 "github:rtk-ai/rtk" = "latest"
 "github:steipete/gogcli" = "latest"
 "go:github.com/golang-migrate/migrate/v4/cmd/migrate" = { version = "latest", tags = "sqlite,postgres" }
@@ -111,14 +74,9 @@ yq = "latest"
 "npm:playwright" = "latest"
 
 # Git Tools
-"github:cli/cli" = "latest" # gh cli
+# "github:cli/cli" = "latest" # gh cli
 # gh extension install yusukebe/gh-markdown-preview
 pre-commit = "latest"
-
-# Encryption
-sops = "latest"
-age = "latest"
-fnox = "latest"
 
 # Disabled Tools
 # deno = "latest"
