@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.lazygit = {
@@ -53,6 +53,17 @@
       # gpg --list-secret-keys --keyid-format=long
       key = "5D40F4C4F02D860E";
       signByDefault = true;
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    extensions = [ pkgs.gh-markdown-preview ];
+
+    settings = {
+      aliases = {
+        md = "markdown-preview";
+      };
     };
   };
 }
