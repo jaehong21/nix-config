@@ -2,6 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    argocd
+    cmctl # cert-manager
+    eksctl
+    istioctl # istio
+    kind
     # krew
     kubectl
     (pkgs.wrapHelm pkgs.kubernetes-helm {
@@ -10,10 +15,9 @@
         pkgs.kubernetes-helmPlugins.helm-secrets
       ];
     })
-    eksctl
     kubectl-cnpg # cloudnative-pg
-    istioctl # istio
-    cmctl # cert-manager
+    kubeseal
+    stern
   ];
 
   programs.k9s = {

@@ -25,12 +25,6 @@ ollama = "latest"
 # LSPs and formatters
 "pipx:ty" = "latest"
 
-# Kubernetes
-krew = "latest"
-kubeseal = "latest"
-stern = "latest"
-kind = "latest"
-
 # IaC Tools
 terraform = "1.9.3"
 terragrunt = "latest"
@@ -60,6 +54,7 @@ watchexec = "latest"
 yq = "latest"
 
 "cargo:xh" = "latest"
+"cargo:worktrunk" = "latest"
 "github:rtk-ai/rtk" = "latest"
 "github:steipete/gogcli" = "latest"
 "go:github.com/golang-migrate/migrate/v4/cmd/migrate" = { version = "latest", tags = "sqlite,postgres" }
@@ -82,7 +77,6 @@ pre-commit = "latest"
 # deno = "latest"
 # java = "corretto-21.0.8"
 # gradle = "8.5"
-# argo = "latest"
 
 [settings]
 experimental = true
