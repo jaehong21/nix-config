@@ -69,7 +69,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "k3s/token_2" = { };
+      "k3s/token" = { };
     };
   };
 
@@ -140,14 +140,17 @@ in
     config = builtins.readFile ./haproxy.cfg;
   };
 
-  # k3s agent
+  # k3s server (joins core1's embedded etcd cluster)
   services.k3s = {
     enable = true;
-    role = "agent";
-    tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+    role = "server";
+    tokenFile = "${config.sops.secrets."k3s/token".path}";
     serverAddr = "https://k3s.jaehong21.com:6443";
+    clusterInit = false; # join existing etcd cluster
     extraFlags = [
+      "--tls-san k3s.jaehong21.com"
       "--flannel-iface tailscale0"
+      "--disable servicelb,traefik,local-storage,metrics-server"
     ];
   };
 
@@ -159,6 +162,9 @@ in
       22 # ssh
       80 # http
       443 # https
+      2379 # etcd client
+      2380 # etcd peer
+      6443 # k3s api server
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
