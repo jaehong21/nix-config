@@ -264,7 +264,8 @@ in
     package = pkgs.k3s_1_35_2;
     role = "server";
     tokenFile = "${config.sops.secrets."k3s/token".path}"; # only enable for etcd cluster
-    serverAddr = "https://k3s.jaehong21.com:6443";
+    # NOTE: do not set serverAddr on the cluster-init node (would deadlock trying to join itself)
+    # other server nodes (oracle1/2) must set serverAddr = "https://k3s.jaehong21.com:6443"
     clusterInit = true; # use etcd instead of sqlite
     extraFlags = [
       "--tls-san k3s.jaehong21.com"
