@@ -89,7 +89,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      # "k3s/token" = { };
+      "k3s/token" = { };
       "cloudflare/api_token" = { };
       "restic/password" = { };
       "restic/r2/repository" = { };
@@ -255,28 +255,6 @@ in
           "/var/lib/pocket-id:/app/data"
         ];
       };
-      # greptime = {
-      #   image = "greptime/greptimedb:v1.0.0-beta.1";
-      #   ports = [ "4000-4003:4000-4003" ];
-      #   cmd = [
-      #     "standalone"
-      #     "start"
-      #   ];
-      #   environment = {
-      #     # https://docs.greptime.com/user-guide/deployments-administration/configuration/
-      #     # https://github.com/GreptimeTeam/greptimedb/blob/v1.0.0-beta.1/config/standalone.example.toml
-      #     GREPTIMEDB_STANDALONE__HTTP__ADDR = "0.0.0.0:4000";
-      #     GREPTIMEDB_STANDALONE__GRPC__BIND_ADDR = "0.0.0.0:4001";
-      #     GREPTIMEDB_STANDALONE__MYSQL__ENABLE = "false";
-      #     GREPTIMEDB_STANDALONE__POSTGRES__ADDR = "0.0.0.0:4003";
-      #     # default
-      #     # GREPTIMEDB_STANDALONE__STORAGE__DATA_HOME = "./greptimedb_data";
-      #     # GREPTIMEDB_STANDALONE__STORAGE__TYPE = "File";
-      #   };
-      #   volumes = [
-      #     "/var/lib/greptime:/greptimedb_data"
-      #   ];
-      # };
     };
   };
 
@@ -285,9 +263,9 @@ in
     enable = true;
     package = pkgs.k3s_1_35_2;
     role = "server";
-    # tokenFile = "${config.sops.secrets."k3s/token".path}"; # only enable for etcd cluster
+    tokenFile = "${config.sops.secrets."k3s/token".path}"; # only enable for etcd cluster
     serverAddr = "https://k3s.jaehong21.com:6443";
-    clusterInit = false; # use sqlite instead of etcd for now
+    clusterInit = true; # use etcd instead of sqlite
     extraFlags = [
       "--tls-san k3s.jaehong21.com"
       "--flannel-iface tailscale0"
@@ -340,9 +318,8 @@ in
       22 # ssh
       80 # http
       443 # https
-      # 4000 # greptime http
-      # 4001 # greptime grpc
-      # 4003 # greptime postgres
+      2379 # etcd client
+      2380 # etcd peer
       6443 # k3s api server
       10250 # kubelet metrics
     ];
