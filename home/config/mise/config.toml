@@ -13,14 +13,15 @@ uv = "latest"
 # Coding Assistants
 codex = "latest"
 # claude = "latest" # use native installer
-# "npm:opencode-ai" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "latest"
+"npm:opencode-ai" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
 "npm:skills" = "latest"
 "npm:tokscale" = "latest"
-# "npm:mcporter" = "latest"
-"cargo:rikabot" = "latest"
-ollama = "latest"
+"npm:mcporter" = "latest"
+"npm:@loongphy/codex-auth" = "latest"
+# "cargo:rikabot" = "latest"
+# ollama = "latest"
 
 # LSPs and formatters
 "pipx:ty" = "latest"
@@ -32,46 +33,24 @@ terragrunt = "latest"
 # ansible = "latest"
 
 # CLI
-awscli = { version = "latest", symlink_bins = "true" }
-dive = "latest"
-duckdb = "latest"
-fd = "latest"
 fnox = "latest"
-fx = "latest"
 git-cliff = "latest"
-grpcurl = "latest"
 hugo = "v0.145.0"
-jq = "latest"
 lazydocker = "latest"
 neovim = "0.12"
 prek = "latest"
 rclone = "latest"
 restic = "latest"
-ripgrep = "latest"
 television = "latest"
-tmux = "latest"
-watchexec = "latest"
 yq = "latest"
 
-"cargo:xh" = "latest"
 "cargo:worktrunk" = "latest"
 "github:rtk-ai/rtk" = "latest"
 "github:steipete/gogcli" = "latest"
-"go:github.com/golang-migrate/migrate/v4/cmd/migrate" = { version = "latest", tags = "sqlite,postgres" }
-"go:github.com/joshmedeski/sesh/v2" = "latest"
-"go:github.com/jpillora/chisel" = "latest"
-"go:github.com/natesales/q" = "latest"
-"go:github.com/nats-io/natscli/nats" = "latest"
-"go:github.com/pranshuparmar/witr/cmd/witr" = "latest"
 "npm:@tobilu/qmd" = "latest"
 "npm:agent-browser" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
-
-# Git Tools
-# "github:cli/cli" = "latest" # gh cli
-# gh extension install yusukebe/gh-markdown-preview
-pre-commit = "latest"
 
 # Disabled Tools
 # deno = "latest"

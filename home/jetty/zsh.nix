@@ -66,6 +66,19 @@
           echo "Switched to AWS profile: $AWS_PROFILE"
         }
 
+        # worktrunk: switch to a worktree for a PR (e.g. `wtpr 1111`)
+        wtpr() {
+          wt switch "pr:$1"
+        }
+
+        # worktrunk: create + switch, then launch an agent (branch must precede --)
+        wtcc() {
+          wt switch --create -x claude "$@" -- --dangerously-skip-permissions
+        }
+        wtco() {
+          wt switch --create -x codex "$@" -- --yolo
+        }
+
         # wezterm
         [ -f $HOME/.wezterm.zsh ] && source $HOME/.wezterm.zsh
 
@@ -122,15 +135,17 @@
 
       # code assistants
       co = "codex --yolo";
+      ca = "codex-auth";
       claude = "~/.local/bin/claude";
       cc = "claude --dangerously-skip-permissions";
+      oc = "opencode";
       pi = "AWS_PROFILE=ch-dev pi";
 
       # worktrunk
+      wts = "wt switch";
       wtc = "wt switch --create";
-      wtp = "wt switch --create --execute pi";
-      wtcc = "wt switch --create --execute 'claude --dangerously-skip-permissions'";
-      wtco = "wt switch --create --execute 'codex --yolo'";
+      # wtpi = "wt switch --create --execute pi";
+      # wtcc / wtco are functions (see initContent) — branch must precede `--`
 
       # kubernetes
       k = "kubectl";

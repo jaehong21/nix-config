@@ -38,6 +38,11 @@
         defaultBranch = "main";
       };
 
+      fetch = {
+        # auto-prune stale remote-tracking refs on fetch/pull
+        prune = true;
+      };
+
       core = {
         pager = "less -F -X";
         # store exclude files in ~/.config/git/ignore

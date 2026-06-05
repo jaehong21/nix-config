@@ -40,11 +40,12 @@
     EDITOR = "nvim";
     AWS_PROFILE = "default";
     GH_TELEMETRY = "false";
-    MCPORTER_CONFIG = "${config.xdg.configHome}/mcporter/mcporter.json";
-    # OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
-    # OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
+    OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
+    OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
+    # OPENCODE_DISABLE_CLAUDE_CODE_SKILLS = "1";
     DOCKER_BUILDKIT = "1";
     COMPOSE_DOCKER_CLI_BUILD = "1";
+    MCPORTER_CONFIG = "~/.agents/mcporter.json";
   };
 
   home.sessionPath = [
