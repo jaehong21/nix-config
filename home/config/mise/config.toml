@@ -1,6 +1,6 @@
 [tools]
 # Languages and Runtimes
-node = "24.11.1"
+node = "24"
 bun = "1.3"
 go = "1.24"
 python = "3.14"
@@ -24,6 +24,7 @@ codex = "latest"
 # ollama = "latest"
 
 # LSPs and formatters
+"npm:vscode-langservers-extracted" = "latest" # html, css, eslint, html, json, markdown
 "pipx:ty" = "latest"
 
 # IaC Tools
@@ -44,6 +45,7 @@ restic = "latest"
 television = "latest"
 yq = "latest"
 
+"cargo:rustlings" = "latest"
 "cargo:worktrunk" = "latest"
 "github:rtk-ai/rtk" = "latest"
 "github:steipete/gogcli" = "latest"

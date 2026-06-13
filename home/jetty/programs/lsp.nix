@@ -25,7 +25,6 @@
     tree-sitter
     typescript
     typescript-language-server
-    vscode-langservers-extracted # html, css, eslint, html, json, markdown
     vtsls
     yaml-language-server
 
