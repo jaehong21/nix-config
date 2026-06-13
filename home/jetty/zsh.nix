@@ -139,12 +139,11 @@
       claude = "~/.local/bin/claude";
       cc = "claude --dangerously-skip-permissions";
       oc = "opencode";
-      pi = "AWS_PROFILE=ch-dev pi";
 
       # worktrunk
       wts = "wt switch";
       wtc = "wt switch --create";
-      # wtpi = "wt switch --create --execute pi";
+      wtpi = "wt switch --create --execute pi";
       # wtcc / wtco are functions (see initContent) — branch must precede `--`
 
       # kubernetes

@@ -7,6 +7,7 @@
     "openrouter/api_key" = { };
     "gemini/api_key" = { };
     "groq/api_key" = { };
+    "prism/codex/api_key" = { };
 
     "linear/api_key" = { };
     "grafana/account_token" = { };
@@ -18,6 +19,7 @@
     OPENROUTER_API_KEY = "$(cat ${config.sops.secrets."openrouter/api_key".path})";
     GEMINI_API_KEY = "$(cat ${config.sops.secrets."gemini/api_key".path})";
     GROQ_API_KEY = "$(cat ${config.sops.secrets."groq/api_key".path})";
+    PRISM_CODEX_API_KEY = "$(cat ${config.sops.secrets."prism/codex/api_key".path})";
     LINEAR_API_KEY = "$(cat ${config.sops.secrets."linear/api_key".path})";
     GRAFANA_SERVICE_ACCOUNT_TOKEN = "$(cat ${config.sops.secrets."grafana/account_token".path})";
   };
