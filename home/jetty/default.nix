@@ -9,6 +9,7 @@
     # programs
     ./programs/docker.nix
     ./programs/git.nix
+    ./programs/homebrew.nix
     ./programs/kubernetes.nix
     ./programs/lsp.nix
     ./programs/nh.nix
