@@ -45,6 +45,20 @@
             ./home/jetty/configuration.nix
           ];
         };
+
+        "jaehong21" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = {
+            inherit self inputs;
+            nixConfigDir = "/Users/jaehong21/.config/nix-config";
+          };
+          modules = [
+            ./home/jaehong21/configuration.nix
+          ];
+        };
       };
 
       # Build nixos flake using:
