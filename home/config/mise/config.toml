@@ -2,9 +2,9 @@
 # Languages and Runtimes
 node = "24"
 bun = "1.3"
-go = "1.24"
+go = "1.26"
 python = "3.14"
-rust = { version = "1.94.1", components = "rust-analyzer", targets = "wasm32-wasip1" }
+rust = { version = "1.96", components = "rust-analyzer", targets = "wasm32-wasip1" }
 
 # Package managers
 pipx = "latest"
@@ -21,7 +21,6 @@ codex = "latest"
 "npm:mcporter" = "latest"
 "npm:@loongphy/codex-auth" = "latest"
 # "cargo:rikabot" = "latest"
-# ollama = "latest"
 
 # LSPs and formatters
 "npm:vscode-langservers-extracted" = "latest" # html, css, eslint, html, json, markdown
@@ -36,17 +35,20 @@ terragrunt = "latest"
 # CLI
 fnox = "latest"
 git-cliff = "latest"
+goreleaser = "latest"
 hugo = "v0.145.0"
 lazydocker = "latest"
 neovim = "0.12"
 prek = "latest"
 rclone = "latest"
 restic = "latest"
+supabase = "latest"
 television = "latest"
 yq = "latest"
 
 "cargo:rustlings" = "latest"
 "cargo:worktrunk" = "latest"
+"github:neurosnap/zmx" = "latest"
 "github:rtk-ai/rtk" = "latest"
 "github:steipete/gogcli" = "latest"
 "npm:@tobilu/qmd" = "latest"

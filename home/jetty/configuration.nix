@@ -38,7 +38,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    AWS_PROFILE = "default";
+    AWS_PROFILE = "ch-dev";
     GH_TELEMETRY = "false";
     OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
     OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";

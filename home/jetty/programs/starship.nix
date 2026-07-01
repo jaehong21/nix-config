@@ -11,7 +11,7 @@
 
       add_newline = false;
       # format = "$all";
-      format = "$directory$git_branch$git_status$kubernetes$aws\n$character";
+      format = "\${env_var.ZMX_SESSION}$directory$git_branch$git_status$kubernetes$aws\n$character";
       right_format = "$cmd_duration";
 
       palette = "custom";
@@ -48,6 +48,12 @@
         style = "#89b4fb";
         symbol = "kube:";
         disabled = false;
+      };
+
+      env_var.ZMX_SESSION = {
+        variable = "ZMX_SESSION";
+        format = "[zmx:$env_value]($style) ";
+        style = "fg:primary";
       };
 
       character = {

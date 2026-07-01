@@ -4,7 +4,9 @@
   # https://search.nixos.org/packages
   home.packages = with pkgs; [
     age
+    ansible
     awscli2
+    cloudflared
     dive
     exiftool
     fd

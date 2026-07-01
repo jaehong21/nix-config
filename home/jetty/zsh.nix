@@ -76,7 +76,89 @@
           wt switch --create -x claude "$@" -- --dangerously-skip-permissions
         }
         wtco() {
-          wt switch --create -x codex "$@" -- --yolo
+          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.codex' codex --yolo
+        }
+
+        _zmx_sanitize() {
+          printf '%s' "$1" | tr '/\\:[:space:]' '-' | tr -cd '[:alnum:]_.@+-'
+        }
+
+        _zmx_default_session_name() {
+          local agent="$1"
+          local root repo branch raw
+
+          root=$(git rev-parse --show-toplevel 2>/dev/null)
+          if [[ -n "$root" ]]; then
+            repo=$(basename "$root")
+          else
+            repo=$(basename "$PWD")
+          fi
+
+          branch=$(git branch --show-current 2>/dev/null)
+          if [[ -z "$branch" ]]; then
+            branch=$(git rev-parse --short HEAD 2>/dev/null)
+          fi
+
+          if [[ -n "$branch" ]]; then
+            raw="$repo.$branch.$agent"
+          else
+            raw="$repo.$agent"
+          fi
+
+          _zmx_sanitize "$raw"
+        }
+
+        _zmx_attach_agent() {
+          local agent="$1"
+          shift
+          local command_name="$1"
+          shift
+          local session
+
+          session=$(_zmx_default_session_name "$agent")
+          zmx attach "$session" "$command_name" "$@"
+        }
+
+        # zmx: attach code assistants to stable repo/branch sessions.
+        zcc() {
+          _zmx_attach_agent claude claude --dangerously-skip-permissions "$@"
+        }
+        zco() {
+          _zmx_attach_agent codex codex --yolo "$@"
+        }
+        co() {
+          zco "$@"
+        }
+        zpi() {
+          _zmx_attach_agent pi pi "$@"
+        }
+
+        _zmx_select_session() {
+          zmx list --short 2>/dev/null | fzf --prompt="$1"
+        }
+
+        za() {
+          if [[ $# -gt 0 ]]; then
+            zmx attach "$@"
+            return
+          fi
+
+          local session
+          session=$(_zmx_select_session 'zmx attach> ') || return
+          [[ -n "$session" ]] || return
+          zmx attach "$session"
+        }
+
+        zk() {
+          if [[ $# -gt 0 ]]; then
+            zmx kill "$@"
+            return
+          fi
+
+          local session
+          session=$(_zmx_select_session 'zmx kill> ') || return
+          [[ -n "$session" ]] || return
+          zmx kill "$session"
         }
 
         # wezterm
@@ -103,6 +185,10 @@
       # worktrunk shell init must run AFTER mise activate (wt is installed via mise)
       # mise in order 1000 with initContent
       (lib.mkOrder 1100 ''
+        if command -v zmx >/dev/null 2>&1; then
+          eval "$(command zmx completions zsh)"
+        fi
+
         if command -v wt >/dev/null 2>&1; then
           eval "$(command wt config shell init zsh)"
         fi
@@ -134,7 +220,6 @@
       we = "wezterm";
 
       # code assistants
-      co = "codex --yolo";
       ca = "codex-auth";
       claude = "~/.local/bin/claude";
       cc = "claude --dangerously-skip-permissions";
@@ -144,7 +229,13 @@
       wts = "wt switch";
       wtc = "wt switch --create";
       wtpi = "wt switch --create --execute pi";
-      # wtcc / wtco are functions (see initContent) — branch must precede `--`
+      # wtcc / wtco are functions (see initContent).
+
+      # zmx
+      z = "zmx";
+      zd = "zmx detach";
+      zh = "zmx history";
+      zl = "zmx list";
 
       # kubernetes
       k = "kubectl";
