@@ -40,6 +40,7 @@
     EDITOR = "nvim";
     AWS_PROFILE = "ch-dev";
     GH_TELEMETRY = "false";
+    MISE_GITHUB_ATTESTATIONS = "false";
     OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
     OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
     # OPENCODE_DISABLE_CLAUDE_CODE_SKILLS = "1";

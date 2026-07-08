@@ -15,6 +15,7 @@
     cask "hammerspoon"
     cask "scroll-reverser"
 
+    cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
     # cask "channel-io/tap/cht-desk-cli"

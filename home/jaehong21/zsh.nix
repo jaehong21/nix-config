@@ -221,7 +221,7 @@
 
       # code assistants
       ca = "codex-auth";
-      claude = "~/.local/bin/claude";
+      # claude = "~/.local/bin/claude";
       cc = "claude --dangerously-skip-permissions";
       oc = "opencode";
 
