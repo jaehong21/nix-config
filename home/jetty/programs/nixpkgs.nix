@@ -8,6 +8,7 @@
     awscli2
     cloudflared
     dive
+    duckdb
     exiftool
     fd
     ffmpeg
