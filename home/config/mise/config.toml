@@ -11,8 +11,6 @@ pipx = "latest"
 uv = "latest"
 
 # Coding Assistants
-codex = "latest"
-# claude = "latest" # use native installer
 "npm:opencode-ai" = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"

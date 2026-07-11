@@ -15,6 +15,7 @@
     cask "hammerspoon"
     cask "scroll-reverser"
 
+    cask "codex"
     cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
