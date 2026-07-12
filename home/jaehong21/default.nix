@@ -7,6 +7,7 @@
     ./zsh.nix
 
     # programs
+    ./programs/aicommit2.nix
     ./programs/docker.nix
     ./programs/git.nix
     ./programs/hammerspoon.nix

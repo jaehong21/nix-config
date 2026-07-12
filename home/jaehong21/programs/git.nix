@@ -13,7 +13,7 @@
         {
           key = "G";
           description = "Pick AI commit";
-          command = "aicommit2 --generate 5 --confirm";
+          command = "aicommit2 --confirm";
           context = "files";
           output = "terminal";
         }
