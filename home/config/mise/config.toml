@@ -62,7 +62,7 @@ yq = "latest"
 [settings]
 experimental = true
 minimum_release_age = "24h" # default
-minimum_release_age_excludes = ["codex", "npm:opencode-ai", "npm:@earendil-works/pi-coding-agent"]
+minimum_release_age_excludes = ["npm:opencode-ai", "npm:@earendil-works/pi-coding-agent"]
 
 [settings.npm]
 bun = true
