@@ -73,10 +73,13 @@
 
         # worktrunk: create + switch, then launch an agent (branch must precede --)
         wtcc() {
-          wt switch --create -x claude "$@" -- --dangerously-skip-permissions
+          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.claude' claude --dangerously-skip-permissions
         }
         wtco() {
           wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.codex' codex --yolo
+        }
+        wtpi() {
+          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.pi' pi
         }
 
         _zmx_sanitize() {
@@ -221,15 +224,13 @@
 
       # code assistants
       ca = "codex-auth";
-      claude = "~/.local/bin/claude";
       cc = "claude --dangerously-skip-permissions";
       oc = "opencode";
 
       # worktrunk
       wts = "wt switch";
       wtc = "wt switch --create";
-      wtpi = "wt switch --create --execute pi";
-      # wtcc / wtco are functions (see initContent).
+      # wtcc / wtco / wtpi are functions (see initContent).
 
       # zmx
       z = "zmx";
