@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   home.shell.enableZshIntegration = true;
@@ -53,6 +53,13 @@
 
     initContent = lib.mkMerge [
       (lib.mkBefore ''
+        # Make repeated `source ~/.zshrc` safe after global aliases have been set.
+        unalias -- '-h' '--help' 'lg' 2>/dev/null || true
+
+        # Refresh mutable SOPS secrets for every interactive shell.
+        export GITHUB_TOKEN="$(<${config.sops.secrets."github/token".path})"
+        export GITHUB_PACKAGES_INSTALL_KEY="$GITHUB_TOKEN"
+
         # Start timer
         zmodload zsh/datetime
         zsh_start_time=$EPOCHREALTIME
@@ -217,7 +224,6 @@
       cme = "chezmoi edit --apply";
 
       # shortcuts
-      lg = "lazygit";
       hb = "hibiscus";
       t = "tmux";
       we = "wezterm";
