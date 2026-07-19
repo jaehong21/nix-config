@@ -19,6 +19,7 @@
     htop
     jq
     just
+    mtr
     natscli
     pre-commit
     protobuf
