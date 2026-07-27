@@ -78,71 +78,6 @@
           wt switch "pr:$1"
         }
 
-        # worktrunk: create + switch, then launch an agent (branch must precede --)
-        wtcc() {
-          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.claude' claude --dangerously-skip-permissions
-        }
-        wtco() {
-          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.codex' codex --yolo
-        }
-        wtpi() {
-          wt switch --create -x zmx "$@" -- attach '{{ repo }}.{{ branch | sanitize }}.pi' pi
-        }
-
-        _zmx_sanitize() {
-          printf '%s' "$1" | tr '/\\:[:space:]' '-' | tr -cd '[:alnum:]_.@+-'
-        }
-
-        _zmx_default_session_name() {
-          local agent="$1"
-          local root repo branch raw
-
-          root=$(git rev-parse --show-toplevel 2>/dev/null)
-          if [[ -n "$root" ]]; then
-            repo=$(basename "$root")
-          else
-            repo=$(basename "$PWD")
-          fi
-
-          branch=$(git branch --show-current 2>/dev/null)
-          if [[ -z "$branch" ]]; then
-            branch=$(git rev-parse --short HEAD 2>/dev/null)
-          fi
-
-          if [[ -n "$branch" ]]; then
-            raw="$repo.$branch.$agent"
-          else
-            raw="$repo.$agent"
-          fi
-
-          _zmx_sanitize "$raw"
-        }
-
-        _zmx_attach_agent() {
-          local agent="$1"
-          shift
-          local command_name="$1"
-          shift
-          local session
-
-          session=$(_zmx_default_session_name "$agent")
-          zmx attach "$session" "$command_name" "$@"
-        }
-
-        # zmx: attach code assistants to stable repo/branch sessions.
-        zcc() {
-          _zmx_attach_agent claude claude --dangerously-skip-permissions "$@"
-        }
-        zco() {
-          _zmx_attach_agent codex codex --yolo "$@"
-        }
-        co() {
-          zco "$@"
-        }
-        zpi() {
-          _zmx_attach_agent pi pi "$@"
-        }
-
         _zmx_select_session() {
           zmx list --short 2>/dev/null | fzf --prompt="$1"
         }
@@ -186,8 +121,8 @@
         fi
 
         # Global aliases
-        alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-        alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+        # alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+        # alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
         # television
         # eval "$(tv init zsh)"
@@ -231,12 +166,13 @@
       # code assistants
       ca = "codex-auth";
       cc = "claude --dangerously-skip-permissions";
+      co = "codex --yolo";
       oc = "opencode";
+      pi = "pi";
 
       # worktrunk
       wts = "wt switch";
       wtc = "wt switch --create";
-      # wtcc / wtco / wtpi are functions (see initContent).
 
       # zmx
       z = "zmx";
