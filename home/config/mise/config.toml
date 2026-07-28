@@ -53,6 +53,7 @@ yq = "latest"
 "npm:agent-browser" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
+"pipx:modal" = "latest"
 
 # Disabled Tools
 # deno = "latest"
