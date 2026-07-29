@@ -19,7 +19,6 @@
     cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
-    cask "hop"
     # cask "channel-io/tap/cht-desk-cli"
   '';
 
