@@ -21,6 +21,7 @@
     just
     mtr
     natscli
+    nixpkgs-fmt
     pre-commit
     protobuf
     q
