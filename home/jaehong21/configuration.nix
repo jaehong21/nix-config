@@ -12,13 +12,14 @@
     ./default.nix
   ];
 
-  # for home-manager module,
-  # store at users $XDG_RUNTIME_DIR/secrets.d
-  # and symlinked to $HOME/.config/sops-nix/secrets (= `.path` value in sops-nix)
+  # For the Home Manager module, keep decrypted secrets on a RAM disk and
+  # symlink them to $HOME/.config/sops-nix/secrets.
   sops = {
     # self.outPath is the flake absolute path
     defaultSopsFile = "${self.outPath}/secrets/encrypted.yaml";
     defaultSopsFormat = "yaml";
+    # DARWIN_USER_TEMP_DIR can be cleaned after login, breaking the symlink.
+    defaultSecretsMountPoint = "${config.xdg.stateHome}/sops-nix/secrets.d";
     # should have no passphrase
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
   };
