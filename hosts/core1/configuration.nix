@@ -247,7 +247,7 @@ in
         ];
       };
       pocket-id = {
-        image = "ghcr.io/pocket-id/pocket-id:v2.10.0";
+        image = "ghcr.io/pocket-id/pocket-id:v2.12.0";
         ports = [ "1411:1411" ];
         environment = {
           APP_URL = "https://id.jaehong21.com";
