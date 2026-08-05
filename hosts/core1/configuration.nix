@@ -169,9 +169,6 @@ in
       "id.jaehong21.com".extraConfig = ''
         reverse_proxy localhost:1411
       '';
-      "hermes.jaehong21.com".extraConfig = ''
-        reverse_proxy 127.0.0.1:9119
-      '';
       # "uptime.jaehong21.com".extraConfig = ''
       #   reverse_proxy localhost:3001
       # '';
@@ -224,10 +221,6 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_28_5_1;
 
-  # Hermes keeps its mutable configuration and runtime state outside Nix.
-  # The official image runs Hermes as UID/GID 10000.
-  systemd.tmpfiles.rules = [ "d /var/lib/hermes 0700 10000 10000 -" ];
-
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
@@ -262,33 +255,6 @@ in
         volumes = [
           "/var/lib/pocket-id:/app/data"
         ];
-      };
-      hermes = {
-        image = "docker.io/nousresearch/hermes-agent:v2026.8.3";
-        autoStart = true;
-        dependsOn = [ "pocket-id" ];
-        cmd = [
-          "gateway"
-          "run"
-        ];
-        ports = [ "127.0.0.1:9119:9119" ];
-        environment = {
-          TZ = "Asia/Seoul";
-          HERMES_DASHBOARD = "1";
-          HERMES_DASHBOARD_HOST = "0.0.0.0";
-          HERMES_DASHBOARD_OIDC_ISSUER = "https://id.jaehong21.com";
-          HERMES_DASHBOARD_OIDC_CLIENT_ID = "hermes-dashboard";
-          HERMES_DASHBOARD_OIDC_SCOPES = "openid profile email";
-          HERMES_DASHBOARD_PUBLIC_URL = "https://hermes.jaehong21.com";
-          # Trust Caddy's forwarded scheme so OIDC session cookies are Secure.
-          # Port 9119 is published on host loopback only.
-          FORWARDED_ALLOW_IPS = "*";
-        };
-        volumes = [
-          "/var/lib/hermes:/opt/data"
-        ];
-        # Browser tools (Playwright/Chromium) need a larger shared-memory area.
-        # extraOptions = [ "--shm-size=1g" ];
       };
     };
   };
