@@ -10,6 +10,7 @@
     "prism/codex/api_key" = { };
 
     "linear/api_key" = { };
+    "tweek/api_key" = { };
     "grafana/account_token" = { };
   };
 
@@ -21,6 +22,7 @@
     GROQ_API_KEY = "$(cat ${config.sops.secrets."groq/api_key".path})";
     PRISM_CODEX_API_KEY = "$(cat ${config.sops.secrets."prism/codex/api_key".path})";
     LINEAR_API_KEY = "$(cat ${config.sops.secrets."linear/api_key".path})";
+    TWEEK_API_KEY = "$(cat ${config.sops.secrets."tweek/api_key".path})";
     GRAFANA_SERVICE_ACCOUNT_TOKEN = "$(cat ${config.sops.secrets."grafana/account_token".path})";
   };
 }
