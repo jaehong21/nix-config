@@ -64,7 +64,10 @@
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;
-    extensions = [ pkgs.gh-markdown-preview ];
+    extensions = [
+      pkgs.gh-markdown-preview
+      pkgs.gh-stack
+    ];
 
     settings = {
       aliases = {
