@@ -73,11 +73,6 @@
           echo "Switched to AWS profile: $AWS_PROFILE"
         }
 
-        # worktrunk: switch to a worktree for a PR (e.g. `wtpr 1111`)
-        wtpr() {
-          wt switch "pr:$1"
-        }
-
         _zmx_select_session() {
           zmx list --short 2>/dev/null | fzf --prompt="$1"
         }
@@ -127,15 +122,9 @@
         # television
         # eval "$(tv init zsh)"
       ''
-      # worktrunk shell init must run AFTER mise activate (wt is installed via mise)
-      # mise in order 1000 with initContent
       (lib.mkOrder 1100 ''
         if command -v zmx >/dev/null 2>&1; then
           eval "$(command zmx completions zsh)"
-        fi
-
-        if command -v wt >/dev/null 2>&1; then
-          eval "$(command wt config shell init zsh)"
         fi
       '')
       (lib.mkOrder 9999 ''
@@ -170,10 +159,6 @@
       co = "codex --yolo";
       oc = "opencode";
       pi = "pi";
-
-      # worktrunk
-      wts = "wt switch";
-      wtc = "wt switch --create";
 
       # zmx
       z = "zmx";

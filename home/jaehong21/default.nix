@@ -18,6 +18,5 @@
     ./programs/nixpkgs.nix
     ./programs/starship.nix
     ./programs/wezterm.nix
-    ./programs/worktrunk.nix
   ];
 }

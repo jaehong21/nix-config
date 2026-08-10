@@ -46,7 +46,6 @@ television = "latest"
 yq = "latest"
 
 "cargo:rustlings" = "latest"
-"cargo:worktrunk" = "latest"
 "github:neurosnap/zmx" = "latest"
 "github:steipete/gogcli" = "latest"
 "npm:agent-browser" = "latest"
