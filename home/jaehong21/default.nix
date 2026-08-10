@@ -8,7 +8,7 @@
 
     # programs
     ./programs/aicommit2.nix
-    ./programs/docker.nix
+    # ./programs/docker.nix
     ./programs/git.nix
     ./programs/hammerspoon.nix
     ./programs/homebrew.nix

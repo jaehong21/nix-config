@@ -1,3 +1,6 @@
+# NOTE: currently commented out in ../configuration.nix
+# using orbstack instead of colima
+
 { config, pkgs, ... }:
 
 {

@@ -12,6 +12,7 @@
     # tap "channel-io/tap", "git@github.com:channel-io/homebrew-tap.git"
     tap "steipete/tap"
 
+    cask "orbstack"
     cask "hammerspoon"
     cask "scroll-reverser"
 
