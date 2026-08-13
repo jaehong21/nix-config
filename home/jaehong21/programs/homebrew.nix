@@ -11,8 +11,10 @@
   home.file.".config/homebrew/Brewfile".text = ''
     # tap "channel-io/tap", "git@github.com:channel-io/homebrew-tap.git"
     tap "steipete/tap"
+    tap "abue-ammar/tinycast"
 
     cask "orbstack"
+    cask "abue-ammar/tinycast/tinycast"
     cask "hammerspoon"
     cask "scroll-reverser"
 
