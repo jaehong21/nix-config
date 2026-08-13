@@ -30,6 +30,12 @@
 
   home.enableNixpkgsReleaseCheck = false;
 
+  # Copy Nix-installed macOS apps into a Spotlight-indexable location.
+  # ~/Applications/Home Manager Apps/
+  # The legacy symlink-based integration is used by default with stateVersion 24.11.
+  targets.darwin.linkApps.enable = false;
+  targets.darwin.copyApps.enable = true;
+
   home.username = "jaehong21";
   home.homeDirectory = "/Users/jaehong21";
 
