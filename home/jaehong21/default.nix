@@ -14,6 +14,7 @@
     ./programs/homebrew.nix
     ./programs/kubernetes.nix
     ./programs/lsp.nix
+    ./programs/mole.nix
     ./programs/nh.nix
     ./programs/nixpkgs.nix
     ./programs/starship.nix
