@@ -26,6 +26,7 @@
     protobuf
     q
     ripgrep
+    sd
     sops
     sshpass
     tmux
@@ -34,6 +35,7 @@
     watchexec
     witr
     xh
+    yq-go
     yt-dlp
 
     # https://github.com/golang-migrate/migrate/issues/1279#issuecomment-2905714815
@@ -45,4 +47,22 @@
       ];
     }))
   ];
+
+  home.file = {
+    ".aside/runtime/bin/rg" = {
+      source = "${pkgs.ripgrep}/bin/rg";
+    };
+    ".aside/runtime/bin/fd" = {
+      source = "${pkgs.fd}/bin/fd";
+    };
+    ".aside/runtime/bin/jq" = {
+      source = "${pkgs.jq}/bin/jq";
+    };
+    ".aside/runtime/bin/yq" = {
+      source = "${pkgs.yq-go}/bin/yq";
+    };
+    ".aside/runtime/bin/sd" = {
+      source = "${pkgs.sd}/bin/sd";
+    };
+  };
 }
