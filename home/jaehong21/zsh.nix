@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 {
   home.shell.enableZshIntegration = true;
@@ -56,16 +56,11 @@
         # Make repeated `source ~/.zshrc` safe after global aliases have been set.
         unalias -- '-h' '--help' 'lg' 2>/dev/null || true
 
-        # Refresh mutable SOPS secrets for every interactive shell.
-        export GITHUB_TOKEN="$(<${config.sops.secrets."github/token".path})"
-        export GITHUB_PACKAGES_INSTALL_KEY="$GITHUB_TOKEN"
-
         # Start timer
         zmodload zsh/datetime
         zsh_start_time=$EPOCHREALTIME
 
         autoload -Uz compinit && compinit
-
       '')
       ''
         acs() {
