@@ -18,6 +18,7 @@ uv = "latest"
 "npm:tokscale" = "latest"
 "npm:mcporter" = "latest"
 "npm:@loongphy/codex-auth" = "latest"
+"npm:t3" = "latest"
 # "cargo:rikabot" = "latest"
 
 # LSPs and formatters
@@ -43,13 +44,12 @@ rclone = "latest"
 restic = "latest"
 supabase = "latest"
 television = "latest"
-yq = "latest"
 
 "cargo:rustlings" = "latest"
 "github:neurosnap/zmx" = "latest"
 "github:steipete/gogcli" = "latest"
-"npm:agent-browser" = "latest"
-"npm:agent-slack" = "0.9"
+# "npm:agent-browser" = "latest"
+"npm:agent-slack" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
 "pipx:modal" = "latest"
@@ -64,7 +64,7 @@ yq = "latest"
 [settings]
 experimental = true
 minimum_release_age = "24h" # default
-minimum_release_age_excludes = ["npm:opencode-ai", "npm:@earendil-works/pi-coding-agent"]
+minimum_release_age_excludes = ["npm:opencode-ai", "npm:@earendil-works/pi-coding-agent", "npm:t3"]
 
 [settings.npm]
 bun = true
