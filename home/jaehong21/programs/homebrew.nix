@@ -17,6 +17,7 @@
     cask "orbstack"
     cask "hammerspoon"
     cask "scroll-reverser"
+    cask "cleanmymac-cli"
 
     cask "codex"
     cask "claude-code"
