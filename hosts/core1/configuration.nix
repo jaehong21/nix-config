@@ -1,47 +1,49 @@
-{
-  self,
-  inputs,
-  config,
-  pkgs,
-  ...
-}:
+{ self, inputs, config, pkgs, ... }:
 
 let
   k3sOverlay = final: prev: {
     k3s_1_35_2 =
-      (import (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "83e29f2b8791f6dec20804382fcd9a666d744c07";
-        hash = "sha256-nex6TL2x1/sVHCyDWcvl1t/dbTedb9bAGC4DLf/pmYk=";
-      }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
+      (import
+        (pkgs.fetchFromGitHub {
+          owner = "NixOS";
+          repo = "nixpkgs";
+          rev = "83e29f2b8791f6dec20804382fcd9a666d744c07";
+          hash = "sha256-nex6TL2x1/sVHCyDWcvl1t/dbTedb9bAGC4DLf/pmYk=";
+        })
+        { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
   dockerOverlay = final: prev: {
     docker_28_5_1 =
-      (import (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
-        hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
-      }) { system = pkgs.stdenv.hostPlatform.system; }).docker;
+      (import
+        (pkgs.fetchFromGitHub {
+          owner = "NixOS";
+          repo = "nixpkgs";
+          rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
+          hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
+        })
+        { system = pkgs.stdenv.hostPlatform.system; }).docker;
   };
   caddyOverlay = final: prev: {
     caddy_2_10_0 =
-      (import (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "648f70160c03151bc2121d179291337ad6bc564b";
-        hash = "sha256-FK8iq76wlacriq3u0kFCehsRYTAqjA9nfprpiSWRWIc=";
-      }) { system = pkgs.stdenv.hostPlatform.system; }).caddy;
+      (import
+        (pkgs.fetchFromGitHub {
+          owner = "NixOS";
+          repo = "nixpkgs";
+          rev = "648f70160c03151bc2121d179291337ad6bc564b";
+          hash = "sha256-FK8iq76wlacriq3u0kFCehsRYTAqjA9nfprpiSWRWIc=";
+        })
+        { system = pkgs.stdenv.hostPlatform.system; }).caddy;
   };
   headscaleOverlay = final: prev: {
     headscale_0_28_0 =
-      (import (pkgs.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = "09061f748ee21f68a089cd5d91ec1859cd93d0be";
-        hash = "sha256-nyxxxW1/2ouu9dU0I02ul5pHrmUrE1JVFhfFlmYe3Lw=";
-      }) { system = pkgs.stdenv.hostPlatform.system; }).headscale;
+      (import
+        (pkgs.fetchFromGitHub {
+          owner = "NixOS";
+          repo = "nixpkgs";
+          rev = "09061f748ee21f68a089cd5d91ec1859cd93d0be";
+          hash = "sha256-nyxxxW1/2ouu9dU0I02ul5pHrmUrE1JVFhfFlmYe3Lw=";
+        })
+        { system = pkgs.stdenv.hostPlatform.system; }).headscale;
   };
 in
 {
@@ -240,7 +242,7 @@ in
         ];
       };
       pocket-id = {
-        image = "ghcr.io/pocket-id/pocket-id:v2.12.0";
+        image = "ghcr.io/pocket-id/pocket-id:v2.14.0";
         ports = [ "1411:1411" ];
         environment = {
           APP_URL = "https://id.jaehong21.com";
