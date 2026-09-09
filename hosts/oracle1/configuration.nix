@@ -16,10 +16,20 @@ let
         hash = "sha256-nex6TL2x1/sVHCyDWcvl1t/dbTedb9bAGC4DLf/pmYk=";
       }) { system = pkgs.stdenv.hostPlatform.system; }).k3s;
   };
+  dockerOverlay = final: prev: {
+    docker_28_5_1 =
+      (import (pkgs.fetchFromGitHub {
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = "de69d2ba6c70e747320df9c096523b623d3a4c35";
+        hash = "sha256-2qsow3cQIgZB2g8Cy8cW+L9eXDHP6a1PsvOschk5y+E=";
+      }) { system = pkgs.stdenv.hostPlatform.system; }).docker;
+  };
 in
 {
   nixpkgs.overlays = [
     k3sOverlay
+    dockerOverlay
   ];
 
   imports = [
@@ -115,6 +125,38 @@ in
     enable = true;
   };
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_28_5_1;
+
+  systemd.tmpfiles.rules = [ "d /var/lib/factorio 0700 845 845 -" ];
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    # Factorio: ARM64 images include Box64 (upstream ARM support is experimental).
+    containers.factorio = {
+      # 2026-09-09: stable = 2.0.77; latest = 2.1.17 (experimental).
+      image = "docker.io/factoriotools/factorio:2.0.77";
+      autoStart = true;
+      environment = {
+        PORT = "34197";
+        RCON_PORT = "27015";
+        DLC_SPACE_AGE = "true";
+      };
+      # Create on oracle1, root-owned mode 0600.
+      # USERNAME/TOKEN are used for mod updates, not server-list authentication.
+
+      # sudo install -d -m 0700 -o 845 -g 845 /var/lib/factorio
+      # sudo touch /var/lib/factorio/factorio.env
+      # sudo chmod 600 /var/lib/factorio/factorio.env
+      environmentFiles = [ "/var/lib/factorio/factorio.env" ];
+      ports = [
+        "34197:34197/udp"
+        "127.0.0.1:27015:27015/tcp"
+      ];
+      volumes = [ "/var/lib/factorio:/factorio" ];
+    };
+  };
+
   # haproxy
   services.haproxy = {
     enable = true;
@@ -149,6 +191,7 @@ in
       10250 # kubelet metrics
     ];
     allowedUDPPorts = [
+      34197 # Factorio
       config.services.tailscale.port # 41641
       8472 # flannel (vxlan)
     ];
