@@ -11,13 +11,15 @@
   home.file.".config/homebrew/Brewfile".text = ''
     # tap "channel-io/tap", "git@github.com:channel-io/homebrew-tap.git"
     tap "steipete/tap"
+    tap "abue-ammar/tinycast"
 
     brew "mole"
 
+    cask "abue-ammar/tinycast/tinycast"
     cask "orbstack"
     cask "hammerspoon"
     cask "scroll-reverser"
-    cask "cleanmymac-cli"
+    # cask "cleanmymac-cli"
 
     cask "codex"
     cask "claude-code"
