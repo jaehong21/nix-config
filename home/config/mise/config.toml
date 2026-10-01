@@ -15,10 +15,11 @@ uv = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
 "npm:skills" = "latest"
-"npm:tokscale" = "latest"
+# "npm:tokscale" = "latest"
 "npm:mcporter" = "latest"
 "npm:@loongphy/codex-auth" = "latest"
 "npm:t3" = "latest"
+"npm:@bitkyc08/opencodex" = "latest"
 # "cargo:rikabot" = "latest"
 
 # LSPs and formatters
@@ -47,13 +48,16 @@ supabase = "latest"
 television = "latest"
 
 "cargo:rustlings" = "latest"
+"github:channel-io/cht-desk-cli" = "latest"
 "github:neurosnap/zmx" = "latest"
-"github:steipete/gogcli" = "latest"
-"npm:agent-slack" = "latest"
+# "github:steipete/gogcli" = "latest"
+"github:ViRb3/wgcf" = "2.2.31"
+# "npm:agent-slack" = "latest"
 "npm:fern-api" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
 "pipx:modal" = "latest"
+"pipx:notebook" = "latest" # jupyter notebook
 
 # Disabled Tools
 # "github:rtk-ai/rtk" = "latest"
