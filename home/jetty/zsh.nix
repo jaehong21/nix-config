@@ -57,8 +57,8 @@
         unalias -- '-h' '--help' 'lg' 2>/dev/null || true
 
         # Refresh mutable SOPS secrets for every interactive shell.
-        export GITHUB_TOKEN="$(<${config.sops.secrets."github/token".path})"
-        export GITHUB_PACKAGES_INSTALL_KEY="$GITHUB_TOKEN"
+        export MISE_GITHUB_TOKEN="$(<${config.sops.secrets."github/token".path})"
+        export GITHUB_PACKAGES_INSTALL_KEY="$MISE_GITHUB_TOKEN"
 
         # Start timer
         zmodload zsh/datetime
