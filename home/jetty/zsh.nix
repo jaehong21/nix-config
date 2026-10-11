@@ -42,6 +42,7 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = config.home.homeDirectory;
 
     # Completion is initialized manually below before loading antidote plugins.
     # Avoid Home Manager adding another compinit call.
