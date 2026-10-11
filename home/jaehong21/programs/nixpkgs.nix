@@ -37,7 +37,6 @@
     witr
     xh
     yq-go
-    yt-dlp
     zstd
 
     # https://github.com/golang-migrate/migrate/issues/1279#issuecomment-2905714815

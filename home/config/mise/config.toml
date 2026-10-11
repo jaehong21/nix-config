@@ -46,6 +46,7 @@ rclone = "latest"
 restic = "latest"
 supabase = "latest"
 television = "latest"
+yt-dlp = "latest"
 
 "cargo:rustlings" = "latest"
 "github:channel-io/cht-desk-cli" = "latest"
