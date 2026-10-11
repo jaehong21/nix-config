@@ -13,8 +13,6 @@
     tap "steipete/tap"
     tap "abue-ammar/tinycast"
 
-    brew "mole"
-
     cask "abue-ammar/tinycast/tinycast"
     cask "orbstack"
     cask "hammerspoon"
