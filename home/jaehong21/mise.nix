@@ -12,7 +12,10 @@
   #   # NOTE: Do not set `globalConfig` here; that would generate an immutable Nix file.
   # };
 
-  # Activate the Homebrew-installed mise from PATH.
+  # Manually installed using the recommended method:
+  # https://mise.jdx.dev/installing-mise.html#recommended
+  # curl -fsSL https://mise.run | sh
+  # Activate the manually installed mise from PATH.
   programs.zsh.initContent = ''
     if command -v mise >/dev/null 2>&1; then
       eval "$(mise activate zsh)"
