@@ -8,6 +8,8 @@
     "minimax/api_key" = { };
     "groq/api_key" = { };
     "prism/codex/api_key" = { };
+    "prism/openai/api_key" = { };
+    "prism/anthropic/api_key" = { };
 
     "linear/api_key" = { };
     "tweek/api_key" = { };
@@ -22,6 +24,8 @@
     MINIMAX_API_KEY = "$(cat ${config.sops.secrets."minimax/api_key".path})";
     GROQ_API_KEY = "$(cat ${config.sops.secrets."groq/api_key".path})";
     PRISM_CODEX_API_KEY = "$(cat ${config.sops.secrets."prism/codex/api_key".path})";
+    PRISM_OPENAI_API_KEY = "$(cat ${config.sops.secrets."prism/openai/api_key".path})";
+    PRISM_ANTHROPIC_API_KEY = "$(cat ${config.sops.secrets."prism/anthropic/api_key".path})";
     LINEAR_API_KEY = "$(cat ${config.sops.secrets."linear/api_key".path})";
     TWEEK_API_KEY = "$(cat ${config.sops.secrets."tweek/api_key".path})";
     GRAFANA_SERVICE_ACCOUNT_TOKEN = "$(cat ${config.sops.secrets."grafana/account_token".path})";

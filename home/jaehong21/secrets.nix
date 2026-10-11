@@ -10,6 +10,8 @@
     "vercel/api_key" = { };
     "lambda/api_key" = { };
     "prism/codex/api_key" = { };
+    "prism/openai/api_key" = { };
+    "prism/anthropic/api_key" = { };
 
     "linear/api_key" = { };
     "tweek/api_key" = { };
@@ -26,6 +28,8 @@
     VERCEL_AI_GATEWAY_API_KEY = "$(cat ${config.sops.secrets."vercel/api_key".path})";
     LAMBDA_API_KEY = "$(cat ${config.sops.secrets."lambda/api_key".path})";
     PRISM_CODEX_API_KEY = "$(cat ${config.sops.secrets."prism/codex/api_key".path})";
+    PRISM_OPENAI_API_KEY = "$(cat ${config.sops.secrets."prism/openai/api_key".path})";
+    PRISM_ANTHROPIC_API_KEY = "$(cat ${config.sops.secrets."prism/anthropic/api_key".path})";
     LINEAR_API_KEY = "$(cat ${config.sops.secrets."linear/api_key".path})";
     TWEEK_API_KEY = "$(cat ${config.sops.secrets."tweek/api_key".path})";
     GRAFANA_SERVICE_ACCOUNT_TOKEN = "$(cat ${config.sops.secrets."grafana/account_token".path})";
