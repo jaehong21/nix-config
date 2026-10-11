@@ -6,8 +6,8 @@
   home.file.".config/homebrew/Brewfile".text = ''
     tap "steipete/tap"
 
-    cask "codex"
-    cask "claude-code"
+    # cask "codex"
+    # cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
   '';

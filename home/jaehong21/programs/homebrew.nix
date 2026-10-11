@@ -19,8 +19,8 @@
     cask "scroll-reverser"
     # cask "cleanmymac-cli"
 
-    cask "codex"
-    cask "claude-code"
+    # cask "codex"
+    # cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
     # cask "channel-io/tap/cht-desk-cli"
