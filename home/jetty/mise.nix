@@ -1,4 +1,4 @@
-{ config, nixConfigDir, ... }:
+{ config, lib, nixConfigDir, ... }:
 
 {
   # programs.mise = {
@@ -15,8 +15,8 @@
   # Manually installed using the recommended method:
   # https://mise.jdx.dev/installing-mise.html#recommended
   # curl -fsSL https://mise.run | sh
-  # Activate the manually installed mise from PATH.
-  programs.zsh.initContent = ''
+  # Activate after other integrations have modified PATH.
+  programs.zsh.initContent = lib.mkOrder 2000 ''
     if command -v mise >/dev/null 2>&1; then
       eval "$(mise activate zsh)"
     fi
