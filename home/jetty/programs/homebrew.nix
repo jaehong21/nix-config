@@ -6,6 +6,7 @@
   home.file.".config/homebrew/Brewfile".text = ''
     tap "steipete/tap"
 
+    brew "mise"
     brew "mole"
 
     cask "codex"

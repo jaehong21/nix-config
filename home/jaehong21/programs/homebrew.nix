@@ -13,6 +13,7 @@
     tap "steipete/tap"
     tap "abue-ammar/tinycast"
 
+    brew "mise"
     brew "mole"
 
     cask "abue-ammar/tinycast/tinycast"

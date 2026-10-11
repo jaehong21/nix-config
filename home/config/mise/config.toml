@@ -71,6 +71,7 @@ yt-dlp = "latest"
 experimental = true
 minimum_release_age = "24h" # default
 minimum_release_age_excludes = ["npm:opencode-ai", "npm:@earendil-works/pi-coding-agent", "npm:t3"]
+tool_update.global_auto = true
 
 [settings.npm]
 bun = true
