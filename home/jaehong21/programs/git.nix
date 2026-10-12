@@ -43,6 +43,12 @@
         prune = true;
       };
 
+      # Keep Keychain access tied to Apple Git across Nix Git upgrades.
+      credential."https://git.jaehong21.com".helper = [
+        "" # Clear inherited helpers before selecting the stable executable.
+        "/Library/Developer/CommandLineTools/usr/libexec/git-core/git-credential-osxkeychain"
+      ];
+
       core = {
         pager = "less -F -X";
         # store exclude files in ~/.config/git/ignore
