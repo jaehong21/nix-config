@@ -13,6 +13,8 @@ uv = "latest"
 # Coding Assistants
 codex = "latest"
 claude-code = "latest"
+cursor-cli = "latest"
+grok = "latest"
 "npm:opencode-ai" = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
