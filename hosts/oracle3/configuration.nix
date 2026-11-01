@@ -59,7 +59,7 @@ in
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "k3s/token_2" = { };
+      "k3s/token" = { };
     };
   };
 
@@ -121,11 +121,18 @@ in
     config = builtins.readFile ./haproxy.cfg;
   };
 
+  # MagicDNS can become available after tailscaled has started.
+  systemd.services.haproxy = {
+    wants = [ "network-online.target" "tailscaled.service" ];
+    after = [ "network-online.target" "tailscaled.service" ];
+    serviceConfig.RestartSec = "5s";
+  };
+
   # k3s agent
   services.k3s = {
     enable = true;
     role = "agent";
-    tokenFile = "${config.sops.secrets."k3s/token_2".path}";
+    tokenFile = "${config.sops.secrets."k3s/token".path}";
     serverAddr = "https://k3s.jaehong21.com:6443";
     extraFlags = [
       "--flannel-iface tailscale0"

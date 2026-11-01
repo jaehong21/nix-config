@@ -163,6 +163,13 @@ in
     config = builtins.readFile ./haproxy.cfg;
   };
 
+  # MagicDNS can become available after tailscaled has started.
+  systemd.services.haproxy = {
+    wants = [ "network-online.target" "tailscaled.service" ];
+    after = [ "network-online.target" "tailscaled.service" ];
+    serviceConfig.RestartSec = "5s";
+  };
+
   # k3s server (joins core1's embedded etcd cluster)
   services.k3s = {
     enable = true;
