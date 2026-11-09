@@ -266,7 +266,7 @@ in
         ];
       };
       hermes = {
-        image = "docker.io/nousresearch/hermes-agent:v2026.8.31";
+        image = "docker.io/nousresearch/hermes-agent:v0.23.0";
         autoStart = true;
         dependsOn = [ "pocket-id" ];
         cmd = [
@@ -282,10 +282,9 @@ in
           HERMES_DASHBOARD_OIDC_CLIENT_ID = "hermes-dashboard";
           HERMES_DASHBOARD_OIDC_SCOPES = "openid profile email";
           HERMES_DASHBOARD_PUBLIC_URL = "https://hermes.jaehong21.com";
-          # Trust Caddy's forwarded scheme so OIDC session cookies are Secure.
-          # Port 9119 is published on host loopback only.
-          FORWARDED_ALLOW_IPS = "*";
         };
+        # Trust Caddy's Docker bridge address (172.17.0.1) through
+        # dashboard.trusted_proxies in /var/lib/hermes/config.yaml.
         volumes = [
           "/var/lib/hermes:/opt/data"
         ];
