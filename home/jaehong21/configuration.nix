@@ -47,6 +47,7 @@
     EDITOR = "nvim";
     AWS_PROFILE = "ch-dev";
     GH_TELEMETRY = "false";
+    T3CODE_TELEMETRY_ENABLED = "false";
     MISE_GITHUB_ATTESTATIONS = "false";
     OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
     OPENCODE_EXPERIMENTAL_LSP_TOOL = "true";
