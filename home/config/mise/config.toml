@@ -15,7 +15,7 @@ codex = "latest"
 claude-code = "latest"
 cursor-cli = "latest"
 grok = "latest"
-"npm:opencode-ai" = "latest"
+"npm:@opencode/cli" = { version = "latest", bun_args = "--trust" }
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
 "npm:skills" = "latest"
@@ -54,16 +54,17 @@ television = "latest"
 yt-dlp = "latest"
 
 "cargo:rustlings" = "latest"
+"github:ViRb3/wgcf" = "2.2.31"
 "github:channel-io/cht-desk-cli" = "latest"
 "github:neurosnap/zmx" = "latest"
-# "github:steipete/gogcli" = "latest"
-"github:ViRb3/wgcf" = "2.2.31"
-# "npm:agent-slack" = "latest"
-"npm:fern-api" = "latest"
+"npm:cf" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
 "pipx:modal" = "latest"
 "pipx:notebook" = "latest" # jupyter notebook
+# "github:steipete/gogcli" = "latest"
+# "npm:agent-slack" = "latest"
+# "npm:fern-api" = "latest"
 
 # Disabled Tools
 # "github:rtk-ai/rtk" = "latest"
@@ -75,7 +76,7 @@ yt-dlp = "latest"
 [settings]
 experimental = true
 minimum_release_age = "24h" # default
-minimum_release_age_excludes = ["npm:opencode-ai", "npm:@earendil-works/pi-coding-agent", "npm:t3"]
+minimum_release_age_excludes = ["npm:@opencode/cli", "npm:@earendil-works/pi-coding-agent", "npm:t3", "npm:cht-desk-cli"]
 tool_update.global_auto = true
 self_update.auto = true
 
