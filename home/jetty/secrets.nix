@@ -13,6 +13,7 @@
 
     "linear/api_key" = { };
     "tweek/api_key" = { };
+    "daylite/api_key" = { };
     "grafana/account_token" = { };
   };
 
@@ -28,6 +29,7 @@
     PRISM_ANTHROPIC_API_KEY = "$(cat ${config.sops.secrets."prism/anthropic/api_key".path})";
     LINEAR_API_KEY = "$(cat ${config.sops.secrets."linear/api_key".path})";
     TWEEK_API_KEY = "$(cat ${config.sops.secrets."tweek/api_key".path})";
+    DAYLITE_API_KEY = "$(cat ${config.sops.secrets."daylite/api_key".path})";
     GRAFANA_SERVICE_ACCOUNT_TOKEN = "$(cat ${config.sops.secrets."grafana/account_token".path})";
   };
 }
