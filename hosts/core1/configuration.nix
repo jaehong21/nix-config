@@ -58,6 +58,7 @@ in
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     ./disk-config.nix
+    ./openclaw.nix
     inputs.sops-nix.nixosModules.sops
   ];
 
