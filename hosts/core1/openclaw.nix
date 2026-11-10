@@ -1,23 +1,30 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Seed a new installation only. Keep later Control UI/onboarding changes in
   # the persistent state directory rather than making openclaw.json read-only.
-  initialConfig = pkgs.writeText "openclaw-initial.json" (builtins.toJSON {
-    gateway = {
-      mode = "local";
-      bind = "lan";
-      port = 18789;
-      publicOrigin = "https://openclaw.jaehong21.com";
-      auth = {
-        mode = "token";
-        allowTailscale = false;
+  initialConfig = pkgs.writeText "openclaw-initial.json" (
+    builtins.toJSON {
+      gateway = {
+        mode = "local";
+        bind = "lan";
+        port = 18789;
+        publicOrigin = "https://openclaw.jaehong21.com";
+        auth = {
+          mode = "token";
+          allowTailscale = false;
+        };
+        tailscale.mode = "off";
+        trustedProxies = [ "172.17.0.1" ];
+        controlUi.allowedOrigins = [ "https://openclaw.jaehong21.com" ];
       };
-      tailscale.mode = "off";
-      trustedProxies = [ "172.17.0.1" ];
-      controlUi.allowedOrigins = [ "https://openclaw.jaehong21.com" ];
-    };
-  });
+    }
+  );
 in
 {
   sops.secrets."openclaw/core1/env" = {
