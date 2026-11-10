@@ -17,6 +17,7 @@
     gallery-dl
     google-cloud-sdk
     grpcurl
+    helix
     htop
     jq
     just

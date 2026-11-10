@@ -1,0 +1,13 @@
+# https://docs.helix-editor.com/configuration.html
+# Edit with :config-open and reload with :config-reload in Helix.
+# Unset options use Helix defaults.
+
+theme = "catppuccin_macchiato"
+
+[keys.normal]
+"," = "expand_selection"
+backspace = "shrink_selection"
+
+[keys.select]
+"," = "expand_selection"
+backspace = "shrink_selection"

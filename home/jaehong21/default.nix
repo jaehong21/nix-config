@@ -11,6 +11,7 @@
     # ./programs/docker.nix
     ./programs/git.nix
     ./programs/hammerspoon.nix
+    ./programs/helix.nix
     ./programs/homebrew.nix
     ./programs/kubernetes.nix
     ./programs/lsp.nix
