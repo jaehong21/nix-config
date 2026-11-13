@@ -19,6 +19,8 @@
     cask "scroll-reverser"
     # cask "cleanmymac-cli"
 
+    brew "create-dmg"
+
     # cask "codex"
     # cask "claude-code"
     cask "steipete/tap/codexbar"
