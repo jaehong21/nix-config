@@ -13,7 +13,7 @@ uv = "latest"
 # Coding Assistants
 codex = "latest"
 claude-code = "latest"
-cursor-cli = "latest"
+# cursor-cli = "latest"
 grok = "latest"
 "npm:@opencode/cli" = { version = "latest", bun_args = "--trust" }
 "npm:@earendil-works/pi-coding-agent" = "latest"
@@ -23,7 +23,6 @@ grok = "latest"
 "npm:mcporter" = "latest"
 "npm:@loongphy/codex-auth" = "latest"
 "npm:t3" = "latest"
-"npm:@bitkyc08/opencodex" = "latest"
 # "cargo:rikabot" = "latest"
 
 # LSPs and formatters
@@ -37,10 +36,12 @@ terragrunt = "latest"
 # ansible = "latest"
 
 # CLI
+flyctl = "latest"
 fnox = "latest"
 git-cliff = "latest"
 goreleaser = "latest"
 hugo = "v0.145.0"
+infisical = "latest"
 k6 = "latest"
 lazydocker = "latest"
 mole = "latest"
@@ -54,22 +55,19 @@ television = "latest"
 yt-dlp = "latest"
 
 "cargo:rustlings" = "latest"
-"github:ViRb3/wgcf" = "2.2.31"
 "github:channel-io/cht-desk-cli" = "latest"
 "github:neurosnap/zmx" = "latest"
 "npm:cf" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
-"pipx:modal" = "latest"
 "pipx:notebook" = "latest" # jupyter notebook
+# "pipx:modal" = "latest"
+# "github:ViRb3/wgcf" = "2.2.31"
 # "github:steipete/gogcli" = "latest"
 # "npm:agent-slack" = "latest"
 # "npm:fern-api" = "latest"
 
 # Disabled Tools
-# "github:rtk-ai/rtk" = "latest"
-# "npm:@tobilu/qmd" = "latest"
-# deno = "latest"
 # java = "corretto-21.0.8"
 # gradle = "8.5"
 
