@@ -15,6 +15,7 @@
     cask "tinycast"
     cask "orbstack"
     cask "hammerspoon"
+    cask "iina"
     cask "scroll-reverser"
     # cask "cleanmymac-cli"
 
