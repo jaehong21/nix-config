@@ -13,6 +13,7 @@
     exiftool
     fd
     ffmpeg
+    forgejo-cli
     fx
     gallery-dl
     google-cloud-sdk
