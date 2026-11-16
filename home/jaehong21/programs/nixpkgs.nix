@@ -14,6 +14,7 @@
     fd
     ffmpeg
     forgejo-cli
+    forgejo-runner
     fx
     gallery-dl
     google-cloud-sdk
