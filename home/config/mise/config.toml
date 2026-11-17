@@ -1,9 +1,9 @@
 [tools]
 # Languages and Runtimes
-node = "24"
-bun = "1.3"
-go = "1.26"
-python = "3.14"
+node = "lts"
+bun = "1.4"
+go = "1.27"
+python = "3.15"
 rust = { version = "1.96", components = "rust-analyzer", targets = "wasm32-wasip1" }
 
 # Package managers
@@ -14,16 +14,16 @@ uv = "latest"
 codex = "latest"
 claude-code = "latest"
 # cursor-cli = "latest"
-grok = "latest"
+# grok = "latest"
 "npm:@opencode/cli" = { version = "latest", bun_args = "--trust" }
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
 "npm:skills" = "latest"
-# "npm:tokscale" = "latest"
 "npm:mcporter" = "latest"
-"npm:@loongphy/codex-auth" = "latest"
 "npm:t3" = "latest"
+"npm:@loongphy/codex-auth" = "latest"
 # "cargo:rikabot" = "latest"
+# "npm:tokscale" = "latest"
 
 # LSPs and formatters
 "npm:vscode-langservers-extracted" = "latest" # html, css, eslint, html, json, markdown
@@ -54,22 +54,21 @@ supabase = "latest"
 television = "latest"
 yt-dlp = "latest"
 
-"cargo:rustlings" = "latest"
 "github:channel-io/cht-desk-cli" = "latest"
 "github:neurosnap/zmx" = "latest"
+"npm:agent-slack" = "latest"
 "npm:cf" = "latest"
 "npm:kagi-cli" = "latest"
 "npm:playwright" = "latest"
 "pipx:notebook" = "latest" # jupyter notebook
-# "pipx:modal" = "latest"
+
+# "cargo:rustlings" = "latest"
 # "github:ViRb3/wgcf" = "2.2.31"
 # "github:steipete/gogcli" = "latest"
-# "npm:agent-slack" = "latest"
 # "npm:fern-api" = "latest"
-
-# Disabled Tools
-# java = "corretto-21.0.8"
+# "pipx:modal" = "latest"
 # gradle = "8.5"
+# java = "corretto-21.0.8"
 
 [settings]
 experimental = true
