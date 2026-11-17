@@ -227,6 +227,10 @@ in
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_28_5_1;
 
+  # Temporarily disable both agent services while retaining their data and setup.
+  systemd.services.docker-openclaw.enable = false;
+  systemd.services.docker-hermes.enable = false;
+
   # Hermes keeps its mutable configuration and runtime state outside Nix.
   # The official image runs Hermes as UID/GID 10000.
   systemd.tmpfiles.rules = [ "d /var/lib/hermes 0700 10000 10000 -" ];
@@ -268,7 +272,7 @@ in
       };
       hermes = {
         image = "docker.io/nousresearch/hermes-agent:v0.23.0";
-        autoStart = true;
+        autoStart = false;
         dependsOn = [ "pocket-id" ];
         cmd = [
           "gateway"
