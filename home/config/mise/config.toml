@@ -14,7 +14,7 @@ uv = "latest"
 codex = "latest"
 claude-code = "latest"
 # cursor-cli = "latest"
-# grok = "latest"
+grok = "latest"
 "npm:@opencode/cli" = { version = "latest", bun_args = "--trust" }
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:aicommit2" = "latest"
@@ -73,7 +73,7 @@ yt-dlp = "latest"
 [settings]
 experimental = true
 minimum_release_age = "24h" # default
-minimum_release_age_excludes = ["npm:@opencode/cli", "npm:@earendil-works/pi-coding-agent", "npm:t3", "npm:cht-desk-cli"]
+minimum_release_age_excludes = ["codex", "claude-code", "npm:@opencode/cli", "npm:@earendil-works/pi-coding-agent", "npm:t3", "npm:cht-desk-cli"]
 tool_update.global_auto = true
 self_update.auto = true
 
