@@ -11,6 +11,7 @@
   home.file.".config/homebrew/Brewfile".text = ''
     # tap "channel-io/tap", "git@github.com:channel-io/homebrew-tap.git"
     tap "steipete/tap"
+    tap "jaehong21/tap"
 
     cask "tinycast"
     cask "orbstack"
@@ -25,6 +26,7 @@
     # cask "claude-code"
     cask "steipete/tap/codexbar"
     cask "voiceink"
+    cask "jaehong21/tap/daylite" # auto_updates; no greedy
     # cask "channel-io/tap/cht-desk-cli"
   '';
 
