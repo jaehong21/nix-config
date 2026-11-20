@@ -11,7 +11,7 @@ pipx = "latest"
 uv = "latest"
 
 # Coding Assistants
-codex = "latest"
+codex = "0.167" # pinned: 0.168+ asks approval for forced rm in T3 (t3code#37298)
 claude-code = "latest"
 # cursor-cli = "latest"
 grok = "latest"
